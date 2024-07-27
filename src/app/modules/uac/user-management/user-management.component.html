@@ -27,7 +27,7 @@
                     <a (click)="onToggleSwitchView()">
                         <i class="vi" [ngClass]="{'vi-grid': !patListGridView, 'vi-ordered-list': patListGridView}"></i>
                     </a>
-                    <a><i class="vi vi-filter"></i></a>
+                    <a (click)="openUserFilterSearch()"><i class="vi vi-filter"></i></a>
                 </div>
             </div>
         </div>
@@ -102,3 +102,13 @@
         </div>
     </div>
 </div>
+
+<app-filter *ngIf="userFilterSearch" (closed)="onFilterClosed()" [filterTitle]="'Filter User'" [customClass]="''">
+    <div class="filter-body">
+        
+    </div>
+    <div class="filter-action">
+        <button type="button" class="btn btn-primary">Search</button>
+        <button type="button" class="btn btn-outline-danger">Reset</button>
+    </div>
+</app-filter>

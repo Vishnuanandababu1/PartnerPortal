@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { InputControlComponent } from '../../../library/controls/input-control/input-control.component';
 import { SelectControlComponent } from '../../../library/controls/select-control/select-control.component';
+import { FilterComponent } from '../../../library/components/filter/filter.component';
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, InputControlComponent, SelectControlComponent],
+  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })
@@ -35,6 +36,7 @@ export class UserManagementComponent implements OnInit {
   ];
 
   patListGridView = true;
+  userFilterSearch: boolean = false;
 
   constructor() { }
 
@@ -45,6 +47,12 @@ export class UserManagementComponent implements OnInit {
 
   onToggleSwitchView() {
     this.patListGridView = !this.patListGridView;
+  }
+  openUserFilterSearch() {
+    this.userFilterSearch = true;
+  }
+  onFilterClosed() {
+    this.userFilterSearch = false;
   }
 
   viewUserProfile(type: string) {

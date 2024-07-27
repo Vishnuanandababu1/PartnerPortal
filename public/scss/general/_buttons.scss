@@ -243,6 +243,7 @@ button[disabled] {
         position: relative;
         border-radius: 5px;
         place-items: center;
+        text-decoration: unset;
         i {
             font-size: 17px;
             &.vi-grid {
@@ -259,6 +260,10 @@ button[disabled] {
             }
             &.vi-more-horizontal {
                 font-size: 16px;
+            }
+            &.vi-close {
+                font-size: 15px;
+                font-weight: 400;
             }
         }
         &:hover {
