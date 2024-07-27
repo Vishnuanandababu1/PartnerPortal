@@ -70,6 +70,13 @@
         "docref": "Doctor Referral",
         "inchdoc": "Incharge Doctor"
     },
+    "user": {
+        "myprofile": "My Profile",
+        "changepassword": "Change Password",
+        "lockscreen": "Lock screen",
+        "darktheme": "Dark Theme",
+        "logout": "Logout"
+    },
     "contact": {
         "phcode": "Phone Code",
         "ccode": "Country Code",
@@ -166,7 +173,11 @@
         "vto": "Valid To",
         "issueddate": "Issued Date",
         "issuedplace": "Issued Place",
-        "refby": "Referred By"
+        "refby": "Referred By",
+        "password": "Password",
+        "oldpassword": "Old Password",
+        "newpassword": "New Password",
+        "confirmpassword": "Confirm Password"
     },
     "valid": {
         "char": "Only characters are allowed",

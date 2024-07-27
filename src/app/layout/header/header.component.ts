@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, OnInit, Inject, HostListener, Injector, inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, inject } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { ChangePasswordComponent } from '../../auth/change-password/change-passw
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ClickOutsideModule, ModalComponent, DialogComponent, ChangePasswordComponent, TranslateModule],
+  imports: [CommonModule, TranslateModule, ClickOutsideModule, ModalComponent, DialogComponent, ChangePasswordComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -34,8 +34,9 @@ export class HeaderComponent implements OnInit {
 
   supportLanguages = [
     { code: 'en', displayName: 'English' },
+    { code: 'ma', displayName: 'Malayalam' },
+    { code: 'hi', displayName: 'Hindi' },
     { code: 'ar', displayName: 'Arabic' },
-    { code: 'ma', displayName: 'Malayalam' }
   ];
   alphabet = [
     { id: 'A', aplh: 'A', },
@@ -88,6 +89,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Neha Aloshi', mrn: 'MRN-8745757', gender: 'F', age: '23', img: '../../../../../images/avatars/user-6.png', online: true },
     { name: 'Mishma Vishwanath', mrn: 'MRN-2372925', gender: 'F', age: '38', img: '../../../../../images/avatars/user-8.png', online: true }
   ];
+
   private translate = inject(TranslateService);
   constructor(
     private router: Router, @Inject(DOCUMENT) private document: any) { }

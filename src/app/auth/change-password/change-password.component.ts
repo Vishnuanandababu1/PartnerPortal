@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './change-password.component.html',
 })
 export class ChangePasswordComponent implements OnInit {
@@ -19,6 +20,7 @@ export class ChangePasswordComponent implements OnInit {
 
   @Output() closeChangePasswordModal = new EventEmitter<void>();
 
+  private translate = inject(TranslateService);
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {

@@ -70,6 +70,13 @@
         "docref": "إحالة الطبيب",
         "inchdoc": "طبيب مشرف"
     },
+    "user": {
+        "myprofile": "ملفي الشخصي",
+        "changepassword": "تغيير كلمة المرور",
+        "lockscreen": "قفل الشاشة",
+        "darktheme": "الوضع الداكن",
+        "logout": "تسجيل الخروج"
+    },
     "contact": {
         "phcode": "رمز الهاتف",
         "ccode": "رمز البلد",
@@ -166,7 +173,11 @@
         "vto": "صالح حتى",
         "issueddate": "تاريخ الإصدار",
         "issuedplace": "مكان الإصدار",
-        "refby": "مشار إليه بواسطة"
+        "refby": "مشار إليه بواسطة",
+        "password": "كلمة المرور",
+        "oldpassword": "كلمة المرور القديمة",
+        "newpassword": "كلمة المرور الجديدة",
+        "confirmpassword": "تأكيد كلمة المرور"
     },
     "valid": {
         "char": "يسمح فقط بالأحرف",
