@@ -1,0 +1,240 @@
+@import "../../../../../public/scss/variables";
+
+.page-container {
+    .page-wrap {
+        .page-header {
+            top: 0;
+            z-index: 1;
+            height: 50px;
+            display: flex;
+            position: sticky;
+            padding: 0 1.75rem;
+            align-items: center;
+            background: #ffffff;
+            justify-content: space-between;
+            // box-shadow: 3px -1px 6px 0 #a1a1a1;
+            border-bottom: 1px solid #efefef;
+            .tab-container {
+                &.three {
+                    width: 300px;
+                }
+            }
+        }
+        .page-content {
+            padding: 1.5rem 1.75rem;
+            min-height: calc(100vh - 100px);
+        }
+    }
+}
+
+.doc-list {
+    display: grid;
+    column-gap: 1.5rem;
+    grid-template-columns: repeat(5, minmax(0px, 1fr));
+    .doc-card {
+        min-height: 238px;
+        text-align: center;
+        position: relative;
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.75rem;
+        .doc-img {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            margin: 0 auto 5px;
+            img {
+                width: inherit;
+                height: inherit;
+                border-radius: 50%;
+            }
+            .online {
+                right: 3px;
+                padding: 2px;
+                bottom: -1px;
+                position: absolute;
+                border-radius: 50%;
+                &:after {
+                    content: "";
+                    width: 10px;
+                    height: 10px;
+                    display: block;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .doc-info {
+            .doc-name {
+                font-weight: 500;
+                font-size: 1.05em;
+            }
+            .doc-dpmt,
+            .room-no,
+            .avail-slots {
+                font-weight: 500;
+                line-height: 1.4;
+                font-size: 0.95em;
+            }
+            .doc-dpmt {
+                margin-bottom: 3px;
+            }
+            .room-no,
+            .avail-slots {
+                color: #b4abab;
+                font-size: 0.95em;
+                label {
+                    padding-left: 5px;
+                    &.good {
+                        color: #0caf0c;
+                    }
+                    &.avail {
+                        color: #eca336;
+                    }
+                    &.low {
+                        color: #ff0000;
+                    }
+                }
+            }
+            .avail-slots {
+                label {
+                    font-size: 1.05em;
+                }
+            }
+        }
+        .btn-book {
+            margin-top: 12px;
+            .btn {
+                min-width: 90%;
+                min-height: 30px;
+                // border-style: none;
+            }
+        }
+        .doc-options {
+            top: 9px;
+            right: 7px;
+            position: absolute;
+            label {
+                a {
+                    height: 30px;
+                    width: 30px;
+                    display: grid;
+                    cursor: pointer;
+                    position: relative;
+                    border-radius: 50%;
+                    place-items: center;
+                    text-decoration: none;
+                    .vi {
+                        top: 1px;
+                        left: 1px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.doc-list {
+    .doc-card {
+        background: $card-doc-bg;
+        box-shadow: $card-doc-bs;
+        .doc-img {
+            .online {
+                background: $card-doc-bg;
+                &:after {
+                    background: $online;
+                }
+            }
+        }
+        .doc-info {
+            .doc-name {
+                color: $cmn-doc-nd;
+            }
+            .doc-dpmt {
+                color: $cmn-doc-dpmt;
+            }
+        }
+    }
+}
+
+.table-wrap {
+    .table-container {
+        table {
+            &.user-table {
+                margin-bottom: 0;
+                tbody {
+                    tr {
+                        cursor: pointer;
+                        td {
+                            cursor: inherit;
+                            overflow-wrap: break-word;
+                            .user-name {
+                                line-height: 1.15;
+                            }
+                            .user-email {
+                                line-height: 1.15;
+                                color: #807979;
+                            }
+                        }
+                    }
+                }
+                thead,
+                tbody {
+                    tr {
+                        th,
+                        td {
+                            &:nth-child(1) {
+                                min-width: 45px;
+                                max-width: 45px;
+                                img {
+                                    top: 5px;
+                                    width: 2rem;
+                                    height: 2rem;
+                                    line-height: 2rem;
+                                    border-radius: 50%;
+                                    position: absolute;
+                                }
+                            }
+                            &:nth-child(2) {
+                                min-width: 60px;
+                                max-width: 60px;
+                            }
+                            &:nth-child(3) {
+                                min-width: 130px;
+                                max-width: 130px;
+                            }
+                            &:nth-child(4) {
+                                min-width: 100px;
+                                max-width: 100px;
+                            }
+                            &:nth-child(5) {
+                                min-width: 130px;
+                                max-width: 130px;
+                            }
+                            &:nth-child(6) {
+                                min-width: 175px;
+                                max-width: 175px;
+                            }
+                            &:nth-child(7) {
+                                min-width: 100px;
+                                max-width: 100px;
+                            }
+                            &:nth-child(8) {
+                                min-width: 80px;
+                                max-width: 80px;
+                                text-align: center;
+                            }
+                            &:nth-child(9) {
+                                min-width: 40px;
+                                max-width: 40px;
+                                .icon-btn-list {
+                                    top: 7px;
+                                    position: absolute;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<div class="form-group input" [ngClass]="customClass">
+    <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{title}}</label>
+    <input type="text" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
+        [ngClass]="{'is-invalid': validationClass}" [disabled]="disabled" (blur)="onBlur()" />
+    <span class="focus-border"></span>
+    <label class="clear" *ngIf="inputControl.value" (click)="resetInput()">
+        <i class="vi vi-close"></i>
+    </label>
+</div>

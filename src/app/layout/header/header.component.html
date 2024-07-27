@@ -1,0 +1,212 @@
+<div class="app-header">
+    <div class="header-actions">
+        <div class="menu-icon" (click)="sidemenuToggle()">
+            <a>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+        <div class="h-pat-search" (clickOutside)="onClosePatlist()">
+            <div class="form-group clear-bottom">
+                <input type="text" class="form-control" (input)="onSearchInput($event)" />
+                <label class="select">
+                    <i class="vi vi-user"></i>
+                </label>
+                <label class="search" (click)="showPatientList()"><i class="vi vi-search"></i></label>
+            </div>
+            <div class="search-container" *ngIf="allPatientsList">
+                <div class="search-filter">
+                    <div class="ls-filter-group">
+                        <div class="icon-as" [ngClass]="{'active': patAdvanceSearch}">
+                            <a (click)="onTogglePatAdvanceSearch()" title="Advance Search"><i
+                                    class="vi vi-search-adv"></i></a>
+                        </div>
+                        <div>
+                            <div class="tab-container patient">
+                                <div class="tab-item active">OP</div>
+                                <div class="tab-item">Scheduled</div>
+                                <div class="tab-item">All</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rs-filter-group">
+                        <label>
+                            <a (click)="onTogglePatPreview()" [ngClass]="{'active': patInfoPreview}">
+                                <i class="vi" [ngClass]="{'vi-eye': !patInfoPreview, 'vi-eye-off': patInfoPreview}"></i>
+                            </a>
+                        </label>
+                        <label>
+                            <a [ngClass]="{'active': patListAlphaSort}" (click)="onToggleAlphaView()">
+                                <i class="vi vi-sort-alpha-asc"></i></a>
+                        </label>
+                        <label>
+                            <a (click)="onToggleSwitchView()">
+                                <i class="vi"
+                                    [ngClass]="{'vi-grid': !patListGridView, 'vi-ordered-list': patListGridView}"></i>
+                            </a>
+                        </label>
+                        <label class="close">
+                            <a class="close" (click)="onClosePatlist()"><i class="vi vi-close"></i></a>
+                        </label>
+                    </div>
+                </div>
+                <div class="search-data" [ngClass]="{'as-open': patAdvanceSearch, 'pp-open': patInfoPreview}">
+                    <div class="adv-search" *ngIf="patAdvanceSearch">
+                        adv search
+                    </div>
+                    <div class="search-list">
+                        <div class="grid-search-list" [ngClass]="{'alph-bar' : patListAlphaSort}"
+                            *ngIf="patListGridView">
+                            <div class="search-results">
+                                <div class="pat-card" *ngFor="let pat of searchPatient; let i = index;">
+                                    <div class="pat-img">
+                                        <img src="{{pat.img}}" />
+                                        <label class="online" *ngIf="pat.online"></label>
+                                    </div>
+                                    <div class="pat-info">
+                                        <div class="name ellipsis">{{pat.name}}</div>
+                                        <div class="mrn ellipsis">{{pat.mrn}} <span>{{pat.gender}}/{{pat.age}}y</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="patListAlphaSort">
+                                <ng-container *ngTemplateOutlet="alphabets"></ng-container>
+                            </ng-container>
+                        </div>
+                        <div class="table-search-list" [ngClass]="{'alph-bar' : patListAlphaSort}"
+                            *ngIf="!patListGridView">
+                            <div class="search-results">
+                                <table class="table table-fixed table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="dc-img"></th>
+                                            <th class="dc-name">Patient Name</th>
+                                            <th class="dc-mrn">Patient MRNo</th>
+                                            <th class="dc-ga">Gender/Age</th>
+                                            <th class="dc-more"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let pat of searchPatient; let i = index;">
+                                            <td class="dc-img">
+                                                <div class="pat-img">
+                                                    <img src="{{pat.img}}" />
+                                                    <label class="online" *ngIf="pat.online"></label>
+                                                </div>
+                                            </td>
+                                            <td class="dc-name">{{pat.name}}</td>
+                                            <td class="dc-mrn">{{pat.mrn}}</td>
+                                            <td class="dc-ga">{{pat.gender}}/{{pat.age}}y</td>
+                                            <td class="dc-more">
+                                                <label class="more">
+                                                    <i class="vi vi-more-horizontal"></i>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <ng-container *ngIf="patListAlphaSort">
+                                <ng-container *ngTemplateOutlet="alphabets"></ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="pat-preview" *ngIf="patInfoPreview">
+                        pat preview
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="new-pat-reg">
+            <a (click)="addNewPatient()" title="Add New Patient">
+                <i class="vi vi-patient-o"></i>
+            </a>
+        </div>
+    </div>
+    <div class="header-nav">
+        <div class="header-nav-link">
+            <a (click)="isNightMode()">
+                <i class="vi" [ngClass]="{'vi-moon': nightModeIcon != true, 'vi-sun': nightModeIcon == true}"></i>
+            </a>
+        </div>
+        <div class="header-nav-link">
+            <a *ngIf="!isFullScreenMode" (click)="openFullscreen()">
+                <i class="vi vi-maximize"></i>
+            </a>
+            <a *ngIf="isFullScreenMode" (click)="closeFullscreen()">
+                <i class="vi vi-minimize"></i>
+            </a>
+        </div>
+        <div class="header-nav-link" (clickOutside)="closeUserNotifications()">
+            <a (click)="showUserNotifications()"><i class="vi vi-bell"></i></a>
+            <div class="multi-menu-list list-lg notification-list" *ngIf="notificationslist">
+                <div class="list-head">
+                    <div class="head-title">You have notifications</div>
+                    <div><label class="badge rounded-pill">3</label></div>
+                </div>
+                <div class="list-item">
+                    <div class="media">
+                        <div class="media-icon align-center bg-primary-gradient mre-2">
+                            <i class="vi vi-chat"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="notification-label">New message received</div>
+                            <div class="notification-subtext">2 hours ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="media">
+                        <div class="media-icon align-center bg-secondary-gradient mre-2">
+                            <i class="vi vi-shopping-bag"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="notification-label">New Order received</div>
+                            <div class="notification-subtext">4 hours ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="media">
+                        <div class="media-icon align-center bg-success-gradient mre-2">
+                            <i class="vi vi-gift"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="notification-label">Loyalty Points Redeemed</div>
+                            <div class="notification-subtext">4 hours ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-item list-footer">
+                    <div>View all notifications</div>
+                </div>
+            </div>
+        </div>
+        <div class="header-nav-link">
+            <a><i class="vi vi-help-circle"></i></a>
+        </div>
+        <div class="header-nav-link" (clickOutside)="closeLangMenuList($event)">
+            <a (click)="showLangMenuList()"><i class="vi vi-globe"></i></a>
+            <div class="multi-menu-list list-md" *ngIf="langmultimenulist">
+                <div class="list-item" *ngFor="let lang of supportLanguages" (click)="changeLanguage(lang.code)">
+                    {{ lang.displayName }}
+                </div>
+            </div>
+        </div>
+        <div class="header-nav-link user-img">
+            <img src="../../../../../images/avatars/user-1.png" />
+        </div>
+    </div>
+</div>
+
+<ng-template #alphabets>
+    <div class="alph-sel">
+        <div *ngFor="let item of alphabet">
+            <a>{{item.aplh}}</a>
+        </div>
+    </div>
+</ng-template>
