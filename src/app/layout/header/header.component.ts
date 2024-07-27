@@ -3,8 +3,8 @@ import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { DialogComponent } from '../../library/components/dialog/dialog.component';
-import { ModalComponent } from '../../library/components/modal/modal.component';
+import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { DialogComponent } from '../../shared/components/dialog/dialog.component';
 import { ChangePasswordComponent } from '../../auth/change-password/change-password.component';
 
 @Component({

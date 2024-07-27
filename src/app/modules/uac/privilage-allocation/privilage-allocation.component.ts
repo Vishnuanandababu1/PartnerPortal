@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { InputControlComponent } from '../../../library/controls/input-control/input-control.component';
-import { SelectControlComponent } from '../../../library/controls/select-control/select-control.component';
+import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
+import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
+
 
 @Component({
   selector: 'app-privilage-allocation',

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { InputControlComponent } from '../../../library/controls/input-control/input-control.component';
-import { SelectControlComponent } from '../../../library/controls/select-control/select-control.component';
-import { FilterComponent } from '../../../library/components/filter/filter.component';
+import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
+import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
+import { FilterComponent } from '../../../shared/components/filter/filter.component';
 
 @Component({
   selector: 'app-user-management',
