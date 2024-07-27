@@ -1,0 +1,15 @@
+<div class="filter-container" [ngClass]="customClass">
+    <div class="filter-content" (clickOutside)="onCloseFilter()">
+        <div class="filter-header">
+            <div class="filter-title">{{ filterTitle }}</div>
+            <div class="icon-btn-list">
+                <a (click)="closeFilter()"><i class="vi vi-close"></i></a>
+            </div>
+        </div>
+        <ng-content select=".filter-body"></ng-content>
+        <div class="filter-footer">
+            <ng-content select=".filter-action"></ng-content>
+            <button type="button" class="btn btn-outline-danger" (click)="closeFilter()">Close</button>
+        </div>
+    </div>
+</div>
