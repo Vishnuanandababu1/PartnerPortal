@@ -70,6 +70,29 @@ a {
     }
 }
 
+// filter
+.filter-container {
+    .filter-content {
+        .filter-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .filter-footer {
+            .filter-action {
+                gap: 15px;
+                display: flex;
+            }
+            .btn {
+                height: 30px;
+                min-height: 30px;
+                min-width: 90px;
+                padding: 0.1rem 1rem;
+            }
+        }
+    }
+}
+
 // list
 .multi-menu-list {
     top: 40px;
