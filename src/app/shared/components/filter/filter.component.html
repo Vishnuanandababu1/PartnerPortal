@@ -1,5 +1,6 @@
 <div class="filter-container" [ngClass]="customClass">
-    <div class="filter-content" (clickOutside)="onCloseFilter()">
+    <div class="filter-container-overlay" (click)="closeFilter()"></div>
+    <div class="filter-content">
         <div class="filter-header">
             <div class="filter-title">{{ filterTitle }}</div>
             <div class="icon-btn-list">

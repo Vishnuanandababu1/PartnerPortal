@@ -5,7 +5,14 @@
     height: 100%;
     z-index: 1000;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
+    .filter-container-overlay {
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
     .filter-content {
         right: 0;
         height: 100%;
