@@ -46,7 +46,10 @@
                 .form-group {
                     margin-bottom: 1.5rem;
                     .toggle-eye {
-                        top: 4px;
+                        top: 8px;
+                        .vi {
+                            font-size: 18px;
+                        }
                     }
                 }
                 .btn {

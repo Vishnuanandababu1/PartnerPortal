@@ -101,11 +101,14 @@
         letter-spacing: 0.01rem;
     }
     .toggle-eye {
-        top: 35px;
+        top: 32px;
         right: 10px;
         padding: 5px;
         line-height: 1;
         position: absolute;
+        .vi {
+            font-size: 18px;
+        }
         .rb {
             font-size: 17px;
             color: #5f6554;
