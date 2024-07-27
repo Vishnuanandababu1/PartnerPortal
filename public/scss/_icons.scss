@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icomoon";
-  src: url("../../public/fonts/icomoon/icomoon.eot?2x9w0y");
+  src: url("../../public/fonts/icomoon/icomoon.eot?b8dzmn");
   src:
-    url("../../public/fonts/icomoon/icomoon.eot?2x9w0y#iefix") format("embedded-opentype"),
-    url("../../public/fonts/icomoon/icomoon.ttf?2x9w0y") format("truetype"),
-    url("../../public/fonts/icomoon/icomoon.woff?2x9w0y") format("woff"),
-    url("../../public/fonts/icomoon/icomoon.svg?2x9w0y#icomoon") format("svg");
+    url("../../public/fonts/icomoon/icomoon.eot?b8dzmn#iefix") format("embedded-opentype"),
+    url("../../public/fonts/icomoon/icomoon.ttf?b8dzmn") format("truetype"),
+    url("../../public/fonts/icomoon/icomoon.woff?b8dzmn") format("woff"),
+    url("../../public/fonts/icomoon/icomoon.svg?b8dzmn#icomoon") format("svg");
 }
 
 .vi {
@@ -272,153 +272,201 @@
 .vi-horizontal-view:before {
   content: "\e952";
 }
-.vi-kanban:before {
+.vi-image:before {
   content: "\e953";
 }
-.vi-kanban-o:before {
+.vi-image-attach:before {
   content: "\e954";
 }
-.vi-key:before {
+.vi-info-circle:before {
   content: "\e955";
 }
-.vi-language:before {
+.vi-info-circle-o:before {
   content: "\e956";
 }
-.vi-language-translator:before {
+.vi-kanban:before {
   content: "\e957";
 }
-.vi-maximize:before {
+.vi-kanban-o:before {
   content: "\e958";
 }
-.vi-minimize:before {
+.vi-key:before {
   content: "\e959";
 }
-.vi-moon:before {
+.vi-language:before {
   content: "\e95a";
 }
-.vi-moon-o:before {
+.vi-language-translator:before {
   content: "\e95b";
 }
-.vi-moon-star-o:before {
+.vi-lock:before {
   content: "\e95c";
 }
-.vi-more-horizontal:before {
+.vi-lock-open:before {
   content: "\e95d";
 }
-.vi-more-vertical:before {
+.vi-maximize:before {
   content: "\e95e";
 }
-.vi-ordered-list:before {
+.vi-minimize:before {
   content: "\e95f";
 }
-.vi-paper-clip:before {
+.vi-moon:before {
   content: "\e960";
 }
-.vi-patient-group-o:before {
+.vi-moon-o:before {
   content: "\e961";
 }
-.vi-patient-lead-o:before {
+.vi-moon-star-o:before {
   content: "\e962";
 }
-.vi-patient-o:before {
+.vi-more-horizontal:before {
   content: "\e963";
 }
-.vi-patients-o:before {
+.vi-more-vertical:before {
   content: "\e964";
 }
-.vi-pencil:before {
+.vi-non-veg:before {
   content: "\e965";
 }
-.vi-pencil-o:before {
+.vi-ordered-list:before {
   content: "\e966";
 }
-.vi-plus:before {
+.vi-paper-clip:before {
   content: "\e967";
 }
-.vi-plus-circle:before {
+.vi-patient-group-o:before {
   content: "\e968";
 }
-.vi-plus-circle-o:before {
+.vi-patient-lead-o:before {
   content: "\e969";
 }
-.vi-power-off:before {
+.vi-patient-o:before {
   content: "\e96a";
 }
-.vi-receipt-o:before {
+.vi-patients-o:before {
   content: "\e96b";
 }
-.vi-reception-o:before {
+.vi-pencil:before {
   content: "\e96c";
 }
-.vi-redo:before {
+.vi-pencil-o:before {
   content: "\e96d";
 }
-.vi-refresh:before {
+.vi-plus:before {
   content: "\e96e";
 }
-.vi-search:before {
+.vi-plus-circle:before {
   content: "\e96f";
 }
-.vi-search-adv:before {
+.vi-plus-circle-o:before {
   content: "\e970";
 }
-.vi-search-key:before {
+.vi-power-off:before {
   content: "\e971";
 }
-.vi-search-number:before {
+.vi-receipt-o:before {
   content: "\e972";
 }
-.vi-search-text:before {
+.vi-reception-o:before {
   content: "\e973";
 }
-.vi-search-user:before {
+.vi-redo:before {
   content: "\e974";
 }
-.vi-shopping-bag:before {
+.vi-refresh:before {
   content: "\e975";
 }
-.vi-sort-alpha-asc:before {
+.vi-search:before {
   content: "\e976";
 }
-.vi-sort-alpha-contains:before {
+.vi-search-adv:before {
   content: "\e977";
 }
-.vi-sort-alpha-desc:before {
+.vi-search-key:before {
   content: "\e978";
 }
-.vi-sort-alpha-start:before {
+.vi-search-number:before {
   content: "\e979";
 }
-.vi-sun:before {
+.vi-search-text:before {
   content: "\e97a";
 }
-.vi-sun-fh:before {
+.vi-search-user:before {
   content: "\e97b";
 }
-.vi-sun-moon:before {
+.vi-shopping-bag:before {
   content: "\e97c";
 }
-.vi-sun-o:before {
+.vi-sort-alpha-asc:before {
   content: "\e97d";
 }
-.vi-sun-sh:before {
+.vi-sort-alpha-contains:before {
   content: "\e97e";
 }
-.vi-user:before {
+.vi-sort-alpha-desc:before {
   content: "\e97f";
 }
-.vi-user-group-o:before {
+.vi-sort-alpha-start:before {
   content: "\e980";
 }
-.vi-user-lead-o:before {
+.vi-sun:before {
   content: "\e981";
 }
-.vi-user-o:before {
+.vi-sun-fh:before {
   content: "\e982";
 }
-.vi-verified-o:before {
+.vi-sun-moon:before {
   content: "\e983";
 }
-.vi-vertical-view:before {
+.vi-sun-o:before {
   content: "\e984";
+}
+.vi-sun-sh:before {
+  content: "\e985";
+}
+.vi-user:before {
+  content: "\e986";
+}
+.vi-user-card:before {
+  content: "\e987";
+}
+.vi-user-discussion-o:before {
+  content: "\e988";
+}
+.vi-user-feedback-o:before {
+  content: "\e989";
+}
+.vi-user-group:before {
+  content: "\e98a";
+}
+.vi-user-group-feedback-o:before {
+  content: "\e98b";
+}
+.vi-user-group-o:before {
+  content: "\e98c";
+}
+.vi-user-lead-o:before {
+  content: "\e98d";
+}
+.vi-user-o:before {
+  content: "\e98e";
+}
+.vi-users:before {
+  content: "\e98f";
+}
+.vi-user-waiting-o:before {
+  content: "\e990";
+}
+.vi-veg:before {
+  content: "\e991";
+}
+.vi-veg-egg:before {
+  content: "\e992";
+}
+.vi-verified-o:before {
+  content: "\e993";
+}
+.vi-vertical-view:before {
+  content: "\e994";
 }

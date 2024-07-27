@@ -28,12 +28,27 @@
                 color: #6259ca;
             }
         }
+        ::ng-deep .filter-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
         .filter-footer {
             gap: 15px;
             display: flex;
             flex: 0 0 auto;
             padding: 0.75rem 1.5rem;
             border-top: 1px solid #efefef;
+            ::ng-deep .filter-action {
+                gap: 15px;
+                display: flex;
+            }
+            .btn,
+            ::ng-deep .btn {
+                height: 30px;
+                min-height: 30px;
+                padding: 0.3rem 1rem;
+            }
         }
     }
 }

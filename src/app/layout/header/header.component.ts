@@ -3,26 +3,34 @@ import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { DialogComponent } from '../../library/components/dialog/dialog.component';
+import { ModalComponent } from '../../library/components/modal/modal.component';
+import { ChangePasswordComponent } from '../../auth/change-password/change-password.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ClickOutsideModule],
+  imports: [CommonModule, ClickOutsideModule, ModalComponent, DialogComponent, ChangePasswordComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
 
   elem: any;
-  nightModeIcon = false;
-  isFullScreenMode = false;
-  notificationslist = false;
-  langmultimenulist = false;
-  patAdvanceSearch = false;
-  patInfoPreview = false;
-  patListAlphaSort = false;
-  patListGridView = true;
+
+  patAdvanceSearch: boolean = false;
+  patInfoPreview: boolean = false;
+  patListAlphaSort: boolean = false;
+  patListGridView: boolean = true;
   allPatientsList: boolean = false;
+
+  nightModeIcon: boolean = false;
+  isFullScreenMode: boolean = false;
+  notificationslist: boolean = false;
+  langmultimenulist: boolean = false;
+  userActionlist: boolean = false;
+  userLogoutDialog: boolean = false;
+  changePasswordModal: boolean = false;
   searchPatient: { name: string, mrn: string, gender: string, age: string, img: string, online: boolean }[] = [];
 
   supportLanguages = [
@@ -138,10 +146,6 @@ export class HeaderComponent implements OnInit {
     // this.router.navigate(['/patientregistration']);
     // this.router.navigate(['/patientmanagement']);
   }
-  isNightMode() {
-    this.nightModeIcon = !this.nightModeIcon;
-    document.querySelector('body')?.classList.toggle('night-mode');
-  }
   openFullscreen() {
     this.isFullScreenMode = true;
     if (this.elem.requestFullscreen) {
@@ -199,6 +203,46 @@ export class HeaderComponent implements OnInit {
     // } else {
     //   document.querySelector("body")?.classList.remove("app-rtl");
     // };
+  }
+
+  showUserActions() {
+    this.userActionlist = true;
+  }
+  closeUserActions() {
+    this.userActionlist = false;
+  }
+  userProfile() {
+    this.userActionlist = false;
+    this.router.navigate(['/app/myprofile']);
+  }
+  passwordChangeRequest() {
+    this.userActionlist = false;
+    this.changePasswordModal = true;
+  }
+  onModalClosed() {
+    this.changePasswordModal = false;
+  }
+  closeChangePasswordModal() {
+    this.changePasswordModal = false;
+  }
+  lockScreenRequest() {
+
+  }
+  isNightMode() {
+    this.userActionlist = false;
+    this.nightModeIcon = !this.nightModeIcon;
+    document.querySelector('body')?.classList.toggle('night-mode');
+  }
+  userLogoutRequest() {
+    this.userActionlist = false;
+    this.userLogoutDialog = true;
+  }
+  onConfirmLogout() {
+    this.userLogoutDialog = false;
+    this.router.navigate(['/partnerlogin']);
+  }
+  onCancelLogout() {
+    this.userLogoutDialog = false;
   }
 
 }

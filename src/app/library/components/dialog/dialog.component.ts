@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'dialog',
+  selector: 'app-dialog',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dialog.component.html',

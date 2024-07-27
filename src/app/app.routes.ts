@@ -28,6 +28,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./modules/uac/user-management/user-management.component').then((c) => c.UserManagementComponent)
             },
             {
+                path: 'myprofile',
+                loadComponent: () => import('./modules/uac/user-profile/user-profile.component').then((c) => c.UserProfileComponent)
+            }, 
+            {
                 path: 'privilageallocation',
                 loadComponent: () => import('./modules/uac/privilage-allocation/privilage-allocation.component').then((c) => c.PrivilageAllocationComponent)
             },

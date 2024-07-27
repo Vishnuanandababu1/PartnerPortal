@@ -140,6 +140,119 @@
     }
 }
 
+.multi-menu-list {
+    &.notification-list {
+        padding: 0;
+        min-width: 250px;
+        .list-head {
+            display: flex;
+            padding: 1rem;
+            cursor: default;
+            justify-content: space-between;
+            border-bottom: 1px solid #eaedf1;
+            .head-title {
+                font-weight: 500;
+                color: #8f9daf;
+            }
+            .badge {
+                top: 1px;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                font-size: 11px;
+                font-weight: 500;
+                position: relative;
+                align-items: center;
+                justify-content: center;
+                background: rgba(34, 192, 60, 0.9);
+            }
+        }
+        .list-item {
+            padding: 1rem;
+            .media {
+                display: flex;
+                align-items: flex-start;
+                .media-icon {
+                    width: 36px;
+                    height: 36px;
+                    display: grid;
+                    place-items: center;
+                    border-radius: 50%;
+                    text-align: center;
+                    box-shadow: 0 5px 10px rgba(98, 89, 202, 0.3);
+                    .vi {
+                        font-weight: 500;
+                        font-size: 16px;
+                        color: #ffffff;
+                        &.vi-chat {
+                            top: 2px;
+                        }
+                    }
+                }
+                .media-body {
+                    .notification-label {
+                        color: #0d0c22;
+                        font-size: 13.5px;
+                        font-weight: 500;
+                    }
+                    .notification-subtext {
+                        color: #76839a;
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .list-footer {
+            border-bottom: 0;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: center;
+            text-transform: none;
+            border-bottom: 0 !important;
+            &:hover {
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+        }
+    }
+    &.user-action-list {
+        padding: 10px;
+        min-width: 225px;
+        .list-item {
+            display: flex;
+            margin-bottom: 4px;
+            align-items: center;
+            border-radius: 5px;
+            border-bottom: none;
+            .item-icon {
+                width: 30px;
+                .vi {
+                    top: 1px;
+                    font-size: 15px;
+                    font-weight: 500;
+                    &.vi-key,
+                    &.vi-lock {
+                        font-size: 17px;
+                    }
+                    &.vi-moon {
+                        font-weight: 700;
+                    }
+                }
+            }
+            .item-label {
+                font-size: 0.95em;
+                width: calc(100% - 30px);
+            }
+            &.list-footer {
+                margin: 5px 0;
+                border: 1px solid #efefef;
+                border-bottom: 1px solid #efefef !important;
+            }
+        }
+    }
+}
+
 // patient list
 @mixin filter-icons {
     a {

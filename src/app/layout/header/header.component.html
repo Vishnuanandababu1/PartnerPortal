@@ -197,8 +197,31 @@
                 </div>
             </div>
         </div>
-        <div class="header-nav-link user-img">
-            <img src="../../../../../images/avatars/user-1.png" />
+        <div class="header-nav-link user-img" (clickOutside)="closeUserActions()">
+            <img (click)="showUserActions()" src="../../../../../images/avatars/user-1.png" />
+            <div class="multi-menu-list list-lg user-action-list" *ngIf="userActionlist">
+                <div class="list-item" (click)="userProfile()">
+                    <div class="item-icon"><i class="vi vi-user"></i></div>
+                    <div class="item-label">My Profile</div>
+                </div>
+                <div class="list-item" (click)="passwordChangeRequest()">
+                    <div class="item-icon"><i class="vi vi-key"></i></div>
+                    <div class="item-label">Change Password</div>
+                </div>
+                <div class="list-item" (click)="lockScreenRequest()">
+                    <div class="item-icon"><i class="vi vi-lock"></i></div>
+                    <div class="item-label">Lock Screen</div>
+                </div>
+                <div></div>
+                <div class="list-item" (click)="isNightMode()">
+                    <div class="item-icon"><i class="vi vi-moon"></i></div>
+                    <div class="item-label">Dark Mode</div>
+                </div>
+                <div class="list-item list-footer" (click)="userLogoutRequest()">
+                    <div class="item-icon"><i class="vi vi-power-off"></i></div>
+                    <div class="item-label">Logout</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -210,3 +233,14 @@
         </div>
     </div>
 </ng-template>
+
+<app-modal *ngIf="changePasswordModal" (closed)="onModalClosed()" [modalTitle]="'Change Password'" [footer]="'hide'"
+    [customClass]="'modal-sm'">
+    <div class="modal-body">
+        <app-change-password (closeChangePasswordModal)="closeChangePasswordModal()"></app-change-password>
+    </div>
+</app-modal>
+
+<app-dialog *ngIf="userLogoutDialog" type="confirm" [customClass]="'delete justify'" [title]="'Logout?'"
+    [message]="'Are you sure you want to logout?'" (confirmClick)="onConfirmLogout()" (cancelClick)="onCancelLogout()">
+</app-dialog>
