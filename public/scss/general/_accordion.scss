@@ -1,0 +1,72 @@
+@mixin n-arrow {
+    top: -4px;
+    position: relative;
+    padding-right: 1rem;
+    .vi {
+        top: 0;
+        left: 0;
+        font-size: 13px;
+        position: absolute;
+        &.vi-chevron-down {
+            color: #ffffff;
+            transform: rotate(0deg);
+        }
+    }
+}
+@mixin h-arrow {
+    .rb {
+        &.rb-chevron-down {
+            transform: rotate(180deg);
+        }
+    }
+}
+@mixin accordion-properties {
+    .accordion-header {
+        display: flex;
+        cursor: pointer;
+        border-radius: 0;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 1.1em;
+        min-height: 42px;
+        position: relative;
+        align-items: center;
+        padding: 0.65rem 1.5rem;
+        background-color: #1da8bb;
+        background-color: #1191a2;
+        justify-content: space-between;
+        label {
+            cursor: pointer;
+        }
+        .arrow {
+            @include n-arrow;
+        }
+    }
+    .accordion-content {
+        border-radius: 0;
+        background: #ffffff;
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    &.active {
+        .accordion-header {
+            border-radius: 0;
+            .arrow {
+                @include h-arrow;
+            }
+        }
+    }
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.accordion {
+    .accordion-item {
+        border: 0;
+        border-radius: 0;
+        user-select: none;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0 0 0.05rem rgba(8, 60, 130, 6%), 0 0 1.25rem rgba(30, 34, 40, 4%);
+        @include accordion-properties;
+    }
+}

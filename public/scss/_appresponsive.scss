@@ -1,0 +1,30 @@
+@media (max-width: 576px) {
+    .p-datatable {
+        .p-datatable-wrapper {
+            overflow-x: scroll;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .form-group {
+        .form-control {            
+            &::placeholder {
+                font-weight: 600;
+                letter-spacing: 0.015rem;
+            }
+        }
+    }   
+    .p-datatable {
+        .p-datatable-wrapper {
+            overflow-x: scroll;
+        }
+    } 
+}
+
+@media (max-width: 991) {  
+    .p-datatable {
+        .p-datatable-wrapper {
+            overflow-x: scroll;
+        }
+    } 
+}

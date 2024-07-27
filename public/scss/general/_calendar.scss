@@ -1,0 +1,80 @@
+.vi-open-calendar {
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 1.5rem;
+    box-sizing: border-box;
+    width: calc(275px - 3rem);
+    background-color: transparent;
+    border-bottom: 1px solid #dad9d9;
+    .calendar-head {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        justify-content: space-between;
+        .current-ym {
+            font-weight: 600;
+            color: #098d7d;
+            font-size: 1.1em;
+            padding-left: 3px;
+        }
+        .actions {
+            display: flex;
+            label {
+                width: 26px;
+                height: 26px;
+                margin: 0 5px;
+                display: grid;
+                cursor: pointer;
+                border-radius: 3px;
+                place-items: center;
+                border: 1px solid #cccccc;
+                .vi {
+                    font-size: 11px;
+                    color: #6d6767;
+                }
+                &:hover {
+                    background: #e8e8e8;
+                }
+            }
+        }
+    }
+    .calendar-date {
+        display: grid;
+        grid-gap: 8px;
+        box-sizing: border-box;
+        grid-template-columns: repeat(auto-fit, minmax(23px, 1fr));
+        .calendar-day,
+        .calendar-number {
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-day {
+            font-weight: 600;
+            color: #a4a4a4;
+            font-size: 0.9em;
+        }
+        .calendar-number {
+            cursor: pointer;
+            color: #6a6868;
+            font-weight: 500;
+            &.current {
+                font-weight: 700;
+                color: #009688;
+            }
+            &.current,
+            &:hover {
+                color: #009688;
+            }
+            &.previous,
+            &.next {
+                color: #cccccc;
+                font-weight: 400;
+                pointer-events: none;
+            }
+        }
+    }
+}

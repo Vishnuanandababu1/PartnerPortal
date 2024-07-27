@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    color: #212529;
+    overflow: hidden;
+    // background: #f2f3f9;
+    background-color: $app-bg;
+    font-family: $app-font-family;
+    transition: color 0s ease-in-out, background-color 0s ease-in-out, border-color 0s ease-in-out,
+        box-shadow 0s ease-in-out !important;
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0;
+    }
+}
+

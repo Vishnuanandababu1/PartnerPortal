@@ -1,0 +1,263 @@
+// app general
+// $app-bg: #fbf7f4;
+// $app-icon: #495057;
+$app-bg: #ffffff;
+$app-icon: #8b8f93;
+$text-link: #277af7;
+$page-title: #0088ab;
+$page-f-bg: #ffffff;
+$page-f-bs: 0 0 2px 0 #a1a1a1;
+$cmn-even-bg: #f2f2f2;
+$cmn-icon-hover: #ff7f5d;
+$cmn-list-border-bottom: 1px solid #efefef;
+$cmn-icon-hover-bg: rgba(255, 127, 93, 0.1);
+$cmn-img-bs: 0 0 3px 1px #c1bdbd;
+$cmn-img-border: 1px solid #efefef;
+$cmn-border-color: #efefef;
+$cmn-border-bottom-1: 1px solid #efefef;
+$cmn-border-bottom-2: 2px solid #efefef;
+$app-bs-bottom: 3px -1px 6px 0 #a1a1a1;
+$app-font-family: system-ui, sans-serif;
+$cmn-pat-mrn: #716c6c;
+$cmn-pat-age: #919191;
+$cmn-doc-nd: #0f7d8b;
+$cmn-doc-dpmt: #716c6c;
+$cmn-data: #0ab39e;
+$cmn-warning-icon: #ff0000;
+$cmn-nr-title: #4e5b67;
+$cmn-nr-sub-title: #b9b9b9;
+$list-highlight-label: #566a7f;
+
+// layout
+$app-nav-bs: 0 -1px 4px 0 #a1a1a1;
+$app-h-bg: #ffffff;
+$h-menu-bar: #108c9c;
+$h-ip-bg: #cdcfd0;
+$h-ip-border: #cdcfd0;
+$h-ip-select-bg: #c3c2c2;
+$h-ip-search-icon: #807a7a;
+$h-ip-select-icon: #1190a1;
+$h-np-border: #108c9c;
+$h-np-hover: #1190a1;
+$navbar-bg: linear-gradient(to right, #151933, #2a3266);
+$navbar-icon: #bfbfbf;
+$navbar-icon-hover: #20264d;
+$navbar-icon-active: #21295a;
+
+// card
+$card-bg: #ffffff;
+$card-bs: 0 0 3px 0 #cdcdcd;
+$card-h-border: 1px solid #eeecec;
+$card-f-border: 1px solid #efefef;
+$card-dark-bs: 0 0 7px -1px #a1a1a1;
+$card-h-label: #0f7d8b;
+$card-inner: #566a7f;
+$card-inner-bg: #ffffff;
+$card-inner-bs: 0 0 4px 0 #d0d0d0;
+$card-inner-light-bg: #ffffff;
+$card-inner-light-bs: 0 0 2px 0 #c0baba;
+$card-doc-bg: #ffffff;
+$card-doc-bs: 0 0 4px 0 #d0d0d0;
+
+// page/form title
+$form-label: #005267;
+$gmap-label: #a70606;
+$info-title: #0088ab;
+$info-sub-title: #686772;
+
+// charts
+$apex-c-legend: #373d3f;
+
+// tabs
+$tab: #595151;
+$tab-bg: #ffffff;
+$tab-active: #12cab3;
+$tab-bs: 0 0 3px 0 #9b9696;
+$tab-light-bs: 0 0 2px 0 #9b9696;
+$tab-link: #7f7c7c;
+$tab-link-active: #0d6efd;
+$tab-link-border: 2px solid #0d6efd;
+
+// modules : patient administration
+$pat-info-card-bg: #ffffff;
+$pat-info-card-bs: 0 0 5px -1px #a1a1a1;
+$pat-act-nav-bs: 0 0 5px -1px #a1a1a1;
+$pat-nav-link-border: 2px solid transparent;
+$pat-nav-link-bs: 3px -1px 4px 0 #a1a1a1;
+$pat-nav-link-bg: rgba(67, 89, 113, 0.04);
+$pat-img-bs: 0 0 7px 5px #d0cfcf;
+$pat-doc-no: #bda20e;
+$pat-doc-info: #797a7c;
+$btn-upload-border: 1.5px dashed #e6cec7;
+$btn-upload-bg: rgba(255, 127, 93, 0.1);
+$app-add-info: #faebd7;
+$app-print-icon: #0088ab;
+
+// colors
+$online: #00da00;
+$flag-red: #ff0000;
+$flag-green: #0caf0c;
+$label-dark-grey: #4a4646;
+
+//
+//
+//
+//
+
+// buttons
+$btn-out-primary: transparent;
+$btn-out-primary-color: #6259ca;
+$btn-out-secondary: transparent;
+$btn-out-secondary-color: #fb6b25;
+$btn-out-success: transparent;
+$btn-out-success-color: #13bfa6;
+$btn-out-info: transparent;
+$btn-out-info-color: #45aaf2;
+$btn-out-warning: transparent;
+$btn-out-warning-color: #f7b731;
+$btn-out-danger: transparent;
+$btn-out-danger-color: #f82649;
+
+// primary color
+$primary-bg-color: #6259ca;
+$primary-bg-hover: #233ac5;
+$primary-bg-border: #5161c1;
+
+// sidenavbar
+$sidenavbar-bg: #ffffff;
+$sidenavbar-color: #495584;
+$sidenavbar-hover: #f2f3f9;
+$sidenavbar-shadow: 0 8px 24px rgba(229, 228, 230, 40%);
+$sidenavbar-active-shadow: 0 7px 12px 0 rgba(98, 89, 202, 20%);
+$sidenavbar-active-bg: linear-gradient(to bottom right, #6259ca 0%, rgba(98, 89, 202, 0.6) 100%);
+
+// header
+$header-bg: #ffffff;
+$header-nav-bg: #ffffff;
+$header-nav-hover: #f2f3f9;
+$header-nav-shadow: 0px 1px 3px rgba(4, 4, 7, 40%);
+
+// footer
+$footer-bg: #ffffff;
+
+// custom - general
+$section-bg: #e7e5e8;
+$section-border: #e7e5e8;
+$container-bg: #ffffff;
+$container-border: #c9c7ca;
+
+// custom - scrollbar
+$scrollbar-track: #ffffff;
+$scrollbar-thumb: #888888;
+$scrollbar-thumb-hover: #555555;
+
+// elements - avatar
+$avatar-border: 3px solid rgba(150, 180, 150, 0.8);
+
+// elements - media
+$media-color: #0d0c22;
+$media-subtext: #76839a;
+$media-shadow: 0 5px 10px rgba(98, 89, 202, 30%);
+
+// elements - file upload
+$file-bg: #ffffff;
+$file-name: #524d4d;
+$file-border: #c9c7ca;
+$file-upload-bg: #f4f4f4;
+
+// formcontrols
+$formcontrol-bg: #ffffff;
+$formcontrol-color: #4d5875;
+$formcontrol-border: #d7d7d7;
+$formcontrol-invalid: #ff0000;
+$formcontrol-focus-bg: #ffffff;
+$formcontrol-focus-border: #d4d4d4;
+$formcontrol-disable-bg: #d7d7d7;
+$formcontrol-disable-border: #d7d7d7;
+$formcontrol-invalid-border: #ff3e1d;
+$formcontrol-placeholder-color: #b5b5b5;
+$formcontrol-section-border: #b8b8b8;
+$formcontrol-section-focus-border: #d4d4d4;
+
+// formcontrols - fieldset
+$fieldset-bg: #f2f3f9;
+$fieldset-color: #6259ca;
+$fieldset-border: #b8b8b8;
+$fieldset-section-bg: #e7e5e8;
+
+// formcontrols - form box
+$formbox-bg: #ffffff;
+$formbox-border: #efe5e8;
+$formbox-header-bg: #efe5e8;
+$formbox-header-border: #cccccc;
+$formbox-footer-bg: #efe5e8;
+
+// formcontrols - checkbox
+$select-all: #6259ca;
+
+// list
+$multi-action-hover: #efefef;
+$multi-menu-bg: #ffffff;
+$multi-menu-shadow: 0 10px 40px 0 rgba(104, 113, 123, 30%);
+$multi-menu-hover-bg: rgba(98, 89, 202, 0.1);
+$multi-menu-title-color: #8f9daf;
+
+// modal
+$modal-bg: #ffffff;
+$modal-border: #d8d6da;
+$modal-header-bg: #fafafa;
+$modal-rb-color: #263871;
+$modal-rb-title-bg: #d6deee;
+$modal-rb-title-border: #e9ebfa;
+$modal-shadow: 0px 8px 14.72px 1.28px rgba(130, 130, 134, 20%);
+
+// table - prime ng
+$png-table-hover: #f1f1f9;
+$png-table-border: transparent;
+$png-table-edit-icon: #495584;
+$png-table-shadow: 0 3px 9px 0px rgba(169, 184, 200, 48%);
+
+// table - basic
+$basic-table-border: #c9c7ca;
+$basic-table-row-border: #cccccc;
+$basic-table-icon-hover: #cccccc;
+$basic-table-grouphead-bg: #dcdcdc;
+$basic-table-subgroup-child-bg: transparent;
+
+/////////////// end
+
+$dark-body: #292e4a;
+$dark-border: #30314e;
+$dark-primary: #6259ca;
+
+$transparent-primary: #6259ca;
+$transparent-body: #452293;
+$transparent-theme: rgba(0, 0, 0, 0.2);
+$transparent-border: rgba(255, 255, 255, 0.1);
+
+$blue: #1a1a3c;
+$dark-primary-hover: #233ac5;
+$primary-transparentcolor: #eaedf7;
+$darkprimary-transparentcolor: #2b356e;
+$transparentprimary-transparentcolor: rgba(255, 255, 255, 0.05);
+
+// color
+$indigo: #4b0082;
+$purple: #6f42c1;
+$pink: #fc5296;
+$orange: #fd7e14;
+$yellow: #fbb034;
+$green: #28a745;
+$teal: #20c997;
+$cyan: #17a2b8;
+$white: #ffffff;
+$gray: #6c757d;
+$gray-dark: #343a40;
+$primary: #6259ca;
+$secondary: #6c757d;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #343a40;

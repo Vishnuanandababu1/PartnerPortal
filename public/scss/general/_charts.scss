@@ -1,0 +1,29 @@
+.chart-center {
+    display: grid;
+    place-items: center;
+}
+
+.apexcharts-legend {
+    &.apexcharts-align-left {
+        .apexcharts-legend-text {
+            top: -0.095rem;
+        }
+    }
+    &.apexcharts-align-center {
+        .apexcharts-legend-text {
+            top: 0.05rem;
+        }
+    }
+}
+
+.apexcharts-pie {
+    .apexcharts-datalabels-group {
+        .apexcharts-text {
+            &.apexcharts-datalabel-value {
+                font-size: 25px;
+                fill: #0bb79b;
+                font-weight: 600;
+            }
+        }
+    }
+}

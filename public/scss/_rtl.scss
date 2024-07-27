@@ -1,0 +1,50 @@
+body {
+    &.app-rtl {
+        .accordion {
+            .accordion-item {
+                .accordion-header {
+                    direction: rtl;
+                }
+            }
+        }
+        .form-group {
+            direction: rtl;
+            .inp-label {
+                text-align: right;
+                &.required:after {
+                    padding-right: 5px;
+                }
+            }
+            .form-control {
+                text-align: right;
+            }
+        }
+        .form-titile,
+        .form-label {
+            direction: rtl;
+            text-align: right;
+            .vi {
+                left: unset;
+                right: 5px;
+            }
+        }
+        .checkbox-container {
+            width: 100%;
+            direction: rtl;
+            padding-left: 0;
+            text-align: right;
+            padding-right: 30px;
+            input {
+                width: 0;
+                height: 0;
+                opacity: 0;
+                cursor: pointer;
+                position: absolute;
+            }
+            .checkmark {
+                left: unset;
+                right: 0;
+            }
+        }
+    }
+}

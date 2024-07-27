@@ -1,0 +1,77 @@
+.app-layout {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    .menu-layout {
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 70px;
+        position: fixed;
+        transition: 0.5s ease;
+        app-navbar {
+            display: block;
+            width: inherit;
+        }
+    }
+    .page-layout {
+        width: 100vw;
+        transition: 0.5s ease;
+        .page-container {
+            position: relative;
+            overflow-y: overlay;
+            max-height: calc(100vh - 50px);
+        }
+    }
+    .menu-layout + .page-layout {
+        padding-left: 70px;
+    }
+    .menu-layout {
+        &.open {
+            width: 240px;
+            box-shadow: none !important;
+            .aside-left-menu {
+                left: 0;
+                transition: 0.5s ease;
+            }
+            .main-menu {
+                width: 240px;
+                transition: 0.5s ease;
+            }
+            & + .page-layout {
+                padding-left: 240px;
+                .app-header {
+                    .header-actions {
+                        .menu-icon {
+                            a {
+                                span {
+                                    &:nth-child(2) {
+                                        left: 8px;
+                                        position: relative;
+                                        transition: left 0.75s ease;
+                                    }
+                                }
+                            }
+                        }
+                        .h-pat-search {
+                            .search-container {
+                                transition: width 0.5s ease;
+                                width: calc(100vw - 310px) !important;
+                                .search-data {
+                                    .search-list {
+                                        .grid-search-list {
+                                            .search-results {
+                                                transition: 0.5s ease;
+                                                grid-template-columns: repeat(3, minmax(0px, 1fr)) !important;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

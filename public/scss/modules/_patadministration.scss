@@ -1,0 +1,345 @@
+// pat management
+.page-container {
+    .pat-management {
+        .pat-info-sheet {
+            background: $pat-info-card-bg;
+            box-shadow: $pat-info-card-bs;
+        }
+        .pat-actions {
+            background: $app-bg;
+            box-shadow: $pat-act-nav-bs;
+            .pat-nav-link {
+                border-bottom: $pat-nav-link-border;
+                box-shadow: $pat-nav-link-bs;
+                background-color: $pat-nav-link-bg;
+            }
+        }
+    }
+}
+
+// encounter
+.pat-encounter {
+    .enc-body {       
+        .sel-provider {
+            .doc-list {
+                .doc-card {
+                    background: $card-doc-bg;
+                    box-shadow: $card-doc-bs;
+                    .doc-img {                   
+                        .online {
+                            background: $card-doc-bg;
+                            &:after {
+                                background: $online;
+                            }
+                        }
+                    }
+                    .doc-info {
+                        .doc-name {
+                            color: $cmn-doc-nd;
+                        }
+                        .doc-dpmt {
+                            color: $cmn-doc-dpmt;
+                        }
+                    }
+                    .btn-book {
+                        .btn {
+                            background: #00ccff;
+                            box-shadow: 0 2px 11px 0 rgba(60, 60, 60, 0.3), 0 10px 24px -16px #00ccff;
+                        }
+                    }
+                }
+            }
+        }
+        .card {
+            &.enc-card {
+                .card-header {
+                    background: #fff2ee;
+                    border-bottom: 2px solid #fff2ee;
+                    .doc-details {
+                        .doc-img {
+                            img {
+                                border: 2px solid #0cf;
+                            }
+                        }
+                        .doc-info {
+                            .doc-name {
+                                color: #0f7d8b;
+                            }
+                            .dpmt,
+                            .spec {
+                                color: #0f7d8b;
+                            }
+                        }
+                    }
+                    .doc-actions {
+                        .btn {
+                            box-shadow: 0 2px 11px 0 rgba(60, 60, 60, 0.3), 0 10px 24px -16px #12cab3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// services
+.service-container {
+    .service-header {
+        background: $app-bg;
+        border-bottom: $cmn-border-bottom-1;
+    }
+}
+
+// accounts
+.pat-accounts {
+    .card {
+        &.card-expenses,
+        &.card-insights,
+        &.card-history {
+            .card-header {
+                .card-title {
+                    color: $card-h-label;
+                }
+            }
+        }
+        &.card-expenses,
+        &.card-insights {
+            .card-body {
+                .divider {
+                    background-color: $cmn-border-color;
+                }
+            }
+        }
+        &.card-history {
+            .card-header {
+                border-bottom: $cmn-border-bottom-2;
+            }
+            .card-body {
+                .tran-item {
+                    border-bottom: $cmn-list-border-bottom;
+                    .tran-date,
+                    .category {
+                        color: $list-highlight-label;
+                    }
+                    .amount {
+                        &.credit {
+                            color: $flag-green;
+                        }
+                        &.debit {
+                            color: $flag-red;
+                        }
+                    }
+                    &:nth-of-type(even) {
+                        background: $cmn-even-bg;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// insurance claims
+
+// appointments
+.pat-appointments {
+    .pcs-header {
+        background: $app-bg;
+        border-bottom: $cmn-border-bottom-1;
+    }
+}
+
+// documents
+.pat-docs {
+    .docs-header {
+        background: $app-bg;
+        border-bottom: $cmn-border-bottom-1;
+        .docs-info {
+            .up-title {
+                color: $info-title;
+            }
+            .up-sub-title {
+                color: $info-sub-title;
+            }
+        }
+        .docs-upload {
+            .btn-upload,
+            .btn-camera,
+            .btn-scan {
+                border: $btn-upload-border;
+                background: $btn-upload-bg;
+                label,
+                .action {
+                    color: #ff7f5d;
+                }
+            }
+        }
+    }
+    .docs-body {
+        .card {
+            &.docs-list {
+                .card-header {
+                    border-bottom: $cmn-border-bottom-2;
+                }
+                .card-body {
+                    .doc-item {
+                        color: $card-inner;
+                        border-bottom: $cmn-list-border-bottom;
+                        &:nth-of-type(even) {
+                            background: $cmn-even-bg;
+                        }
+                    }
+                    .doc-view {
+                        .doc-list {
+                            color: $card-inner;
+                            .doc-list-item {
+                                background: $card-inner-light-bg;
+                                box-shadow: $card-inner-light-bs;
+                                .doc-img {
+                                    img {
+                                        border: $cmn-img-border;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// pat profile
+.pat-info {
+    .pp-header {
+        background: $app-bg;
+        border-bottom: $cmn-border-bottom-1;
+        .pp-completion {
+            .pat-pc-steps {
+                .steps-wrap {
+                    .pc-position {
+                        img {
+                            box-shadow: $pat-img-bs;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pp-body {
+        .card {
+            &.id-card,
+            &.fam-card,
+            &.ins-card {
+                box-shadow: $card-inner-light-bs;
+                .card-body {
+                    background: $card-inner-light-bg;
+                }
+            }
+            &.id-card {
+                .card-body {
+                    .card-no {
+                        color: $pat-doc-no;
+                    }
+                    .validity {
+                        color: $pat-doc-info;
+                    }
+                }
+            }
+            &.fam-card {
+                .card-body {
+                    .pat-card {
+                        .pat-info {
+                            .pat-mrn {
+                                color: $cmn-pat-mrn;
+                                span {
+                                    color: $cmn-pat-age;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.ins-card {
+                .card-body {
+                    .ins-info {
+                        .pln-info {
+                            color: $pat-doc-info;
+                        }
+                        .policy-no {
+                            color: $pat-doc-no;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// pat feed
+.pat-feed {
+    .feed-wrap {
+        .user-img {
+            img {
+                box-shadow: $cmn-img-bs;
+            }
+        }
+        .card {
+            &.user-card {
+                .card-body {
+                    .feed-title,
+                    .feed-actions {
+                        .user-site {
+                            color: $label-dark-grey;
+                        }
+                        .activity-link {
+                            label {
+                                a {
+                                    color: $text-link;
+                                }
+                            }
+                        }
+                    }
+                    .feed-content {
+                        data {
+                            color: $cmn-data;
+                        }
+                        .feed-doc-list {
+                            color: $card-inner;
+                            .doc-item {
+                                background: $card-inner-light-bg;
+                                box-shadow: $card-inner-light-bs;
+                                .doc-img {
+                                    img {
+                                        border: $cmn-img-border;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// settings
+.pat-settings {
+    .settings-group {
+        border-bottom: $cmn-border-bottom-1;
+        .set-title {
+            color: $info-title;
+        }
+        .set-sub-title {
+            color: $info-sub-title;
+        }
+        .not-actions {
+            .not-item {
+                .not-desc {
+                    .desc-sub-title {
+                        color: $info-sub-title;
+                    }
+                }
+            }
+        }
+    }
+}
