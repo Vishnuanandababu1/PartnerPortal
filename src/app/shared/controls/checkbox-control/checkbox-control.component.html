@@ -1,1 +1,4 @@
-<p>checkbox-control works!</p>
+<label class="checkbox-container" [ngClass]="customClass">
+    <input type="checkbox" [formControl]="checkboxControl" [disabled]="disabled" (blur)="onBlur()" />
+    <span class="checkmark"></span>{{ placeholder }}
+</label>

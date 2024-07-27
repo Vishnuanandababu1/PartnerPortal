@@ -205,7 +205,7 @@ export class HeaderComponent implements OnInit {
   }
 
   showUserActions() {
-    this.userActionlist = true;
+    this.userActionlist = !this.userActionlist;
   }
   closeUserActions() {
     this.userActionlist = false;
