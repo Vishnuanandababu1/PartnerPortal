@@ -24,12 +24,12 @@ export class NavbarComponent implements OnInit {
   // ];
 
   userMenu = [
-    { tabName: 'usermanagement', route: '/app/usermanagement', iconClass: 'vi vi-employee-o', name: 'User Management' },
-    { tabName: 'privilageallocation', route: '/app/privilageallocation', iconClass: 'vi vi-employee-key-o', name: 'Privilage Allocation' },
-    { tabName: 'schedulesettings', route: '/app/schedulesettings', iconClass: 'vi vi-employee-schedule-o', name: 'Schedule Settings' },
-    { tabName: 'attendancemanagement', route: '/app/attendancemanagement', iconClass: 'vi vi-calendar-o', name: 'Attendance Management' },
-    { tabName: 'usergroup', route: '/app/#', iconClass: 'vi vi-user-group-o', name: 'User Group' },
-    { tabName: 'broadcast', route: '/app/#', iconClass: 'vi vi-bullhorn-o', name: 'Broadcast Messages' },
+    { tabName: 'usermanagement', route: '/app/uac/usermanagement', iconClass: 'vi vi-employee-o', name: 'User Management' },
+    { tabName: 'privilageallocation', route: '/app/uac/privilageallocation', iconClass: 'vi vi-employee-key-o', name: 'Privilage Allocation' },
+    { tabName: 'schedulesettings', route: '/app/uac/schedulesettings', iconClass: 'vi vi-employee-schedule-o', name: 'Schedule Settings' },
+    { tabName: 'attendancemanagement', route: '/app/uac/attendancemanagement', iconClass: 'vi vi-calendar-o', name: 'Attendance Management' },
+    { tabName: 'usergroup', route: '/app/uac/#', iconClass: 'vi vi-user-group-o', name: 'User Group' },
+    { tabName: 'broadcast', route: '/app/uac/#', iconClass: 'vi vi-bullhorn-o', name: 'Broadcast Messages' },
   ];
 
   activeTab = 'usermanagement';

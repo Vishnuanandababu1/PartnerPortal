@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     }
 
     
-    this.router.navigate(['/app/usermanagement']);
+    this.router.navigate(['/app/uac/usermanagement']);
   }
 
 }

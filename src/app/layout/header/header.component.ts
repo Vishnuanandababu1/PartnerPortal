@@ -143,8 +143,7 @@ export class HeaderComponent implements OnInit {
     document.querySelector('.menu-layout')?.classList.toggle('open');
   }
   addNewPatient() {
-    // this.router.navigate(['/patientregistration']);
-    // this.router.navigate(['/patientmanagement']);
+
   }
   openFullscreen() {
     this.isFullScreenMode = true;
@@ -213,7 +212,7 @@ export class HeaderComponent implements OnInit {
   }
   userProfile() {
     this.userActionlist = false;
-    this.router.navigate(['/app/myprofile']);
+    this.router.navigate(['/app/uac/myprofile']);
   }
   passwordChangeRequest() {
     this.userActionlist = false;
