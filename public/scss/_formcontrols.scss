@@ -72,14 +72,14 @@
         width: 100%;
         transition: 0.4s;
     }
-    .form-control:focus ~ .clear-val {
+    .form-control:focus ~ .clear {
         opacity: 1;
     }
     .form-control[readonly] {
         user-select: none;
         background: #d0d3da;
     }
-    .clear-val {
+    .clear {
         top: 35px;
         right: 7px;
         z-index: 10;
@@ -127,9 +127,29 @@
             width: calc(100% - 75px);
         }
     }
-    &.select {
+    &.select,
+    &.multi-select {
         .form-control {
-            padding-right: 1.75rem;
+            padding-right: 2rem;
+        }
+        .form-control[readonly] {
+            opacity: 1;
+            cursor: default;
+            user-select: none;
+            background: #eff2f9;
+            &:focus ~ .focus-border {
+                display: unset;
+            }
+        }
+        .form-control[disabled] {
+            opacity: 1;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: not-allowed;
+            background: #c3c5cc;
+            &:focus ~ .focus-border {
+                display: unset;
+            }
         }
         .arrow {
             top: 34px;
@@ -139,12 +159,90 @@
             .vi {
                 color: inherit;
                 font-size: 13px;
-                color: #37c2b4;
+                color: #2ba599;
+                cursor: default;
             }
         }
-        &.no-ph {
-            .arrow {
-                top: 8px;
+        .close {
+            top: 34px;
+            right: 27px;
+            cursor: pointer;
+            padding: 0px 8px;
+            position: absolute;
+            background: #eff2f9;
+            i {
+                font-size: 11px;
+                color: #ff0000;
+            }
+        }
+        .option-list {
+            top: 68px;
+            z-index: 2;
+            width: 100%;
+            cursor: default;
+            max-height: 200px;
+            position: absolute;
+            overflow-y: overlay;
+            background: #ffffff;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.125);
+            .list-item {
+                font-size: 1em;
+                cursor: default;
+                font-weight: 400;
+                color: #584e4e;
+                padding: 9px 10px;
+                letter-spacing: 0.015rem;
+                label {
+                    cursor: default;
+                }
+                &:hover {
+                    background: #efefef;
+                }
+                &.active {
+                    color: #ffffff;
+                    background: #13b4a4;
+                }
+                &.action {
+                    display: flex;
+                    color: #0aac0a;
+                    font-weight: 500;
+                    padding: 10px 10px;
+                    align-items: center;
+                    background: #ffffff;
+                    border-top: 2px solid #efefef;
+                    i {
+                        top: 2px;
+                        color: inherit;
+                        font-size: 17px;
+                        font-weight: 400;
+                        padding-left: 7px;
+                        color: #0aac0a;
+                    }
+                    &:hover {
+                        background: #ffffff;
+                    }
+                }
+            }
+        }
+        &.no-label {
+            .arrow,
+            .close {
+                top: 11px;
+            }
+            .option-list {
+                top: 44px;
+            }
+        }
+        &.list-lg {
+            .option-list {
+                width: 225px;
+            }
+        }
+    }
+    &.multi-select {
+        .option-list {
+            .list-item {
+                padding: 0;
             }
         }
     }

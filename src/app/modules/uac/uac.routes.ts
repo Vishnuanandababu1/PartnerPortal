@@ -21,7 +21,19 @@ export const uacRoutes: Routes = [
             {
                 path: 'schedulesettings',
                 loadComponent: () => import('./schedule-settings/schedule-settings.component').then((c) => c.ScheduleSettingsComponent)
-            }
+            },
+            {
+                path: 'attendancemanagement',
+                loadComponent: () => import('./attendance-management/attendance-management.component').then((c) => c.AttendanceManagementComponent)
+            },
+            {
+                path: 'usergroup',
+                loadComponent: () => import('./user-group/user-group.component').then((c) => c.UserGroupComponent)
+            },
+            {
+                path: 'userbroadcast',
+                loadComponent: () => import('./user-broadcast/user-broadcast.component').then((c) => c.UserBroadcastComponent)
+            },
         ]
     }
 

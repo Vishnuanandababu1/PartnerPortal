@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { FilterComponent } from '../../../shared/components/filter/filter.component';
+import { UserProfileComponent } from "../user-profile/user-profile.component";
+import { UserRegistrationComponent } from "../user-registration/user-registration.component";
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent],
+  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })
@@ -20,7 +22,6 @@ export class UserManagementComponent implements OnInit {
     { name: 'Dr Haseena Beegam', id: '34765', department: 'Orthodontist', img: '../../../../images/avatars/avatar-8.jpg', roomno: '202-F', availableslots: '12', online: false },
     { name: 'Dr Janaki Raman', id: '76456', department: 'Endodontist', img: '../../../../images/avatars/avatar-4.jpg', roomno: '107-B', availableslots: '18', online: false },
   ]
-
 
   users = [
     { userId: 'U001', fullname: 'Dr Avneesh Kumar', userRole: 'Doctor', designation: 'Cardiologist', emailId: 'john.doe@example.com', site: 'Trivandrum', status: 'Active', online: true, img: '../../../../images/avatars/user-9.png' },
@@ -35,7 +36,10 @@ export class UserManagementComponent implements OnInit {
     { userId: 'U010', fullname: 'Jessica Blue', userRole: 'Nurse', designation: 'Assistant Nurse', emailId: 'jessica.blue@example.com', site: 'Kochi', status: 'Active', online: true, img: '../../../../images/avatars/avatar-4.jpg' }
   ];
 
-  patListGridView = true;
+  userListView: boolean = true;
+  userProfileView: boolean = false;
+  userRegistrationForm: boolean = false;
+  patListGridView: boolean = true;
   userFilterSearch: boolean = false;
 
   constructor() { }
@@ -55,12 +59,13 @@ export class UserManagementComponent implements OnInit {
     this.userFilterSearch = false;
   }
 
-  viewUserProfile(type: string) {
-    if (type === 'checkin') {
+  viewUserProfile() {
+    this.userListView = false;
+    this.userProfileView = true;
+  }
 
-    }
-    if (type === 'walkin') {
-
-    }
+  addNewUser() {
+    this.userListView = false;
+    this.userRegistrationForm = true;
   }
 }
