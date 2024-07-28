@@ -18,6 +18,25 @@
             position: absolute;
         }
     }
+    .option-list {
+        .list-item {
+          padding: 5px 10px;
+          cursor: pointer;
+      
+          &.highlighted {
+            background-color: #f0f0f0;
+          }
+      
+          &.active {
+            font-weight: bold;
+          }
+      
+          &:hover {
+            background-color: #e0e0e0;
+          }
+        }
+      }
+      
     .form-control {
         width: 100%;
         height: 42px;
