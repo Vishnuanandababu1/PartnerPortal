@@ -1,5 +1,5 @@
 <div class="form-group textarea" [ngClass]="customClass">
-    <label class="textarea-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
+    <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
     <textarea class="form-control" [placeholder]="placeholder" [formControl]="textareaControl"
       [ngClass]="{ 'is-invalid': validationClass }" [disabled]="disabled" (blur)="onBlur()"></textarea>
     <span class="focus-border"></span>

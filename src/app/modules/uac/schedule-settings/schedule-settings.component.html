@@ -22,10 +22,20 @@
                                         </input-control>
                                     </div>
                                     <div class="col-lg-4">
-
+                                        <checkbox-control title="Active" customClass="checkbox-form"
+                                            formControlName="isActive"></checkbox-control>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <textarea-control title="Remarks" formControlName="remarks"
+                                            [validationClass]="(scheduleSettingForm.get('remarks')?.invalid && scheduleSettingForm.get('remarks')?.touched) ?? false">
+                                        </textarea-control>
+                                        <label class="val-msg"
+                                            *ngIf="scheduleSettingForm.get('remarks')?.errors?.['maxlength']">Max
+                                            Length is 100</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <div class="btn-list">

@@ -5,12 +5,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractContro
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { CheckboxControlComponent } from '../../../shared/controls/checkbox-control/checkbox-control.component';
+import { TextareaControlComponent } from '../../../shared/controls/textarea-control/textarea-control.component';
 import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-schedule-settings',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, DialogComponent],
   templateUrl: './schedule-settings.component.html',
   styleUrl: './schedule-settings.component.scss'
 })
@@ -82,17 +83,22 @@ export class ScheduleSettingsComponent implements OnInit {
     this.scheduleSettingForm = this.fb.group({
       category: ['', [Validators.required]],
       userName: ['', [Validators.required, Validators.maxLength(30)]],
-
-      // remarks: ['', [Validators.maxLength(500)]],
-
+      isActive: [true],
+      remarks: ['', [Validators.maxLength(100)]],
 
     })
   }
 
+  controlClass(controlName: string) {
+    return { 'is-invalid': this.scheduleSettingForm?.get(controlName)?.invalid && this.scheduleSettingForm?.get(controlName)?.touched };
+  }
+  get scheduleInfo() {
+    return this.scheduleSettingForm;
+  }
 
   onRegisterUser() {
     if (this.scheduleSettingForm.valid) {
-
+      console.log('schedule info', this.scheduleInfo)
     }
     else {
       this.scheduleSettingForm.markAllAsTouched();

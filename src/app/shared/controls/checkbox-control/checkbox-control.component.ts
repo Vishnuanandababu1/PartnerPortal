@@ -18,7 +18,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
 })
 export class CheckboxControlComponent implements ControlValueAccessor {
 
-  @Input() placeholder!: string;
+  @Input() title!: string;
   @Input() customClass!: string;
   @Input() disabled: boolean = false;
   @Output() checkboxChange = new EventEmitter<boolean>();
