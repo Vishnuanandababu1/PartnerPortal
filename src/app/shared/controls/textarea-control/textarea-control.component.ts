@@ -19,7 +19,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
 })
 export class TextareaControlComponent {
   @Input() title!: string;
-  @Input() placeholder!: string;
+  @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
   @Input() disabled: boolean = false;
