@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 
 
@@ -30,12 +30,11 @@ export class SelectControlComponent implements ControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() validationClass: boolean = false;
   @Output() optionSelected = new EventEmitter<string>();
-
+filteredOptions: any[] = [];
   isDropdownOpen = false;
-
+  highlightedIndex: number | null = null;
   private onChange: any = () => { };
   private onTouched: any = () => { };
-
   writeValue(value: any): void {
     if (value !== undefined) {
       this.selectedItem = value;
@@ -84,6 +83,46 @@ export class SelectControlComponent implements ControlValueAccessor {
   }
 
 
+  onKeyDown(event: KeyboardEvent) {
+    if (this.isDropdownOpen) {
+      switch (event.key) {
+        case 'ArrowDown':
+          this.highlightNext();
+          event.preventDefault();
+          break;
+        case 'ArrowUp':
+          this.highlightPrevious();
+          event.preventDefault();
+          break;
+        case 'Enter':
+          if (this.highlightedIndex !== null) {
+            this.selectOption(this.options[this.highlightedIndex]);
+          }
+          event.preventDefault();
+          break;
+        case 'Escape':
+          this.isDropdownOpen = false;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  highlightNext() {
+    if (this.highlightedIndex === null || this.highlightedIndex === this.options.length - 1) {
+      this.highlightedIndex = 0;
+    } else {
+      this.highlightedIndex++;
+    }
+  }
+
+  highlightPrevious() {
+    if (this.highlightedIndex === null || this.highlightedIndex === 0) {
+      this.highlightedIndex = this.options.length - 1;
+    } else {
+      this.highlightedIndex--;
+    }
+  }
   // onKeyDown(event: KeyboardEvent) {
   //   switch (event.key) {
   //     case 'ArrowDown':
