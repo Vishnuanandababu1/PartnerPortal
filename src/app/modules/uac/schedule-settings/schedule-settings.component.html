@@ -1,1 +1,46 @@
-<p>schedule-settings works!</p>
+<div class="page-container">
+    <div class="page-wrap">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-9 col-center">
+                    <form [formGroup]="scheduleSettingForm" autocomplete="off">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <select-control title="Category" validation="required"
+                                            formControlName="category" [selectedItem]="categoryItem"
+                                            [options]="categoryOptions" (optionSelected)="selectCategory($event)"
+                                            [validationClass]="(scheduleSettingForm.get('category')?.invalid && scheduleSettingForm.get('category')?.touched) ?? false">
+                                        </select-control>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input-control title="User Name" validation="required"
+                                            formControlName="userName"
+                                            [validationClass]="(scheduleSettingForm.get('userName')?.invalid && scheduleSettingForm.get('userName')?.touched) ?? false">
+                                        </input-control>
+                                    </div>
+                                    <div class="col-lg-4">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <div class="btn-list">
+                                    <button class="btn btn-success" (click)="onRegisterUser()">Save</button>
+                                    <button class="btn btn-outline-danger" (click)="onCancelClick()">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-dialog *ngIf="formChangeWarningDialog" type="confirm" [customClass]="'delete justify'" [title]="'Discard Changes?'"
+    [message]="'Are you sure you want to discard the changes? Changes you made may not be saved.'"
+    (confirmClick)="onBackConfirmClick()" (cancelClick)="onCancelClearChanges()"></app-dialog>
