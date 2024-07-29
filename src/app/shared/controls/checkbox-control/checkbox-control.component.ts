@@ -14,7 +14,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
     },
   ],
   templateUrl: './checkbox-control.component.html',
-  styleUrls: ['./checkbox-control.component.scss']
 })
 export class CheckboxControlComponent implements ControlValueAccessor {
 

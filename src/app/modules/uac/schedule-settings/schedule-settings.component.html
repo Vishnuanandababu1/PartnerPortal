@@ -22,6 +22,13 @@
                                         </input-control>
                                     </div>
                                     <div class="col-lg-4">
+                                        <multiselect-control [title]="'Allowed Sites'" validation="required"
+                                            formControlName="allowedSites" [options]="userSiteOptions"
+                                            [selectedItems]="userSiteItem" (optionSelected)="selectSites($event)"
+                                            [validationClass]="(scheduleSettingForm.get('allowedSites')?.invalid && scheduleSettingForm.get('allowedSites')?.touched) ?? false">
+                                        </multiselect-control>
+                                    </div>
+                                    <div class="col-lg-4">
                                         <checkbox-control title="Active" customClass="checkbox-form"
                                             formControlName="isActive"></checkbox-control>
                                     </div>

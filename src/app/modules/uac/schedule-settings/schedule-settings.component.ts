@@ -6,12 +6,13 @@ import { SelectControlComponent } from '../../../shared/controls/select-control/
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { CheckboxControlComponent } from '../../../shared/controls/checkbox-control/checkbox-control.component';
 import { TextareaControlComponent } from '../../../shared/controls/textarea-control/textarea-control.component';
+import { MultiselectControlComponent } from '../../../shared/controls/multiselect-control/multiselect-control.component';
 import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-schedule-settings',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, DialogComponent],
   templateUrl: './schedule-settings.component.html',
   styleUrl: './schedule-settings.component.scss'
 })
@@ -20,7 +21,7 @@ export class ScheduleSettingsComponent implements OnInit {
 
 
 
-  // normal gender select setup *******************
+  // normal category select setup *******************
   selectedCategoryId: any;
   categoryItem: string = '';
   categoryOptions: any;
@@ -70,12 +71,51 @@ export class ScheduleSettingsComponent implements OnInit {
 
 
 
+
+  selectedSiteId: any;
+  userSiteItem: any[] = [];
+  userSiteOptions: any;
+  userSiteList: { siteId: string; siteName: string; }[] = [
+    { siteId: '1', siteName: 'Trivandrum' },
+    { siteId: '3', siteName: 'Kochi' },
+    { siteId: '2', siteName: 'Calicut' },
+  ];
+
+  // getAllUnits(categoryTypeId: any, unitFilter: boolean) {
+  //   this.apiService.getUnitListData(categoryTypeId, unitFilter).subscribe(
+  //     (data) => {
+  //       this.userSiteList = data.results;
+  //       this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
+  //       console.log('Data from API:', data);
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   );
+  // }
+  selectSites(event: any) {
+    const selectedsiteName = event as string;
+    const selectedSiteItem = this.userSiteList!.find(item => item.siteName === selectedsiteName);
+
+    if (selectedSiteItem) {
+      this.selectedSiteId = selectedSiteItem.siteId;
+      this.userSiteItem.push(selectedSiteItem.siteName);
+    }
+  }
+
+
+
+
+
+
+
+
   scheduleSettingForm!: FormGroup;
   formChangeWarningDialog: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder) {
     this.categoryOptions = this.categoryArray.map(option => option.categoryName);
-
+    this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
   }
 
   ngOnInit(): void {
@@ -83,6 +123,7 @@ export class ScheduleSettingsComponent implements OnInit {
     this.scheduleSettingForm = this.fb.group({
       category: ['', [Validators.required]],
       userName: ['', [Validators.required, Validators.maxLength(30)]],
+      allowedSites: [this.fb.array([]), [Validators.required]],
       isActive: [true],
       remarks: ['', [Validators.maxLength(100)]],
 
