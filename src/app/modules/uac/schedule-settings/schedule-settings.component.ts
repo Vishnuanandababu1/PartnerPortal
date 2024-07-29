@@ -8,11 +8,12 @@ import { CheckboxControlComponent } from '../../../shared/controls/checkbox-cont
 import { TextareaControlComponent } from '../../../shared/controls/textarea-control/textarea-control.component';
 import { MultiselectControlComponent } from '../../../shared/controls/multiselect-control/multiselect-control.component';
 import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
+import { AutocompleteControlComponent } from "../../../shared/controls/autocomplete-control/autocomplete-control.component";
 
 @Component({
   selector: 'app-schedule-settings',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, DialogComponent, AutocompleteControlComponent],
   templateUrl: './schedule-settings.component.html',
   styleUrl: './schedule-settings.component.scss'
 })
@@ -124,6 +125,7 @@ export class ScheduleSettingsComponent implements OnInit {
       category: ['', [Validators.required]],
       userName: ['', [Validators.required, Validators.maxLength(30)]],
       allowedSites: [this.fb.array([]), [Validators.required]],
+      fromDate: ['', [Validators.required]],
       isActive: [true],
       remarks: ['', [Validators.maxLength(100)]],
 

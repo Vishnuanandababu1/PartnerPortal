@@ -28,6 +28,17 @@
                                             [validationClass]="(scheduleSettingForm.get('allowedSites')?.invalid && scheduleSettingForm.get('allowedSites')?.touched) ?? false">
                                         </multiselect-control>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <autocomplete-control></autocomplete-control>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input-control title="From Date" validation="required"
+                                            formControlName="fromDate"
+                                            [validationClass]="(scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false">
+                                        </input-control>
+                                    </div>
                                     <div class="col-lg-4">
                                         <checkbox-control title="Active" customClass="checkbox-form"
                                             formControlName="isActive"></checkbox-control>
