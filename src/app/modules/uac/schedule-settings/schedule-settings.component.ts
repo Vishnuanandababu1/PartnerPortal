@@ -19,9 +19,6 @@ import { AutocompleteControlComponent } from "../../../shared/controls/autocompl
 })
 export class ScheduleSettingsComponent implements OnInit {
 
-
-
-
   // normal category select setup *******************
   selectedCategoryId: any;
   categoryItem: string = '';
@@ -31,6 +28,33 @@ export class ScheduleSettingsComponent implements OnInit {
     { id: '3', categoryName: 'Anesthetist' },
     { id: '2', categoryName: 'OR Room' },
   ];
+  selectedSiteId: any;
+  userSiteItem: any[] = [];
+  userSiteOptions: any;
+  userSiteList: { siteId: string; siteName: string; }[] = [
+    { siteId: '1', siteName: 'Trivandrum' },
+    { siteId: '3', siteName: 'Kochi' },
+    { siteId: '2', siteName: 'Calicut' },
+  ];
+  scheduleSettingForm!: FormGroup;
+  formChangeWarningDialog: boolean = false;
+  constructor(private router: Router, private fb: FormBuilder) {
+    this.categoryOptions = this.categoryArray.map(option => option.categoryName);
+    this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
+  }
+
+  ngOnInit(): void {
+
+    this.scheduleSettingForm = this.fb.group({
+      category: ['', [Validators.required]],
+      userName: ['', [Validators.required, Validators.maxLength(30)]],
+      allowedSites:[[], [Validators.required]],
+      fromDate: ['', [Validators.required]],
+      isActive: [true],
+      remarks: ['', [Validators.maxLength(100)]],
+
+    })
+  }
   selectCategory(event: any) {
     const selectedCategoryName = event as string;
     const selectedCategory = this.categoryArray!.find(item => item.categoryName === selectedCategoryName);
@@ -73,14 +97,7 @@ export class ScheduleSettingsComponent implements OnInit {
 
 
 
-  selectedSiteId: any;
-  userSiteItem: any[] = [];
-  userSiteOptions: any;
-  userSiteList: { siteId: string; siteName: string; }[] = [
-    { siteId: '1', siteName: 'Trivandrum' },
-    { siteId: '3', siteName: 'Kochi' },
-    { siteId: '2', siteName: 'Calicut' },
-  ];
+
 
   // getAllUnits(categoryTypeId: any, unitFilter: boolean) {
   //   this.apiService.getUnitListData(categoryTypeId, unitFilter).subscribe(
@@ -104,33 +121,6 @@ export class ScheduleSettingsComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-  scheduleSettingForm!: FormGroup;
-  formChangeWarningDialog: boolean = false;
-
-  constructor(private router: Router, private fb: FormBuilder) {
-    this.categoryOptions = this.categoryArray.map(option => option.categoryName);
-    this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
-  }
-
-  ngOnInit(): void {
-
-    this.scheduleSettingForm = this.fb.group({
-      category: ['', [Validators.required]],
-      userName: ['', [Validators.required, Validators.maxLength(30)]],
-      allowedSites: [this.fb.array([]), [Validators.required]],
-      fromDate: ['', [Validators.required]],
-      isActive: [true],
-      remarks: ['', [Validators.maxLength(100)]],
-
-    })
-  }
 
   controlClass(controlName: string) {
     return { 'is-invalid': this.scheduleSettingForm?.get(controlName)?.invalid && this.scheduleSettingForm?.get(controlName)?.touched };
