@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit, OnDestroy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,8 +19,9 @@ import { ClickOutsideModule } from 'ng-click-outside';
   templateUrl: './select-control.component.html',
   styleUrl: './select-control.component.scss'
 })
-export class SelectControlComponent implements ControlValueAccessor {
-
+export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDestroy   {
+  onSearch = new Subject<string>();
+  keySearch:string='';
   @Input() title!: string;
   @Input() options: any = [];
   @Input() selectedItem: any;
@@ -30,11 +32,22 @@ export class SelectControlComponent implements ControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() validationClass: boolean = false;
   @Output() optionSelected = new EventEmitter<string>();
-filteredOptions: any[] = [];
+  filteredOptions: any[] = [];
   isDropdownOpen = false;
   highlightedIndex: number | null = null;
   private onChange: any = () => { };
   private onTouched: any = () => { };
+  private subscription: Subscription = new Subscription();
+
+  ngOnInit(){
+    this.subscription=this.onSearch.pipe(debounceTime(1000),distinctUntilChanged()).subscribe(searchText=>{
+          this.filterOptions(searchText);
+          this.keySearch='';    
+    })
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   writeValue(value: any): void {
     if (value !== undefined) {
       this.selectedItem = value;
@@ -82,8 +95,12 @@ filteredOptions: any[] = [];
     this.isDropdownOpen = false;
   }
 
-
+	/**
+ * Handles keydown events for navigating and selecting options in the dropdown.
+ * @param event The keyboard event.
+ */
   onKeyDown(event: KeyboardEvent) {
+    const isAlphabetOrNumberKey = /^[a-zA-Z0-9]$/.test(event.key);
     if (this.isDropdownOpen) {
       switch (event.key) {
         case 'ArrowDown':
@@ -104,10 +121,45 @@ filteredOptions: any[] = [];
           this.isDropdownOpen = false;
           break;
         default:
+          if (isAlphabetOrNumberKey) {
+              this.keySearch+=event.key?.toString()
+              if(this.keySearch!=''){
+                this.onSearch.next(this.keySearch);
+              }
+          }
           break;
       }
     }
   }
+/**
+ * Filters and sorts options based on the provided value.
+ * @param value The value to filter options by.
+ */
+  filterOptions(value: string) {
+    const filterValue = value?.toLowerCase();
+    this.filteredOptions = this.options
+    .filter((option:string) => option?.toLowerCase()?.includes(filterValue))
+    .sort((a:string, b:string) => {
+      const aIndex = a.toLowerCase().indexOf(filterValue);
+      const bIndex = b.toLowerCase().indexOf(filterValue);
+      return aIndex - bIndex;
+    });
+    if (this.filteredOptions.length > 0) {
+      const firstFilteredIndex = this.options?.indexOf(this.filteredOptions?.[0]);
+      if(firstFilteredIndex>=0){
+        this.highlightedIndex = firstFilteredIndex;
+        if (this.highlightedIndex !== null) {
+          this.selectOption(this.options[this.highlightedIndex]);
+        }
+      }
+  
+    }
+  }
+   /**
+ * Highlights the next option in the dropdown list.
+ * If the current highlight is at the end of the list or no item is highlighted,
+ * the first item will be highlighted.
+ */
   highlightNext() {
     if (this.highlightedIndex === null || this.highlightedIndex === this.options.length - 1) {
       this.highlightedIndex = 0;
@@ -115,7 +167,11 @@ filteredOptions: any[] = [];
       this.highlightedIndex++;
     }
   }
-
+ /**
+ * Highlights the previous option in the dropdown list.
+ * If the current highlight is at the beginning of the list or no item is highlighted,
+ * the last item will be highlighted.
+ */
   highlightPrevious() {
     if (this.highlightedIndex === null || this.highlightedIndex === 0) {
       this.highlightedIndex = this.options.length - 1;
@@ -123,41 +179,4 @@ filteredOptions: any[] = [];
       this.highlightedIndex--;
     }
   }
-  // onKeyDown(event: KeyboardEvent) {
-  //   switch (event.key) {
-  //     case 'ArrowDown':
-  //       this.moveSelection(1); // Move selection down
-  //       event.preventDefault(); // Prevent default scroll behavior
-  //       break;
-  //     case 'ArrowUp':
-  //       this.moveSelection(-1); // Move selection up
-  //       event.preventDefault(); // Prevent default scroll behavior
-  //       break;
-  //     case 'Enter':
-  //       // Handle selection when Enter is pressed
-  //       event.preventDefault(); // Prevent form submission if needed
-  //       break;
-  //     // case 'Escape':
-  //     //   this.hideDropdown(); // Hide dropdown when Escape is pressed
-  //     //   break;
-  //     default:
-  //       break;
-  //   }
-  // }
-
-  // moveSelection(step: number) {
-  //   const currentIndex = this.options.indexOf(this.selectedItem);
-  //   let newIndex = currentIndex + step;
-
-  //   // Ensure the newIndex stays within bounds
-  //   if (newIndex < 0) {
-  //     newIndex = this.options.length - 1;
-  //   } else if (newIndex >= this.options.length) {
-  //     newIndex = 0;
-  //   }
-
-  //   // Update the selectedItem
-  //   this.selectedItem = this.options[newIndex];
-  // }
-
 }
