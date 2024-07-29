@@ -1,3 +1,55 @@
+.form-group {
+    p-calendar {
+        &.p-element {
+            .form-control {
+                padding: 0;
+                input {
+                    outline: none;
+                    width: inherit;
+                    height: inherit;
+                    box-shadow: none;
+                    font-size: inherit;
+                    background: inherit;
+                    border-color: inherit;
+                    border-style: inherit;
+                    border-radius: inherit;
+                }
+                .p-icon-wrapper {
+                    color: #2ba599;
+                }
+            }
+        }
+    }
+}
+
+.p-datepicker {
+    .p-datepicker-header {
+        padding: 0;
+        color: #495057;
+        .p-datepicker-title {
+            .p-datepicker-year,
+            .p-datepicker-month {
+                padding: 0.25rem 0.5rem;
+            }
+        }
+    }
+    table {
+        font-size: 0.85rem;
+        margin: 0.25rem 0;
+        td {
+            padding: 0.25rem 0.15rem;
+            span {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                transition: box-shadow 0.2s;
+                border: 1px solid transparent;
+            }
+        }
+    }
+}
+
+// control specific
 .vi-open-calendar {
     overflow: hidden;
     position: relative;

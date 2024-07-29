@@ -34,10 +34,18 @@
                                         <autocomplete-control></autocomplete-control>
                                     </div>
                                     <div class="col-lg-4">
-                                        <input-control title="From Date" validation="required"
+                                        <div class="form-group">
+                                            <label class="inp-label required">From Date</label>
+                                            <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true"
+                                                formControlName="fromDate" inputId="icondisplay"
+                                                [styleClass]="'form-control'">
+                                            </p-calendar>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        <!-- <input-control title="From Date" validation="required"
                                             formControlName="fromDate"
                                             [validationClass]="(scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false">
-                                        </input-control>
+                                        </input-control> -->
                                     </div>
                                     <div class="col-lg-4">
                                         <checkbox-control title="Active" customClass="checkbox-form"

@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, FormsModule } from '@angular/forms';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { CheckboxControlComponent } from '../../../shared/controls/checkbox-control/checkbox-control.component';
 import { TextareaControlComponent } from '../../../shared/controls/textarea-control/textarea-control.component';
 import { MultiselectControlComponent } from '../../../shared/controls/multiselect-control/multiselect-control.component';
-import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 import { AutocompleteControlComponent } from "../../../shared/controls/autocomplete-control/autocomplete-control.component";
+import { CalendarModule } from 'primeng/calendar';
+import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-schedule-settings',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, DialogComponent, AutocompleteControlComponent],
+  imports: [CommonModule,RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, AutocompleteControlComponent, CalendarModule, DialogComponent],
   templateUrl: './schedule-settings.component.html',
   styleUrl: './schedule-settings.component.scss'
 })
@@ -38,6 +39,7 @@ export class ScheduleSettingsComponent implements OnInit {
   ];
   scheduleSettingForm!: FormGroup;
   formChangeWarningDialog: boolean = false;
+  date: Date | undefined;
   constructor(private router: Router, private fb: FormBuilder) {
     this.categoryOptions = this.categoryArray.map(option => option.categoryName);
     this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
@@ -48,7 +50,7 @@ export class ScheduleSettingsComponent implements OnInit {
     this.scheduleSettingForm = this.fb.group({
       category: ['', [Validators.required]],
       userName: ['', [Validators.required, Validators.maxLength(30)]],
-      allowedSites:[[], [Validators.required]],
+      allowedSites: [[], [Validators.required]],
       fromDate: ['', [Validators.required]],
       isActive: [true],
       remarks: ['', [Validators.maxLength(100)]],
