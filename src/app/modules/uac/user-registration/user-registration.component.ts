@@ -2,14 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
-import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
+import { AccordionComponent } from '../../../shared/components/accordion/accordion.component';
+import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
+import { SectionContentDirective } from '../../../shared/directives/section-content.directive';
 
 @Component({
   selector: 'app-user-registration',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, AccordionComponent, SectionContentDirective, DialogComponent],
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.scss'
 })
@@ -36,34 +38,6 @@ export class UserRegistrationComponent implements OnInit {
     }
   }
 
-  // gender select setup via api *******************
-
-  // selectedGenderId: any;
-  // genderItem: string = '';
-  // genderOptions: any;
-  // genderList: { id: string; genderName: string }[] | undefined;
-  // getUserGender() {
-  //   this.apiService.getGenders().subscribe(
-  //     (data) => {
-  //       this.genderList = data.results;
-  //       this.genderOptions = this.genderList!.map(option => option.genderName);
-  //       console.log('Data from API:', data);
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   );
-  // }
-  // selectGender(event: any) {
-  //   const selectedGenderName = event as string;
-  //   const selectedGender = this.genderList!.find(item => item.genderName === selectedGenderName);
-
-  //   if (selectedGender) {
-  //     this.selectedGenderId = selectedGender.id;
-  //     this.genderItem = selectedGender.genderName;
-  //   }
-  // }
-
 
 
   userRegistrationForm!: FormGroup;
@@ -81,6 +55,7 @@ export class UserRegistrationComponent implements OnInit {
     // registration form
     this.userRegistrationForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
+      middleName: ['', [Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
 
       genderId: [''],
