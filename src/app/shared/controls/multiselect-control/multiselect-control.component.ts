@@ -27,6 +27,8 @@ export class MultiselectControlComponent implements ControlValueAccessor {
   @Input() noLabel: boolean = false;
   @Input() disabled: boolean = false;
   @Input() validationClass: boolean = false;
+  @Input() error: boolean = false; // New input for error state
+  @Input() errorMessage: string = ''; // New input for error message
   @Output() optionsSelected = new EventEmitter<string[]>();
 
   selectedItemList: string = '';
