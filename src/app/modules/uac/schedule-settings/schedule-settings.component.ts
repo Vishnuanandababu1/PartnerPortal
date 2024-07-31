@@ -29,6 +29,15 @@ export class ScheduleSettingsComponent implements OnInit {
     { id: '3', categoryName: 'Anesthetist' },
     { id: '2', categoryName: 'OR Room' },
   ];
+  suggestions = [
+    { name: 'Apple', code: 'APL' },
+    { name: 'Banana', code: 'BAN' },
+    { name: 'Cherry', code: 'CHR' },
+    { name: 'Date', code: 'DAT' },
+    { name: 'Elderberry', code: 'ELD' },
+    { name: 'Fig', code: 'FIG' },
+    { name: 'Grape', code: 'GRP' }
+  ];
   selectedSiteId: any;
   userSiteItem: any[] = [];
   userSiteOptions: any;
@@ -39,6 +48,7 @@ export class ScheduleSettingsComponent implements OnInit {
   ];
   scheduleSettingForm!: FormGroup;
   formChangeWarningDialog: boolean = false;
+  submitted: boolean = false;
   date: Date | undefined;
   constructor(private router: Router, private fb: FormBuilder) {
     this.categoryOptions = this.categoryArray.map(option => option.categoryName);
@@ -53,6 +63,7 @@ export class ScheduleSettingsComponent implements OnInit {
       allowedSites: [[], [Validators.required]],
       fromDate: ['', [Validators.required]],
       isActive: [true],
+      userType:['', [Validators.required]],
       remarks: ['', [Validators.maxLength(100)]],
 
     })
@@ -132,6 +143,7 @@ export class ScheduleSettingsComponent implements OnInit {
   }
 
   onRegisterUser() {
+    this.submitted=true;
     if (this.scheduleSettingForm.valid) {
       console.log('schedule info', this.scheduleInfo)
     }
@@ -155,5 +167,14 @@ export class ScheduleSettingsComponent implements OnInit {
     // this.alertSuccess = false;
     this.scheduleSettingForm.reset();
     this.formChangeWarningDialog = false;
+  }
+  onSelect(selected: any) {
+    console.log('Selected:', selected);
+    // Handle the selected suggestion
+  }
+
+  onSearch(query: string) {
+    console.log('Search query:', query);
+    // Handle the search query, possibly update suggestions based on the query
   }
 }
