@@ -116,7 +116,10 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
 
   selectSuggestion(suggestion: any) {
     if (this.multiple) {
-      this.selectedItems.push(suggestion);
+      if (!this.selectedItems.includes(suggestion)) {
+        this.selectedItems.push(suggestion);
+        this.onChange(this.selectedItems);
+      }
       this.inputControl.setValue('', { emitEvent: false });
     } else {
       this.inputControl.setValue(suggestion[this.field], { emitEvent: false });
