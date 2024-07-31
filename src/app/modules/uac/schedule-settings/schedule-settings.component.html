@@ -31,7 +31,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <autocomplete-control></autocomplete-control>
+                                        <autocomplete-control 
+                                        [placeholder]="'Search...'"
+                                        [suggestions]="suggestions"
+                                        field="name"
+                                        (select)="onSelect($event)"
+                                        (search)="onSearch($event)"
+                                        [multiple]="false"
+                                        formControlName="userType"
+                                        [error]="scheduleSettingForm.controls['userType'].invalid && submitted ">
+                                        [forceSelection]="true">
+                                      </autocomplete-control>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
