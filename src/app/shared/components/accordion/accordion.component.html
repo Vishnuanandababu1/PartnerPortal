@@ -1,0 +1,15 @@
+<div class="accordion-container">
+  <div *ngFor="let section of sections; let i = index" class="accordion-section">
+    <div class="accordion-header" (click)="toggleSection(i)">
+      <div>{{ section.title }}</div>
+      <div class="arrow">
+        <i [ngClass]="expandedSections.has(i) ? 'vi vi-chevron-up' : 'vi vi-chevron-down'"></i>
+      </div>
+    </div>
+    <div class="accordion-content" [ngClass]="{ 'expanded': expandedSections.has(i) }">
+      <ng-container *ngIf="expandedSections.has(i)">
+        <ng-container *ngTemplateOutlet="section.content"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

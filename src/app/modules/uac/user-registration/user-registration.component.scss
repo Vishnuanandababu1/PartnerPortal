@@ -1,0 +1,29 @@
+.user-reg {
+    display: flex;
+    .reg-preview {
+        top: 0;
+        z-index: 3;
+        width: 250px;
+        display: flex;
+        color: #343f52;
+        color: #0f7d8b;
+        position: sticky;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        justify-content: center;
+        height: calc(100vh - 50px);
+        background: #ffffff;
+        box-shadow: 0 0 5px -1px #a1a1a1;
+    }
+    .reg-form {
+        width: 100%;
+        position: relative;
+        padding: 1.5rem 1.5rem;
+        height: calc(100vh - 50px);
+    }
+
+    .reg-preview + .reg-form {
+        width: calc(100% - 250px);
+    }
+}
