@@ -38,10 +38,13 @@
                                             <label class="inp-label required">From Date</label>
                                             <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true"
                                                 formControlName="fromDate" inputId="icondisplay"
-                                                [styleClass]="'form-control'">
+                                                [styleClass]="'form-control'"
+                                                [ngClass]="{'is-invalid' : (scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false}">
                                             </p-calendar>
                                             <span class="focus-border"></span>
                                         </div>
+
+
                                         <!-- <input-control title="From Date" validation="required"
                                             formControlName="fromDate"
                                             [validationClass]="(scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false">

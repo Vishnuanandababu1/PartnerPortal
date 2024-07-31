@@ -20,23 +20,23 @@
     }
     .option-list {
         .list-item {
-          padding: 5px 10px;
-          cursor: pointer;
-      
-          &.highlighted {
-            background-color: #f0f0f0;
-          }
-      
-          &.active {
-            font-weight: bold;
-          }
-      
-          &:hover {
-            background-color: #e0e0e0;
-          }
+            padding: 5px 10px;
+            cursor: pointer;
+
+            &.highlighted {
+                background-color: #f0f0f0;
+            }
+
+            &.active {
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: #e0e0e0;
+            }
         }
-      }
-      
+    }
+
     .form-control {
         width: 100%;
         height: 42px;
@@ -67,17 +67,19 @@
             cursor: not-allowed;
             // pointer-events: none;
         }
-        &.is-invalid {
-            background-image: none;
-            border: 0 solid transparent !important;
-            border-bottom: 2px solid #ff3e1d !important;
-            &:focus {
-                outline: none;
-                box-shadow: none;
-            }
+    }
+    .form-control.is-invalid,
+    .is-invalid .form-control input{
+        background-image: none;
+        border: 0 solid transparent !important;
+        border-bottom: 2px solid #ff3e1d !important;
+        &:focus {
+            outline: none;
+            box-shadow: none;
         }
     }
-    .form-control ~ .focus-border {
+    .form-control ~ .focus-border,
+    p-calendar + .focus-border {
         width: 0;
         bottom: 0;
         left: 50%;
@@ -86,7 +88,8 @@
         position: absolute;
         background-color: #3399ff;
     }
-    .form-control:focus ~ .focus-border {
+    .form-control:focus ~ .focus-border,
+    p-calendar:focus + .focus-border {
         left: 0;
         width: 100%;
         transition: 0.4s;
