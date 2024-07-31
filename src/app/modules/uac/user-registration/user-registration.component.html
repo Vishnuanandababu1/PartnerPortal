@@ -4,57 +4,39 @@
     </div>
     <div class="reg-form">
         <form [formGroup]="userRegistrationForm" autocomplete="off">
-            <app-accordion [multiple]="true">
+            <app-accordion [multiple]="true" [openall]="true" [customClass]="'info-panel'">
                 <ng-template sectionContent title="Personal Information">
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-lg-12">
-                            <div class="form-title-group first">                              
+                            <div class="form-title-group">
                                 <div class="form-sub-title">Capture essential personal details for user
                                     identification.</div>
                             </div>
                         </div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-lg-3">
-                            <select-control title="Prefix" formControlName="gender" [selectedItem]="genderItem"
-                                [options]="genderOptions" (optionSelected)="selectGender($event)"
-                                [validationClass]="(userRegistrationForm.get('gender')?.invalid && userRegistrationForm.get('gender')?.touched) ?? false">
-                            </select-control>
-                        </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label required">First Name</label>
-                                <input type="text" class="form-control" formControlName="firstName"
-                                    [ngClass]="controlClass('firstName')" />
-                                <span class="focus-border"></span>
-                                <label class="val-msg"
-                                    *ngIf="userRegistrationForm.get('firstName')?.errors?.['maxlength']">Max
-                                    Length is 20</label>
+                            <div class="double-sel-inp md-80">
+                                <select-control title="Prefix" formControlName="prefix" [selectedItem]="prefixItem"
+                                    [options]="prefixOptions" (optionSelected)="selectPrefix($event)">
+                                </select-control>
+                                <input-control title="First Name" validation="required" formControlName="firstName"
+                                    [error]="userRegistrationForm.controls['firstName'].invalid && userRegistrationForm.controls['firstName'].touched"
+                                    [errorMessage]="'Max Length is 20'">
+                                </input-control>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label">Middle Name</label>
-                                <input type="text" class="form-control" formControlName="middleName"
-                                    [ngClass]="controlClass('middleName')" />
-                                <span class="focus-border"></span>
-                                <label class="val-msg"
-                                    *ngIf="userRegistrationForm.get('middleName')?.errors?.['maxlength']">Max
-                                    Length is 20</label>
-                            </div>
+                            <input-control title="Middle Name" formControlName="middleName"
+                                [error]="userRegistrationForm.controls['middleName'].invalid && userRegistrationForm.controls['middleName'].touched"
+                                [errorMessage]="'Max Length is 20'">
+                            </input-control>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label required">Last Name</label>
-                                <input type="text" class="form-control" formControlName="lastName"
-                                    [ngClass]="controlClass('lastName')" />
-                                <span class="focus-border"></span>
-                                <label class="val-msg"
-                                    *ngIf="userRegistrationForm.get('lastName')?.errors?.['maxlength']">Max
-                                    Length is 30</label>
-                            </div>
+                            <input-control title="Last Name" validation="required" formControlName="lastName"
+                                [error]="userRegistrationForm.controls['lastName'].invalid && userRegistrationForm.controls['lastName'].touched"
+                                [errorMessage]="'Max Length is 30'">
+                            </input-control>
                         </div>
                     </div>
                     <div class="row">
@@ -68,11 +50,12 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="inp-label required">Date of Birth</label>
-                                <input type="date" class="form-control cal-input" formControlName="dateOfBirth"
-                                    [ngClass]="controlClass('dateOfBirth')" (change)="calculateAge()"
-                                    max="{{ maxDate }}" />
+                                <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true"
+                                    (change)="calculateAge()" formControlName="dateOfBirth" inputId="icondisplay"
+                                    [styleClass]="'form-control'"
+                                    [ngClass]="{'is-invalid' : (userRegistrationForm.get('dateOfBirth')?.invalid && userRegistrationForm.get('dateOfBirth')?.touched) ?? false}">
+                                </p-calendar>
                                 <span class="focus-border"></span>
-                                <label class="cal-icon"><i class="vi vi-calendar"></i></label>
                                 <label class="val-msg"
                                     *ngIf="userRegistrationForm.get('dateOfBirth')?.errors?.['invalidAge'] && userRegistrationForm.get('dateOfBirth')?.value !== '' && userRegistrationForm.get('dateOfBirth')?.value !== null">Under
                                     Age</label>
@@ -90,13 +73,27 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <select-control title="Marital Status" formControlName="maritalStatus"
+                                [selectedItem]="maritalStatusItem" [options]="maritalStatusOptions"
+                                (optionSelected)="selectMaritalStatus($event)"
+                                [validationClass]="(userRegistrationForm.get('maritalStatus')?.invalid && userRegistrationForm.get('maritalStatus')?.touched) ?? false">
+                            </select-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <select-control title="Nationality" formControlName="nationality"
+                                [selectedItem]="nationalityItem" [options]="nationalityOptions"
+                                (optionSelected)="selectNationality($event)"
+                                [validationClass]="(userRegistrationForm.get('nationality')?.invalid && userRegistrationForm.get('nationality')?.touched) ?? false">
+                            </select-control>
+                        </div>
+                    </div>
                 </ng-template>
                 <ng-template sectionContent title="Contact Information">
                     <div class=" row">
                         <div class="col-lg-12">
                             <div class="form-title-group">
-                                <div class="form-title">Contact Information</div>
                                 <div class="form-sub-title">Adding contact informations of the
                                     employee will helps you to call them at any circumstances. The user's
                                     primary phone number or email Id will be used as login credential.</div>
@@ -176,19 +173,7 @@
                     <div class="row">
 
 
-                        <div class="col-lg-4">
-                            <!-- <select-control title="Marital Status" formControlName="maritalStatus"
-                                [selectedItem]="maritalStatusItem" [options]="maritalStatusOptions"
-                                (optionSelected)="selectMaritalStatus($event)"
-                                [validationClass]="(userRegistrationForm.get('maritalStatus')?.invalid && userRegistrationForm.get('maritalStatus')?.touched) ?? false">
-                            </select-control> -->
-                        </div>
-                        <div class="col-lg-4">
-                            <!-- <select-control title="Nationality" formControlName="nationality" [selectedItem]="nationalityItem"
-                                [options]="nationalityOptions" (optionSelected)="selectNationality($event)"
-                                [validationClass]="(userRegistrationForm.get('nationality')?.invalid && userRegistrationForm.get('nationality')?.touched) ?? false">
-                            </select-control> -->
-                        </div>
+
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="inp-label">Job Title / Designation</label>
@@ -211,7 +196,6 @@
                     <div class=" row">
                         <div class="col-lg-12">
                             <div class="form-title-group">
-                                <div class="form-title">Outlets & Role Allocation</div>
                                 <div class="form-sub-title">Assign roles and responsibilities to users across
                                     various outlets for organized and efficient business operations.</div>
                             </div>
@@ -236,7 +220,6 @@
                     <div class=" row">
                         <div class="col-lg-12">
                             <div class="form-title-group">
-                                <div class="form-title">User Status & Credentials</div>
                                 <div class="form-sub-title">Manage user access with options for status (active,
                                     inactive) and credentials (username, password) for secure system
                                     interactions.</div>

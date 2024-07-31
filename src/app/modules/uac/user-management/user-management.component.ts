@@ -36,9 +36,9 @@ export class UserManagementComponent implements OnInit {
     { userId: 'U010', fullname: 'Jessica Blue', userRole: 'Nurse', designation: 'Assistant Nurse', emailId: 'jessica.blue@example.com', site: 'Kochi', status: 'Active', online: true, img: '../../../../images/avatars/avatar-4.jpg' }
   ];
 
-  userListView: boolean = true;
+  userListView: boolean = false;
   userProfileView: boolean = false;
-  userRegistrationForm: boolean = false;
+  userRegistrationForm: boolean = true;
   patListGridView: boolean = true;
   userFilterSearch: boolean = false;
 

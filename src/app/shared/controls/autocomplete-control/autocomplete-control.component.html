@@ -1,23 +1,24 @@
-<div class="autocomplete-control" [ngClass]="customClass">
-    <div *ngIf="multiple">
-      <div class="selected-item" *ngFor="let item of selectedItems">
-        {{ item[field] }}
-        <span class="remove-item" (click)="removeItem(item)">x</span>
-      </div>
+<div class="form-group auto-complete" [ngClass]="customClass">
+  <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
+  <input #inputElement type="text" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
+    [disabled]="disabled" (blur)="handleBlur()" (keydown)="onKeyDown($event)" [ngClass]="{'is-invalid': error}" />
+  <span class="focus-border"></span>
+  <label class="clear" *ngIf="inputControl.value" (click)="resetInput()">
+    <i class="vi vi-close"></i>
+  </label>
+  <div *ngIf="multiple">
+    <div class="selected-item" *ngFor="let item of selectedItems">
+      {{ item[field] }}
+      <span class="remove-item" (click)="removeItem(item)">x</span>
     </div>
-    <input #inputElement type="text" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
-           [disabled]="disabled" (blur)="handleBlur()" (keydown)="onKeyDown($event)" [ngClass]="{'is-invalid': error}" />
-    <label class="clear" *ngIf="inputControl.value" (click)="resetInput()">
-      <i class="vi vi-close"></i>
-    </label>
-    <div #dropdownElement class="suggestions-list" *ngIf="isDropdownOpen">
-      <div *ngIf="filteredSuggestions.length === 0" class="no-results">No results found</div>
-      <div class="suggestion-item" *ngFor="let suggestion of filteredSuggestions; let i = index"
-           (click)="selectSuggestion(suggestion)"
-           [class.highlighted]="highlightedIndex === i">
-        {{ suggestion[field] }}
-      </div>
-    </div>
-    <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>
   </div>
-  
+  <div #dropdownElement class="option-list" *ngIf="isDropdownOpen">
+    <div class="no-results" *ngIf="filteredSuggestions.length === 0">No results found</div>
+    <div class="list-item" *ngFor="let suggestion of filteredSuggestions; let i = index"
+      [ngClass]="{'active': suggestion === selectedItems}"
+      (click)="selectSuggestion(suggestion)" [class.highlighted]="highlightedIndex === i">
+      {{ suggestion[field] }}
+    </div>
+  </div>
+  <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>
+</div>
