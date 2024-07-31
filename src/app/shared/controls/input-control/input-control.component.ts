@@ -25,6 +25,8 @@ export class InputControlComponent implements ControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() validation!: string;
   @Input() validationClass: boolean = false;
+  @Input() error: boolean = false; // New input for error state
+  @Input() errorMessage: string = ''; // New input for error message
   @Output() inputChange = new EventEmitter<string>();
 
   inputControl = new FormControl('');

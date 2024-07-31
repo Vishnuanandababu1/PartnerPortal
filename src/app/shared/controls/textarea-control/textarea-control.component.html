@@ -1,10 +1,11 @@
 <div class="form-group textarea" [ngClass]="customClass">
     <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
     <textarea class="form-control" [placeholder]="placeholder" [formControl]="textareaControl"
-      [ngClass]="{ 'is-invalid': validationClass }" [disabled]="disabled" (blur)="onBlur()"></textarea>
+      [ngClass]="{ 'is-invalid': validationClass||error }" [disabled]="disabled" (blur)="onBlur()"></textarea>
     <span class="focus-border"></span>
     <label class="clear" *ngIf="textareaControl.value" (click)="resetTextarea()">
       <i class="vi vi-close"></i>
     </label>
+    <div *ngIf="error" class="error-message">{{ errorMessage }}</div>
   </div>
   

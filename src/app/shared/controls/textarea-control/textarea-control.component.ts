@@ -25,6 +25,8 @@ export class TextareaControlComponent {
   @Input() disabled: boolean = false;
   @Input() validation!: string;
   @Input() validationClass: boolean = false;
+  @Input() error: boolean = false; // New input for error state
+  @Input() errorMessage: string = ''; // New input for error message
   @Output() textareaChange = new EventEmitter<string>();
 
   textareaControl = new FormControl('');

@@ -32,6 +32,7 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   @Input() forceSelection: boolean = false;
   @Input() multiple: boolean = false;
   @Input() error: boolean = false;
+  @Input() errorMessage: string = ''; // New input for error message
   @Output() select = new EventEmitter<any>();
   @Output() search = new EventEmitter<string>();
 

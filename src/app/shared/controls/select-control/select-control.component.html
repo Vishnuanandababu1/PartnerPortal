@@ -1,7 +1,7 @@
 <div class="form-group select" [ngClass]="customClass" (clickOutside)="selectListOutsideClick($event)">
     <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{title}}</label>
     <input type="text" class="form-control" placeholder="{{placeholder}}" [value]="selectedItem"
-        [ngClass]="{'is-invalid': validationClass}" [disabled]="disabled" (click)="toggleDropdown() "
+        [ngClass]="{'is-invalid': validationClass || error}" [disabled]="disabled" (click)="toggleDropdown() "
         (keydown)="onKeyDown($event)" (blur)="hideDropdown()" readonly />
     <span class="focus-border"></span>
     <label class="arrow"><i class="vi vi-chevron-down"></i></label>
@@ -14,4 +14,5 @@
             {{ option }}
         </div>
     </div>
+    <div *ngIf="error" class="error-message">{{ errorMessage }}</div>
 </div>
