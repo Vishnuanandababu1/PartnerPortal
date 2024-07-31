@@ -31,6 +31,7 @@ export class ScheduleSettingsComponent implements OnInit {
   ];
   suggestions = [
     { name: 'Apple', code: 'APL' },
+    { name: 'Avocado', code: 'APL' },
     { name: 'Banana', code: 'BAN' },
     { name: 'Cherry', code: 'CHR' },
     { name: 'Date', code: 'DAT' },
@@ -48,7 +49,6 @@ export class ScheduleSettingsComponent implements OnInit {
   ];
   scheduleSettingForm!: FormGroup;
   formChangeWarningDialog: boolean = false;
-  submitted: boolean = false;
   date: Date | undefined;
   constructor(private router: Router, private fb: FormBuilder) {
     this.categoryOptions = this.categoryArray.map(option => option.categoryName);
@@ -78,52 +78,6 @@ export class ScheduleSettingsComponent implements OnInit {
     }
   }
 
-  // category select setup via api *******************
-
-  // selectedCategoryId: any;
-  // categoryItem: string = '';
-  // categoryOptions: any;
-  // categoryList: { id: string; categoryName: string }[] | undefined;
-  // getUserCategory() {
-  //   this.apiService.getCategory().subscribe(
-  //     (data) => {
-  //       this.categoryList = data.results;
-  //       this.categoryOptions = this.categoryList!.map(option => option.categoryName);
-  //       console.log('Data from API:', data);
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   );
-  // }
-  // selectCategory(event: any) {
-  //   const selectedCategoryName = event as string;
-  //   const selectedCategory = this.categoryList!.find(item => item.categoryName === selectedCategoryName);
-
-  //   if (selectedCategory) {
-  //     this.selectedCategoryId = selectedCategory.id;
-  //     this.categoryItem = selectedCategory.categoryName;
-  //   }
-  // }
-
-
-
-
-
-
-
-  // getAllUnits(categoryTypeId: any, unitFilter: boolean) {
-  //   this.apiService.getUnitListData(categoryTypeId, unitFilter).subscribe(
-  //     (data) => {
-  //       this.userSiteList = data.results;
-  //       this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
-  //       console.log('Data from API:', data);
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   );
-  // }
   selectSites(event: any) {
     const selectedsiteName = event as string;
     const selectedSiteItem = this.userSiteList!.find(item => item.siteName === selectedsiteName);
@@ -134,16 +88,11 @@ export class ScheduleSettingsComponent implements OnInit {
     }
   }
 
-
-  controlClass(controlName: string) {
-    return { 'is-invalid': this.scheduleSettingForm?.get(controlName)?.invalid && this.scheduleSettingForm?.get(controlName)?.touched };
-  }
-  get scheduleInfo() {
+   get scheduleInfo() {
     return this.scheduleSettingForm;
   }
 
   onRegisterUser() {
-    this.submitted=true;
     if (this.scheduleSettingForm.valid) {
       console.log('schedule info', this.scheduleInfo)
     }

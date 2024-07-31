@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
+import { CalendarModule } from 'primeng/calendar';
 import { AccordionComponent } from '../../../shared/components/accordion/accordion.component';
 import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 import { SectionContentDirective } from '../../../shared/directives/section-content.directive';
@@ -11,26 +12,44 @@ import { SectionContentDirective } from '../../../shared/directives/section-cont
 @Component({
   selector: 'app-user-registration',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, AccordionComponent, SectionContentDirective, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, CalendarModule, AccordionComponent, SectionContentDirective, DialogComponent],
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.scss'
 })
 export class UserRegistrationComponent implements OnInit {
 
+  // prefix
+  selectedPrefixId: any;
+  prefixItem: string = '';
+  prefixOptions: any;
+  prefixList: { id: string; prefix: string }[] = [
+    { id: '0', prefix: 'Dr' },
+    { id: '1', prefix: 'Mr' },
+    { id: '2', prefix: 'Mrs' },
+    { id: '3', prefix: 'Miss' },
+  ];
+  selectPrefix(event: any) {
+    const selectedPrefixName = event as string;
+    const selectedPrefix = this.prefixList!.find(item => item.prefix === selectedPrefixName);
 
-
-  // normal gender select setup *******************
+    if (selectedPrefix) {
+      this.selectedPrefixId = selectedPrefix.id;
+      this.genderItem = selectedPrefix.prefix;
+    }
+  }
+  
+  // gender
   selectedGenderId: any;
   genderItem: string = '';
   genderOptions: any;
-  genderArray: { id: string; genderName: string }[] = [
+  genderList: { id: string; genderName: string }[] = [
     { id: '1', genderName: 'Male' },
     { id: '2', genderName: 'Female' },
     { id: '3', genderName: 'Others' },
   ];
   selectGender(event: any) {
     const selectedGenderName = event as string;
-    const selectedGender = this.genderArray!.find(item => item.genderName === selectedGenderName);
+    const selectedGender = this.genderList!.find(item => item.genderName === selectedGenderName);
 
     if (selectedGender) {
       this.selectedGenderId = selectedGender.id;
@@ -38,22 +57,68 @@ export class UserRegistrationComponent implements OnInit {
     }
   }
 
+  // marital status
+  selectedMaritalStatusId: any;
+  maritalStatusItem: string = '';
+  maritalStatusOptions: any;
+  maritalStatusList: { id: string; maritalStatus: string }[] = [
+    { id: '1', maritalStatus: 'Single' },
+    { id: '2', maritalStatus: 'Married' },
+    { id: '3', maritalStatus: 'Widowed' },
+    { id: '4', maritalStatus: 'Separated' },
+    { id: '5', maritalStatus: 'Others' },
+  ];
+  selectMaritalStatus(event: any) {
+    const selectedMaritalStatusName = event as string;
+    const selectedMaritalStatus = this.maritalStatusList!.find(item => item.maritalStatus === selectedMaritalStatusName);
+
+    if (selectedMaritalStatus) {
+      this.selectedMaritalStatusId = selectedMaritalStatus.id;
+      this.maritalStatusItem = selectedMaritalStatus.maritalStatus;
+    }
+  }
+
+  // nationality
+  selectedNationalityId: any;
+  nationalityItem: string = '';
+  nationalityOptions: any;
+  nationalityList: { id: string; countryName: string; nationality: string; }[] = [
+    { id: '1', countryName: 'India', nationality: 'Indian' },
+    { id: '2', countryName: 'United States', nationality: 'American' },
+    { id: '3', countryName: 'Canada', nationality: 'Canadian' },
+    { id: '4', countryName: 'United Kingdom', nationality: 'British' },
+    { id: '5', countryName: 'Australia', nationality: 'Australian' },
+  ];
+  selectNationality(event: any) {
+    const selectedNationalityName = event as string;
+    const selectedNationality = this.nationalityList!.find(item => item.nationality === selectedNationalityName);
+
+    if (selectedNationality) {
+      this.selectedNationalityId = selectedNationality.id;
+      this.nationalityItem = selectedNationality.nationality;
+    }
+  }
 
 
   userRegistrationForm!: FormGroup;
-  maxDate: string | undefined;
+  date: string | undefined;
   passwordHide = false;
   confirmPasswordHide = false;
   formChangeWarningDialog: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder) {
-    this.genderOptions = this.genderArray.map(option => option.genderName);
+    this.prefixOptions = this.prefixList.map(option => option.prefix);
+    this.genderOptions = this.genderList.map(option => option.genderName);
+    this.maritalStatusOptions = this.maritalStatusList.map(option => option.maritalStatus);
+    this.nationalityOptions = this.nationalityList.map(option => option.nationality);
   }
 
   ngOnInit(): void {
 
     // registration form
     this.userRegistrationForm = this.fb.group({
+      prefixId: [''],
+      prefix: [''],
       firstName: ['', [Validators.required, Validators.maxLength(20)]],
       middleName: ['', [Validators.maxLength(20)]],
       lastName: ['', [Validators.required, Validators.maxLength(30)]],
@@ -66,15 +131,16 @@ export class UserRegistrationComponent implements OnInit {
       maritalStatus: [''],
       nationalityId: [''],
       nationality: [''],
-      jobTitle: [''],
-      employeeNo: [''],
-
-      phoneCode: ['', [Validators.required]],
+      
+      phoneCode: ['+91', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      altPhoneCode: [''],
+      altPhoneCode: ['+91'],
       altPhoneNumber: ['', [Validators.pattern(/^[0-9]+$/)]],
       emailId: ['', [Validators.required, Validators.email]],
 
+
+      jobTitle: [''],
+      employeeNo: [''],
       roleId: [''],
       role: ['', [Validators.required]],
 

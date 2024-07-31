@@ -12,14 +12,14 @@
                                         <select-control title="Category" validation="required"
                                             formControlName="category" [selectedItem]="categoryItem"
                                             [options]="categoryOptions" (optionSelected)="selectCategory($event)"
-                                            [error]="scheduleSettingForm.controls['category'].invalid && submitted"
+                                            [error]="scheduleSettingForm.controls['category'].invalid && scheduleSettingForm.controls['category'].touched"
                                             [errorMessage]="'Custom error message'">
                                         </select-control>
                                     </div>
                                     <div class="col-lg-4">
                                         <input-control title="User Name" validation="required"
                                             formControlName="userName"
-                                            [error]="scheduleSettingForm.controls['userName'].invalid && submitted"
+                                            [error]="scheduleSettingForm.controls['userName'].invalid && scheduleSettingForm.controls['userName'].touched"
                                             [errorMessage]="'Custom error message'">
                                         </input-control>
                                     </div>
@@ -27,18 +27,19 @@
                                         <multiselect-control [title]="'Allowed Sites'" validation="required"
                                             formControlName="allowedSites" [options]="userSiteOptions"
                                             [selectedItems]="userSiteItem" (optionSelected)="selectSites($event)"
-                                            [error]="scheduleSettingForm.controls['allowedSites'].invalid && submitted"
+                                            [error]="scheduleSettingForm.controls['allowedSites'].invalid && scheduleSettingForm.controls['allowedSites'].touched"
                                             [errorMessage]="'Custom error message'">
                                         </multiselect-control>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <autocomplete-control [placeholder]="'Search...'" [suggestions]="suggestions"
-                                            field="name" (select)="onSelect($event)" (search)="onSearch($event)"
-                                            [multiple]="false" formControlName="userType"
-                                            [error]="scheduleSettingForm.controls['userType'].invalid && submitted "
-                                            [errorMessage]="'Custom error message'" [forceSelection]="true">
+                                        <autocomplete-control [title]="'User Type'" validation="required"
+                                            [suggestions]="suggestions" field="name" (select)="onSelect($event)"
+                                            (search)="onSearch($event)" formControlName="userType"
+                                            [forceSelection]="true" [multiple]="true"
+                                            [error]="scheduleSettingForm.controls['userType'].invalid && scheduleSettingForm.controls['userType'].touched"
+                                            [errorMessage]="'Custom error message'">
                                         </autocomplete-control>
                                     </div>
                                     <div class="col-lg-4">
@@ -51,12 +52,6 @@
                                             </p-calendar>
                                             <span class="focus-border"></span>
                                         </div>
-
-
-                                        <!-- <input-control title="From Date" validation="required"
-                                            formControlName="fromDate"
-                                            [validationClass]="(scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false">
-                                        </input-control> -->
                                     </div>
                                     <div class="col-lg-4">
                                         <checkbox-control title="Active" customClass="checkbox-form"
@@ -66,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <textarea-control title="Remarks" formControlName="remarks"
-                                            [error]="scheduleSettingForm.controls['remarks'].invalid && submitted "
+                                            [error]="scheduleSettingForm.controls['remarks'].invalid && scheduleSettingForm.controls['remarks'].touched "
                                             [errorMessage]="'Max Length is 100'">
                                         </textarea-control>
                                     </div>

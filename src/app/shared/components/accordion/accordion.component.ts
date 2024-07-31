@@ -11,7 +11,9 @@ import { SectionContentDirective } from '../../directives/section-content.direct
 })
 export class AccordionComponent implements AfterContentInit {
   @ContentChildren(SectionContentDirective) sectionsContent!: QueryList<SectionContentDirective>;
-  @Input() multiple: boolean = false; // Renamed input property
+  @Input() customClass!: string;
+  @Input() multiple: boolean = false;
+  @Input() openall: boolean = false; 
 
   sections: { title: string, content: TemplateRef<any> }[] = [];
   expandedSections: Set<number> = new Set<number>();
@@ -21,6 +23,12 @@ export class AccordionComponent implements AfterContentInit {
       title: section.title,
       content: section.template
     }));
+
+    if (this.openall) {
+      this.sections.forEach((_, index) => {
+        this.expandedSections.add(index);
+      });
+    }
   }
 
   toggleSection(index: number): void {

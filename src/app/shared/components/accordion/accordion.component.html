@@ -1,5 +1,5 @@
 <div class="accordion-container">
-  <div *ngFor="let section of sections; let i = index" class="accordion-section">
+  <div *ngFor="let section of sections; let i = index" class="accordion-section" [ngClass]="customClass">
     <div class="accordion-header" (click)="toggleSection(i)">
       <div>{{ section.title }}</div>
       <div class="arrow">

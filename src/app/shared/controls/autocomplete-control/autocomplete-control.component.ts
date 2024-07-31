@@ -24,8 +24,11 @@ import { createPopper, Instance as PopperInstance } from '@popperjs/core';
   ]
 })
 export class AutocompleteControlComponent implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit, Validator {
+  @Input() title!: string;
+  @Input() validation!: string;
   @Input() placeholder: string = '';
   @Input() customClass!: string;
+  @Input() noLabel: boolean = false;
   @Input() disabled: boolean = false;
   @Input() suggestions: any[] = [];
   @Input() field: string = '';
