@@ -27,24 +27,19 @@
                                         <multiselect-control [title]="'Allowed Sites'" validation="required"
                                             formControlName="allowedSites" [options]="userSiteOptions"
                                             [selectedItems]="userSiteItem" (optionSelected)="selectSites($event)"
-                                            [validationClass]="(scheduleSettingForm.get('allowedSites')?.invalid && scheduleSettingForm.get('allowedSites')?.touched) ?? false">
+                                            [error]="scheduleSettingForm.controls['allowedSites'].invalid && submitted"
+                                            [errorMessage]="'Custom error message'">
                                         </multiselect-control>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <autocomplete-control 
-                                        [placeholder]="'Search...'"
-                                        [suggestions]="suggestions"
-                                        field="name"
-                                        (select)="onSelect($event)"
-                                        (search)="onSearch($event)"
-                                        [multiple]="false"
-                                        formControlName="userType"
-                                        [error]="scheduleSettingForm.controls['userType'].invalid && submitted "
-                                        [errorMessage]="'Custom error message'"
-                                        [forceSelection]="true">
-                                      </autocomplete-control>
+                                        <autocomplete-control [placeholder]="'Search...'" [suggestions]="suggestions"
+                                            field="name" (select)="onSelect($event)" (search)="onSearch($event)"
+                                            [multiple]="false" formControlName="userType"
+                                            [error]="scheduleSettingForm.controls['userType'].invalid && submitted "
+                                            [errorMessage]="'Custom error message'" [forceSelection]="true">
+                                        </autocomplete-control>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
@@ -71,8 +66,8 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <textarea-control title="Remarks" formControlName="remarks"
-                                        [error]="scheduleSettingForm.controls['remarks'].invalid && submitted "
-                                        [errorMessage]="'Max Length is 100'">
+                                            [error]="scheduleSettingForm.controls['remarks'].invalid && submitted "
+                                            [errorMessage]="'Max Length is 100'">
                                         </textarea-control>
                                     </div>
                                 </div>

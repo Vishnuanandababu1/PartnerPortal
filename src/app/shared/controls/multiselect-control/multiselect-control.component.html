@@ -1,6 +1,6 @@
 <div class="form-group multi-select" [ngClass]="customClass" (clickOutside)="selectListOutsideClick($event)">
     <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
-    <input type="text" class="form-control" placeholder="{{ placeholder }}" [ngClass]="{'is-invalid': validationClass}"
+    <input type="text" class="form-control" placeholder="{{ placeholder }}" [ngClass]="{'is-invalid': validationClass || error}"
         [disabled]="disabled" (click)="toggleDropdown()" readonly [value]="selectedItemList" (keydown)="openDropdown($event)"
          />
     <span class="focus-border"></span>
@@ -16,4 +16,5 @@
             </label>
         </div>
     </div>
+    <div *ngIf="error" class="error-message">{{ errorMessage }}</div>
 </div>
