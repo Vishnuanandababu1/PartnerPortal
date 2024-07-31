@@ -12,13 +12,15 @@
                                         <select-control title="Category" validation="required"
                                             formControlName="category" [selectedItem]="categoryItem"
                                             [options]="categoryOptions" (optionSelected)="selectCategory($event)"
-                                            [validationClass]="(scheduleSettingForm.get('category')?.invalid && scheduleSettingForm.get('category')?.touched) ?? false">
+                                            [error]="scheduleSettingForm.controls['category'].invalid && submitted"
+                                            [errorMessage]="'Custom error message'">
                                         </select-control>
                                     </div>
                                     <div class="col-lg-4">
                                         <input-control title="User Name" validation="required"
                                             formControlName="userName"
-                                            [validationClass]="(scheduleSettingForm.get('userName')?.invalid && scheduleSettingForm.get('userName')?.touched) ?? false">
+                                            [error]="scheduleSettingForm.controls['userName'].invalid && submitted"
+                                            [errorMessage]="'Custom error message'">
                                         </input-control>
                                     </div>
                                     <div class="col-lg-4">
@@ -39,7 +41,8 @@
                                         (search)="onSearch($event)"
                                         [multiple]="false"
                                         formControlName="userType"
-                                        [error]="scheduleSettingForm.controls['userType'].invalid && submitted ">
+                                        [error]="scheduleSettingForm.controls['userType'].invalid && submitted "
+                                        [errorMessage]="'Custom error message'"
                                         [forceSelection]="true">
                                       </autocomplete-control>
                                     </div>
@@ -68,11 +71,9 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <textarea-control title="Remarks" formControlName="remarks"
-                                            [validationClass]="(scheduleSettingForm.get('remarks')?.invalid && scheduleSettingForm.get('remarks')?.touched) ?? false">
+                                        [error]="scheduleSettingForm.controls['remarks'].invalid && submitted "
+                                        [errorMessage]="'Max Length is 100'">
                                         </textarea-control>
-                                        <label class="val-msg"
-                                            *ngIf="scheduleSettingForm.get('remarks')?.errors?.['maxlength']">Max
-                                            Length is 100</label>
                                     </div>
                                 </div>
                             </div>
