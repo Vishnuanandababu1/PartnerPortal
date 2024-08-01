@@ -22,6 +22,7 @@ export class TextareaControlComponent {
   @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
+  @Input() clearVal: boolean = true;
   @Input() disabled: boolean = false;
   @Input() validation!: string;
   @Input() validationClass: boolean = false;

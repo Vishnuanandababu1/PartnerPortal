@@ -19,6 +19,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
 export class InputControlComponent implements ControlValueAccessor {
 
   @Input() title!: string ;
+  @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;

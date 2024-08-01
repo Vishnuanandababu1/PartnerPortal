@@ -29,6 +29,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   @Input() placeholder!: string;
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
+  @Input() clearVal: boolean = true;
   @Input() disabled: boolean = false;
   @Input() validationClass: boolean = false;
   @Input() error: boolean = false;

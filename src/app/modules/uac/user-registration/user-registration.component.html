@@ -5,6 +5,7 @@
     <div class="reg-form">
         <form [formGroup]="userRegistrationForm" autocomplete="off">
             <app-accordion [multiple]="true" [openall]="true" [customClass]="'info-panel'">
+
                 <ng-template sectionContent title="Personal Information">
                     <div class="row">
                         <div class="col-lg-12">
@@ -22,20 +23,20 @@
                                 </select-control>
                                 <input-control title="First Name" validation="required" formControlName="firstName"
                                     [error]="userRegistrationForm.controls['firstName'].invalid && userRegistrationForm.controls['firstName'].touched"
-                                    [errorMessage]="'Max Length is 20'">
+                                    [errorMessage]="'Cannot exceed 20 characters'">
                                 </input-control>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <input-control title="Middle Name" formControlName="middleName"
                                 [error]="userRegistrationForm.controls['middleName'].invalid && userRegistrationForm.controls['middleName'].touched"
-                                [errorMessage]="'Max Length is 20'">
+                                [errorMessage]="'Cannot exceed 20 characters'">
                             </input-control>
                         </div>
                         <div class="col-lg-4">
                             <input-control title="Last Name" validation="required" formControlName="lastName"
                                 [error]="userRegistrationForm.controls['lastName'].invalid && userRegistrationForm.controls['lastName'].touched"
-                                [errorMessage]="'Max Length is 30'">
+                                [errorMessage]="'Cannot exceed 30 characters'">
                             </input-control>
                         </div>
                     </div>
@@ -44,13 +45,13 @@
                             <select-control title="Gender" validation="required" formControlName="gender"
                                 [selectedItem]="genderItem" [options]="genderOptions"
                                 (optionSelected)="selectGender($event)"
-                                [validationClass]="(userRegistrationForm.get('gender')?.invalid && userRegistrationForm.get('gender')?.touched) ?? false">
+                                [error]="userRegistrationForm.controls['gender'].invalid && userRegistrationForm.controls['gender'].touched">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="inp-label required">Date of Birth</label>
-                                <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true"
+                                <p-calendar [(ngModel)]="dateOfBirth" [iconDisplay]="'input'" [showIcon]="true"
                                     (change)="calculateAge()" formControlName="dateOfBirth" inputId="icondisplay"
                                     [styleClass]="'form-control'"
                                     [ngClass]="{'is-invalid' : (userRegistrationForm.get('dateOfBirth')?.invalid && userRegistrationForm.get('dateOfBirth')?.touched) ?? false}">
@@ -75,21 +76,28 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
+                            <multiselect-control [title]="'Languages Known'" validation="required"
+                                formControlName="languagesKnown" [options]="userLanguageOptions"
+                                [selectedItems]="userLanguageItem" (optionSelected)="selectLanguageType($event)"
+                                [error]="userRegistrationForm.controls['languagesKnown'].invalid && userRegistrationForm.controls['languagesKnown'].touched">
+                            </multiselect-control>
+                        </div>
+                        <div class="col-lg-4">
                             <select-control title="Marital Status" formControlName="maritalStatus"
                                 [selectedItem]="maritalStatusItem" [options]="maritalStatusOptions"
-                                (optionSelected)="selectMaritalStatus($event)"
-                                [validationClass]="(userRegistrationForm.get('maritalStatus')?.invalid && userRegistrationForm.get('maritalStatus')?.touched) ?? false">
+                                (optionSelected)="selectMaritalStatus($event)">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Nationality" formControlName="nationality"
                                 [selectedItem]="nationalityItem" [options]="nationalityOptions"
                                 (optionSelected)="selectNationality($event)"
-                                [validationClass]="(userRegistrationForm.get('nationality')?.invalid && userRegistrationForm.get('nationality')?.touched) ?? false">
+                                [error]="userRegistrationForm.controls['nationality'].invalid && userRegistrationForm.controls['nationality'].touched">
                             </select-control>
                         </div>
                     </div>
                 </ng-template>
+
                 <ng-template sectionContent title="Contact Information">
                     <div class=" row">
                         <div class="col-lg-12">
@@ -102,97 +110,78 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label required">Phone Number</label>
-                                <div class="input-group">
-                                    <div class="first-control lg-30">
-                                        <!-- <select-control title="Phone Code" [noLabel]="true" formControlName="phoneCode"
-                                            [selectedItem]="countryCode" [options]="countryCodeOptions"
-                                            (optionSelected)="selectCountryCode($event, true)" customClass="no-label list-lg"
-                                            [validationClass]="(userRegistrationForm.get('phoneCode')?.invalid && userRegistrationForm.get('phoneCode')?.touched) ?? false">
-                                        </select-control> -->
-                                    </div>
-                                    <div class="second-control lg-70">
-                                        <input type="number" class="form-control" formControlName="phoneNumber"
-                                            [ngClass]="controlClass('phoneNumber')" />
-                                        <span class="focus-border"></span>
-                                        <label class="val-msg"
-                                            *ngIf="userRegistrationForm.get('phoneNumber')?.errors?.['pattern']">Only
-                                            Numbers Are Allowed</label>
-                                    </div>
-                                </div>
+                            <div class="double-sel-inp md-80">
+                                <select-control title="Phone Code" validation="required" formControlName="phoneCode"
+                                    [clearVal]="false"
+                                    [error]="userRegistrationForm.controls['phoneCode'].invalid && userRegistrationForm.controls['phoneCode'].touched"></select-control>
+                                <input-control title="Phone Number" type="number" validation="required"
+                                    formControlName="phoneNumber"
+                                    [error]="userRegistrationForm.controls['phoneNumber'].invalid && userRegistrationForm.controls['phoneNumber'].touched"
+                                    [errorMessage]="'Only Numbers Are Allowed'">
+                                </input-control>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label">Alternate Phone Number</label>
-                                <div class="input-group">
-                                    <div class="first-control lg-30">
-                                        <!-- <select-control title="Alt Phone Code" [noLabel]="true" formControlName="altPhoneCode"
-                                            [selectedItem]="altCountryCode" [options]="countryCodeOptions"
-                                            (optionSelected)="selectCountryCode($event)" customClass="no-label list-lg"
-                                            [validationClass]="(userRegistrationForm.get('altPhoneCode')?.invalid && userRegistrationForm.get('altPhoneCode')?.touched) ?? false">
-                                        </select-control> -->
-                                    </div>
-                                    <div class="second-control lg-70">
-                                        <input type="number" class="form-control" formControlName="altPhoneNumber"
-                                            [ngClass]="controlClass('altPhoneNumber')" />
-                                        <span class="focus-border"></span>
-                                        <label class="val-msg"
-                                            *ngIf="userRegistrationForm.get('altPhoneNumber')?.errors?.['pattern']">Only
-                                            Numbers Are Allowed</label>
-                                    </div>
-                                </div>
+                            <div class="double-sel-inp md-80">
+                                <select-control title="Phone Code" formControlName="altPhoneCode" [clearVal]="false"
+                                    [error]="userRegistrationForm.controls['altPhoneCode'].invalid && userRegistrationForm.controls['altPhoneCode'].touched"></select-control>
+                                <input-control title="Alternate Phone Number" type="number"
+                                    formControlName="altPhoneNumber"
+                                    [error]="userRegistrationForm.controls['altPhoneNumber'].invalid && userRegistrationForm.controls['altPhoneNumber'].touched"
+                                    [errorMessage]="'Only Numbers Are Allowed'">
+                                </input-control>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label required">Email Id</label>
-                                <input type="email" class="form-control" formControlName="emailId"
-                                    [ngClass]="controlClass('emailId')" />
-                                <span class="focus-border"></span>
-                            </div>
+                            <input-control title="Email Id" type="email" validation="required" formControlName="emailId"
+                                [error]="userRegistrationForm.controls['emailId'].invalid && userRegistrationForm.controls['emailId'].touched"
+                                [errorMessage]="'Invalid Email Format'">
+                            </input-control>
                         </div>
                     </div>
-                </ng-template>
-                <ng-template sectionContent title="Role Allocation">
-                    <p>Content for section 3</p>
-                </ng-template>
-                <ng-template sectionContent title="User Credentials">
-                    <p>Content for section 3</p>
-                </ng-template>
-            </app-accordion>
-
-
-
-
-
-
-            <div class="card reg-card">
-                <div class="card-body">
                     <div class="row">
-
-
-
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label">Job Title / Designation</label>
-                                <input type="text" class="form-control" formControlName="jobTitle"
-                                    [ngClass]="controlClass('jobTitle')" />
-                                <span class="focus-border"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label">Employee ID / Number</label>
-                                <input type="text" class="form-control" formControlName="employeeNo"
-                                    [ngClass]="controlClass('employeeNo')" />
-                                <span class="focus-border"></span>
-                            </div>
+                        <div class="col-lg-12">
+                            <div class="form-titile">Communication Address</div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input-control title="House / Appartment Name" formControlName="houseName"
+                                [error]="userRegistrationForm.controls['houseName'].invalid && userRegistrationForm.controls['houseName'].touched"
+                                [errorMessage]="'Cannot exceed 100 characters'">
+                            </input-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <input-control title="Street / Area Name" formControlName="streetName"
+                                [error]="userRegistrationForm.controls['streetName'].invalid && userRegistrationForm.controls['streetName'].touched"
+                                [errorMessage]="'Cannot exceed 75 characters'">
+                            </input-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <input-control title="PIN / ZIP Code" type="number" formControlName="pinCode"
+                                [error]="userRegistrationForm.controls['pinCode'].invalid && userRegistrationForm.controls['pinCode'].touched"
+                                [errorMessage]="'Cannot exceed 6 numbers'">
+                            </input-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <autocomplete-control title="City / District" formControlName="city"
+                                [error]="userRegistrationForm.controls['city'].invalid && userRegistrationForm.controls['city'].touched"
+                                [errorMessage]="'Cannot exceed 50 characters'"></autocomplete-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <autocomplete-control title="State" formControlName="state"
+                                [error]="userRegistrationForm.controls['state'].invalid && userRegistrationForm.controls['state'].touched"
+                                [errorMessage]="'Cannot exceed 50 characters'"></autocomplete-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <autocomplete-control title="Country" formControlName="country"
+                                [error]="userRegistrationForm.controls['country'].invalid && userRegistrationForm.controls['country'].touched"
+                                [errorMessage]="'Cannot exceed 50 characters'"></autocomplete-control>
+                        </div>
+                    </div>
+                </ng-template>
 
-
+                <ng-template sectionContent title="Professional Information">
                     <div class=" row">
                         <div class="col-lg-12">
                             <div class="form-title-group">
@@ -203,20 +192,119 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <!-- <select-control title="Role" validation="required" formControlName="role"
-                                [selectedItem]="userRoleItem" [options]="userRoleOptions"
-                                (optionSelected)="selectRoleType($event)"
-                                [validationClass]="(userRegistrationForm.get('role')?.invalid && userRegistrationForm.get('role')?.touched) ?? false">
-                            </select-control> -->
+                            <select-control title="User Type" validation="required" formControlName="userType"
+                                [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                (optionSelected)="selectUserType($event)"
+                                [error]="userRegistrationForm.controls['userType'].invalid && userRegistrationForm.controls['userType'].touched">
+                            </select-control>
                         </div>
-                        <div class="col-lg-8">
-                            <!-- <multi-select-control [title]="'Allowed Outlets'" validation="required"
-                                formControlName="allowedOutlets" [options]="itemUnitOptions" [selectedItems]="itemUnitItem"
-                                (optionSelected)="selectUnitType($event)"
-                                [validationClass]="(userRegistrationForm.get('allowedOutlets')?.invalid && userRegistrationForm.get('allowedOutlets')?.touched) ?? false">
-                            </multi-select-control> -->
+                        <div class="col-lg-4">
+                            <input-control title="Qualification" formControlName="qualification"
+                                [error]="userRegistrationForm.controls['qualification'].invalid && userRegistrationForm.controls['qualification'].touched"
+                                [errorMessage]="'Cannot exceed 100 characters'">
+                            </input-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <input-control title="Registration No" formControlName="regNumber"
+                                [error]="userRegistrationForm.controls['regNumber'].invalid && userRegistrationForm.controls['regNumber'].touched">
+                            </input-control>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <select-control title="Department" validation="required" formControlName="department"
+                                [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                (optionSelected)="selectUserType($event)"
+                                [error]="userRegistrationForm.controls['department'].invalid && userRegistrationForm.controls['department'].touched">
+                            </select-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <select-control title="Speciality" formControlName="speciality"
+                                [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                (optionSelected)="selectUserType($event)">
+                            </select-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <select-control title="Designation / Job Title" validation="required"
+                                formControlName="userType" [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                (optionSelected)="selectUserType($event)"
+                                [error]="userRegistrationForm.controls['designation'].invalid && userRegistrationForm.controls['designation'].touched">
+                            </select-control>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="inp-label required">Date of Joining</label>
+                                <p-calendar [(ngModel)]="dateOfJoin" [iconDisplay]="'input'" [showIcon]="true"
+                                    (change)="calculateAge()" formControlName="dateOfJoining" inputId="icondisplay"
+                                    [styleClass]="'form-control'"
+                                    [ngClass]="{'is-invalid' : (userRegistrationForm.get('dateOfJoining')?.invalid && userRegistrationForm.get('dateOfJoining')?.touched) ?? false}">
+                                </p-calendar>
+                                <span class="focus-border"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <select-control title="Reporting Manager" formControlName="reportingManager"
+                                [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                (optionSelected)="selectUserType($event)">
+                            </select-control>
+                        </div>
+                        <div class="col-lg-4">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <textarea-control title="Remarks" formControlName="remarks"
+                                [error]="userRegistrationForm.controls['remarks'].invalid && userRegistrationForm.controls['remarks'].touched "
+                                [errorMessage]="'Cannot exceed 500 characters'">
+                            </textarea-control>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template sectionContent title="Role Allocation">
+                    <div class=" row">
+                        <div class="col-lg-12">
+                            <div class="form-title-group">
+                                <div class="form-sub-title">Assign roles and responsibilities to users across
+                                    various outlets for organized and efficient business operations.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <multiselect-control [title]="'Allowed Sites'" validation="required"
+                                formControlName="allowedSites" [options]="userSiteOptions"
+                                [selectedItems]="userSiteItem" (optionSelected)="selectSiteType($event)"
+                                [error]="userRegistrationForm.controls['allowedSites'].invalid && userRegistrationForm.controls['allowedSites'].touched">
+                            </multiselect-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <select-control title="Default Site" validation="required" formControlName="defaultSite"
+                                [error]="userRegistrationForm.controls['defaultSite'].invalid && userRegistrationForm.controls['defaultSite'].touched">
+                            </select-control>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <multiselect-control title="User Role" validation="required" formControlName="role"
+                                [selectedItems]="userRoleItem" [options]="userRoleOptions"
+                                (optionSelected)="selectRoleType($event)"
+                                [error]="userRegistrationForm.controls['role'].invalid && userRegistrationForm.controls['role'].touched">
+                            </multiselect-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <select-control title="Default User Role" validation="required"
+                                formControlName="defaultRole"
+                                [error]="userRegistrationForm.controls['defaultRole'].invalid && userRegistrationForm.controls['defaultRole'].touched">
+                            </select-control>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template sectionContent title="User Credentials">
                     <div class=" row">
                         <div class="col-lg-12">
                             <div class="form-title-group">
@@ -228,11 +316,28 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <!-- <select-control title="User Status" validation="required" formControlName="userStatus"
+                            <select-control title="User Status" validation="required" formControlName="userStatus"
                                 [selectedItem]="userStatusItem" [options]="userStatusOptions"
                                 (optionSelected)="selectUserStatus($event)"
                                 [validationClass]="(userRegistrationForm.get('userStatus')?.invalid && userRegistrationForm.get('userStatus')?.touched) ?? false">
-                            </select-control> -->
+                            </select-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <input-control title="Windows ID" formControlName="windowsID"
+                                [error]="userRegistrationForm.controls['windowsID'].invalid && userRegistrationForm.controls['windowsID'].touched"
+                                [errorMessage]="'Cannot exceed 75 characters'">
+                            </input-control>
+                        </div>
+                        <div class="col-lg-4">
+                            <checkbox-control title="Change password at next login " [customClass]="'checkbox-form'"
+                                formControlName="isChangePassword"></checkbox-control>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input-control title="User ID" validation="required" formControlName="userID"
+                                [error]="userRegistrationForm.controls['userID'].invalid && userRegistrationForm.controls['userID'].touched">
+                            </input-control>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -265,17 +370,33 @@
                                     does not match</label>
                             </div>
                         </div>
+                    </div>
+                </ng-template>
 
-                        <div class="col-lg-12">
-                            <div class="action-panel">
-                                <div class="action-title danger">Do you want to delete this user?</div>
-                                <div>Deleting user account is a permanent action, and it cannot be reversed. you
-                                    can click here to <a class="action-delete"><i class="vi vi-trash"></i> <span>Delete
-                                            User Permanently</span></a>
-                                </div>
+            </app-accordion>
+
+
+
+
+
+
+            <div class="card reg-card">
+                <div class="card-body">
+                    <!-- <div class="row">
+                       
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="inp-label">Employee ID / Number</label>
+                                <input type="text" class="form-control" formControlName="employeeNo"
+                                    [ngClass]="controlClass('employeeNo')" />
+                                <span class="focus-border"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+
+
+
                 </div>
                 <div class="card-footer">
                     <div class="btn-list">

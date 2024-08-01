@@ -3,7 +3,7 @@
   <input #inputElement type="text" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
     [disabled]="disabled" (blur)="handleBlur()" (keydown)="onKeyDown($event)" [ngClass]="{'is-invalid': error}" />
   <span class="focus-border"></span>
-  <label class="clear" *ngIf="inputControl.value" (click)="resetInput()">
+  <label class="clear" *ngIf="inputControl.value && clearVal" (click)="resetInput()">
     <i class="vi vi-close"></i>
   </label>
   <div *ngIf="multiple">

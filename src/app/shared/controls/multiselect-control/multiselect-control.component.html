@@ -4,7 +4,7 @@
         [disabled]="disabled" (click)="toggleDropdown()" readonly [value]="selectedItemList" (keydown)="onKeyDown($event)"
          />
     <span class="focus-border"></span>
-    <label class="clear" *ngIf="isDropdownOpen" (click)="resetSelection()">
+    <label class="clear" *ngIf="isDropdownOpen && clearVal" (click)="resetSelection()">
         <i class="vi vi-close"></i>
     </label>
     <label class="arrow"><i class="vi vi-chevron-down"></i></label>

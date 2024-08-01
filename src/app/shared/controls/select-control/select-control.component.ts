@@ -29,9 +29,10 @@ export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDes
   @Input() placeholder!: string;
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
+  @Input() clearVal: boolean = true;
   @Input() disabled: boolean = false;
-  @Input() error: boolean = false; // New input for error state
-  @Input() errorMessage: string = ''; // New input for error message
+  @Input() error: boolean = false; 
+  @Input() errorMessage: string = '';
   @Input() validationClass: boolean = false;
   @Output() optionSelected = new EventEmitter<string>();
   filteredOptions: any[] = [];
