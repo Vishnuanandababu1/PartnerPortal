@@ -3,7 +3,7 @@
     <textarea class="form-control" [placeholder]="placeholder" [formControl]="textareaControl"
       [ngClass]="{ 'is-invalid': validationClass||error }" [disabled]="disabled" (blur)="onBlur()"></textarea>
     <span class="focus-border"></span>
-    <label class="clear" *ngIf="textareaControl.value" (click)="resetTextarea()">
+    <label class="clear" *ngIf="textareaControl.value && clearVal" (click)="resetTextarea()">
       <i class="vi vi-close"></i>
     </label>
     <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>

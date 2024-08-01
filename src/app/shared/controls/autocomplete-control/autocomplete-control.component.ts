@@ -29,6 +29,7 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
+  @Input() clearVal: boolean = true;
   @Input() disabled: boolean = false;
   @Input() suggestions: any[] = [];
   @Input() field: string = '';

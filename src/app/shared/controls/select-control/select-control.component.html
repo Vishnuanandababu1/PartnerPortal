@@ -4,7 +4,7 @@
         [ngClass]="{'is-invalid': validationClass || error}" [disabled]="disabled" (click)="toggleDropdown() "
         (keydown)="onKeyDown($event)" (blur)="hideDropdown()" readonly />
     <span class="focus-border"></span>
-    <label class="clear" *ngIf="isDropdownOpen && selectedItem" (click)="resetSelection()">
+    <label class="clear" *ngIf="(isDropdownOpen && selectedItem) && clearVal" (click)="resetSelection()">
         <i class="vi vi-close"></i>
     </label>
     <label class="arrow"><i class="vi vi-chevron-down"></i></label>
