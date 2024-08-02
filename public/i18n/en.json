@@ -89,6 +89,7 @@
         "ercontno": "Emergency Contact Number",
         "offcontno": "CUG / Official Contact Number",
         "emailid": "Email ID",
+        "emailaddress": "Email Address",
         "altemailid": "Alternate Email ID",
         "offemailid": "Official Email ID"
     },

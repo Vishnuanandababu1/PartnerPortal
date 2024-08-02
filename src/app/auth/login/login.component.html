@@ -3,22 +3,18 @@
         <div class="card-body">
             <div class="login-form">
                 <form [formGroup]="partnerLoginForm" autocomplete="off">
-                    <div></div>
                     <div class="welcome-title">It's great to see you've returned!</div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email Address" formControlName="partnerID"
-                            [ngClass]="controlClass('partnerID')" />
-                        <span class="focus-border"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control"
-                            placeholder="Password" formControlName="password" [ngClass]="controlClass('password')" />
-                        <span class="focus-border"></span>
-                        <label class="toggle-eye" (click)="togglePasswordVisibility('password')"
-                            *ngIf="partnerLoginForm.get('password')?.value?.length != 0">
-                            <i class="vi {{ showPassword ? 'vi-eye-off' : 'vi-eye' }}"></i>
-                        </label>
-                    </div>
+
+                    <input-control [noLabel]="true" validation="required" formControlName="partnerID"
+                        placeholder="{{ 'contact.emailaddress' | translate }}" [customClass]="'no-label'"
+                        [error]="partnerLoginForm.controls['partnerID'].invalid && partnerLoginForm.controls['partnerID'].touched">
+                    </input-control>
+
+                    <input-control [noLabel]="true" validation="required" type="password" formControlName="password"
+                        [customClass]="'no-label'" placeholder="{{ 'form.password' | translate }}"
+                        [error]="partnerLoginForm.controls['password'].invalid && partnerLoginForm.controls['password'].touched">
+                    </input-control>
+
                     <div class="btn-login">
                         <button type="button" class="btn btn-primary" (click)="onPartnerLogin()">LOGIN
                             NOW</button>
@@ -28,9 +24,8 @@
             <div class="qr-scanner">
                 <div class="qr-label">Login with <span>QR Code</span></div>
                 <div class="qr-code-wrap">
-                    <qr-code value="https://ladensitae.com/" size="140"
-                        errorCorrectionLevel="L" centerImageSize="50" lightColor="#fff" darkColor="#7b1fa2"
-                        [margin]="2">
+                    <qr-code value="https://ladensitae.com/" size="140" errorCorrectionLevel="L" centerImageSize="50"
+                        lightColor="#fff" darkColor="#7b1fa2" [margin]="2">
                     </qr-code>
                 </div>
             </div>

@@ -2,20 +2,18 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { InputControlComponent } from '../../shared/controls/input-control/input-control.component';
 
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, InputControlComponent],
   templateUrl: './change-password.component.html',
 })
 export class ChangePasswordComponent implements OnInit {
 
   @ViewChild('oldPasswordInput') oldPasswordInputRef!: ElementRef;
 
-  showOldPassword = false;
-  showNewPassword = false;
-  showConfirmPassword = false;
   changePasswordForm!: FormGroup;
 
   @Output() closeChangePasswordModal = new EventEmitter<void>();
@@ -35,19 +33,6 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  togglePasswordVisibility(controlName: string) {
-    if (controlName === 'oldPassword') {
-      this.showOldPassword = !this.showOldPassword;
-    } else if (controlName === 'newPassword') {
-      this.showNewPassword = !this.showNewPassword;
-    } else if (controlName === 'confirmPassword') {
-      this.showConfirmPassword = !this.showConfirmPassword;
-    }
-  }
-
-  controlClass(controlName: string) {
-    return { 'is-invalid': this.changePasswordForm?.get(controlName)?.invalid && this.changePasswordForm?.get(controlName)?.touched };
-  }
   isPatternError(controlName: string): boolean {
     const control = this.changePasswordForm.get(controlName);
     return !!control && control.hasError('pattern') && (control.touched || control.dirty);

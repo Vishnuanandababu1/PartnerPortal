@@ -1,9 +1,13 @@
 .user-reg {
+    height: 100%;
     display: flex;
+    position: relative;
+    overflow-y: overlay;
     .reg-preview {
         top: 0;
         z-index: 3;
         width: 250px;
+        height: 100%;
         display: flex;
         color: #343f52;
         color: #0f7d8b;
@@ -12,16 +16,18 @@
         padding: 1rem 1.5rem;
         flex-direction: column;
         justify-content: center;
-        height: calc(100vh - 50px);
         background: #ffffff;
         box-shadow: 0 0 5px -1px #a1a1a1;
     }
     .reg-form {
         width: 100%;
+        height: 100%;
         overflow-y: auto;
         position: relative;
-        padding: 1.5rem 1.5rem;
-        height: calc(100vh - 50px);
+        padding: 1.5rem 1.5rem 0;
+        form {
+            min-height: calc(100% - 50px);
+        }
     }
 
     .reg-preview + .reg-form {

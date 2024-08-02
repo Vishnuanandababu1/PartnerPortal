@@ -1,27 +1,5 @@
 @import "../../../../../public/scss/variables";
 
-.page-container {
-    .page-wrap {
-        .page-header {
-            top: 0;
-            z-index: 1;
-            height: 50px;
-            display: flex;
-            position: sticky;
-            padding: 0 1.75rem;
-            align-items: center;
-            background: #ffffff;
-            justify-content: space-between;
-            // box-shadow: 3px -1px 6px 0 #a1a1a1;
-            border-bottom: 1px solid #efefef;            
-        }
-        .page-content {
-            padding: 1.5rem 1.75rem;
-            min-height: calc(100vh - 100px);
-        }
-    }
-}
-
 .doc-list {
     display: grid;
     column-gap: 1.5rem;
@@ -32,6 +10,8 @@
         position: relative;
         padding: 1.5rem 1rem;
         margin-bottom: 1.75rem;
+        background: $card-doc-bg;
+        box-shadow: $card-doc-bs;
         .doc-img {
             width: 60px;
             height: 60px;
@@ -48,12 +28,14 @@
                 bottom: -1px;
                 position: absolute;
                 border-radius: 50%;
+                background: $card-doc-bg;
                 &:after {
                     content: "";
                     width: 10px;
                     height: 10px;
                     display: block;
                     border-radius: 50%;
+                    background: $online;
                 }
             }
         }
@@ -61,6 +43,7 @@
             .doc-name {
                 font-weight: 500;
                 font-size: 1.05em;
+                color: $cmn-doc-nd;
             }
             .doc-dpmt,
             .room-no,
@@ -71,6 +54,7 @@
             }
             .doc-dpmt {
                 margin-bottom: 3px;
+                color: $cmn-doc-dpmt;
             }
             .room-no,
             .avail-slots {
@@ -123,29 +107,6 @@
                         font-size: 16px;
                     }
                 }
-            }
-        }
-    }
-}
-
-.doc-list {
-    .doc-card {
-        background: $card-doc-bg;
-        box-shadow: $card-doc-bs;
-        .doc-img {
-            .online {
-                background: $card-doc-bg;
-                &:after {
-                    background: $online;
-                }
-            }
-        }
-        .doc-info {
-            .doc-name {
-                color: $cmn-doc-nd;
-            }
-            .doc-dpmt {
-                color: $cmn-doc-dpmt;
             }
         }
     }

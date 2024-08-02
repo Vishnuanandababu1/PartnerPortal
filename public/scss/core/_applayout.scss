@@ -1,3 +1,21 @@
+@mixin bottom-footer {
+    gap: 15px;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    padding: 0.5rem 1.5rem;
+    background: $page-f-bg;
+    box-shadow: $page-f-bs;
+    justify-content: space-between;
+    border-top: 1px solid #efefef;
+    .btn-list {
+        .btn {
+            min-width: 110px;
+        }
+    }
+}
+
 .app-layout {
     width: 100vw;
     height: 100vh;
@@ -16,11 +34,48 @@
     }
     .page-layout {
         width: 100vw;
-        transition: 0.5s ease;
+        transition: 0.5s ease;        
         .page-container {
             position: relative;
             overflow-y: overlay;
-            max-height: calc(100vh - 50px);
+            height: calc(100vh - 50px);
+            .page-wrap {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .page-header {
+                    top: 0;
+                    z-index: 1;
+                    height: 50px;
+                    display: flex;
+                    flex: 0 0 auto;
+                    position: sticky;
+                    padding: 0 1.75rem;
+                    align-items: center;
+                    background: #ffffff;
+                    justify-content: space-between;
+                    border-bottom: 1px solid #efefef;
+                }
+                .page-content {
+                    flex: 1;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    padding: 1.5rem 1.75rem 0;
+                }
+                .page-footer {
+                    flex: 0 0 auto;
+                    @include bottom-footer;
+                }
+            }
+            .page-form-footer {
+                margin: 0 -1.5rem;
+                @include bottom-footer;
+                width: -webkit-fill-available;
+            }
+        }
+        .app-banner + app-header + .page-container {
+            height: calc(100vh - 50px - 40px);
         }
     }
     .menu-layout + .page-layout {

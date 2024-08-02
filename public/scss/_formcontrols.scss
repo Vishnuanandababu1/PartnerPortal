@@ -58,7 +58,6 @@
         &::placeholder {
             color: #a8a8a8;
             font-size: 0.95em;
-            font-weight: 500;
         }
         &:disabled,
         &[readonly] {
@@ -249,7 +248,7 @@
         }
         .clear {
             right: 7px;
-        } 
+        }
     }
     &.multi-select {
         .option-list {
@@ -284,6 +283,9 @@
         }
         .clear {
             top: 10px;
+        }
+        .toggle-eye {
+            top: 9px;
         }
         .option-list {
             top: 44px;

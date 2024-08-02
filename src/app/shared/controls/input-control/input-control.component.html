@@ -1,10 +1,13 @@
 <div class="form-group input" [ngClass]="customClass">
     <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{title}}</label>
-    <input type="{{type}}" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
+    <input [type]="getInputType()" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
         [ngClass]="{'is-invalid': validationClass || error}" [disabled]="disabled" (blur)="onBlur()" />
     <span class="focus-border"></span>
-    <label class="clear" *ngIf="inputControl.value" (click)="resetInput()">
+    <label class="clear" *ngIf="inputControl.value && type != 'password'" (click)="resetInput()">
         <i class="vi vi-close"></i>
+    </label>
+    <label class="toggle-eye" (click)="passwordVisible()" *ngIf="type === 'password'">
+        <i class="vi" [ngClass]="showPassword ? 'vi-eye-off' : 'vi-eye'"></i>
     </label>
     <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>
 </div>

@@ -43,14 +43,8 @@
                     font-size: 1.25em;
                     margin-bottom: 15px;
                 }
-                .form-group {
+                ::ng-deep .form-group {
                     margin-bottom: 1.5rem;
-                    .toggle-eye {
-                        top: 8px;
-                        .vi {
-                            font-size: 18px;
-                        }
-                    }
                 }
                 .btn {
                     min-height: 36px;

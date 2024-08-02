@@ -374,45 +374,16 @@
                 </ng-template>
 
             </app-accordion>
-
-
-
-
-
-
-            <div class="card reg-card">
-                <div class="card-body">
-                    <!-- <div class="row">
-                       
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label">Employee ID / Number</label>
-                                <input type="text" class="form-control" formControlName="employeeNo"
-                                    [ngClass]="controlClass('employeeNo')" />
-                                <span class="focus-border"></span>
-                            </div>
-                        </div>
-                    </div> -->
-
-
-
-
-                </div>
-                <div class="card-footer">
-                    <div class="btn-list">
-                        <button class="btn btn-success" (click)="onRegisterUser()">Register</button>
-                        <button class="btn btn-outline-danger" (click)="onCancelClick()">Cancel</button>
-                    </div>
-                </div>
-            </div>
         </form>
-
-
+        <div class="page-form-footer">
+            <div></div>
+            <div class="btn-list">
+                <button class="btn btn-success" (click)="onRegisterUser()">Register</button>
+                <button class="btn btn-outline-danger" (click)="onCancelClick()">Cancel</button>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
 
 <app-dialog *ngIf="formChangeWarningDialog" type="confirm" [customClass]="'delete justify'" [title]="'Discard Changes?'"
     [message]="'Are you sure you want to discard the changes? Changes you made may not be saved.'"

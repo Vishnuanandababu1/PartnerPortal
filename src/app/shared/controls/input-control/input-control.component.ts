@@ -14,11 +14,10 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
     },
   ],
   templateUrl: './input-control.component.html',
-  styleUrl: './input-control.component.scss'
+  styleUrls: ['./input-control.component.scss']
 })
 export class InputControlComponent implements ControlValueAccessor {
-
-  @Input() title!: string ;
+  @Input() title!: string;
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() customClass!: string;
@@ -26,9 +25,11 @@ export class InputControlComponent implements ControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() validation!: string;
   @Input() validationClass: boolean = false;
-  @Input() error: boolean = false; // New input for error state
-  @Input() errorMessage: string = ''; // New input for error message
+  @Input() error: boolean = false;
+  @Input() errorMessage: string = '';
   @Output() inputChange = new EventEmitter<string>();
+
+  showPassword = false;
 
   inputControl = new FormControl('');
 
@@ -43,14 +44,23 @@ export class InputControlComponent implements ControlValueAccessor {
     });
   }
 
+  getInputType() {
+    if (this.type === 'password') {
+      return this.showPassword ? 'text' : 'password';
+    }
+    return this.type;
+  }
+
   writeValue(value: any): void {
     if (value !== undefined) {
       this.inputControl.setValue(value, { emitEvent: false });
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
@@ -69,5 +79,9 @@ export class InputControlComponent implements ControlValueAccessor {
 
   resetInput() {
     this.inputControl.setValue('');
+  }
+
+  passwordVisible() {
+    this.showPassword = !this.showPassword;
   }
 }

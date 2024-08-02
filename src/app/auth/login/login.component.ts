@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QrCodeModule } from 'ng-qrcode';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { InputControlComponent } from '../../shared/controls/input-control/input-control.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, QrCodeModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, QrCodeModule, TranslateModule, InputControlComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
   partnerLoginForm: FormGroup;
   showPassword = false;
 
+  private translate = inject(TranslateService);
   constructor(private router: Router, private fb: FormBuilder) {
     this.partnerLoginForm = this.fb.group({
       partnerID: ['', [Validators.required, Validators.email]],
@@ -30,10 +33,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  controlClass(controlName: string) {
-    return { 'is-invalid': this.partnerLoginForm?.get(controlName)?.invalid && this.partnerLoginForm?.get(controlName)?.touched };
-  }
-
   get productInfo() {
     return this.partnerLoginForm;
   }
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
       this.partnerLoginForm.markAllAsTouched();
     }
 
-    
+
     this.router.navigate(['/app/uac/usermanagement']);
   }
 

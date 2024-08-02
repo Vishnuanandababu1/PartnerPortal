@@ -223,21 +223,6 @@ a {
     }
 }
 
-.page-footer {
-    height: 55px;
-    display: flex;
-    align-items: center;
-    padding: 0 1.75rem;
-    .btn {
-        min-width: 100px;
-    }
-    &.end {
-        justify-content: end;
-    }
-    &.space {
-        justify-content: space-between;
-    }
-}
 
 // title
 
