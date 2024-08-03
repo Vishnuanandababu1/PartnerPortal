@@ -15,8 +15,8 @@ export const uacRoutes: Routes = [
                 loadComponent: () => import('./user-profile/user-profile.component').then((c) => c.UserProfileComponent)
             },
             {
-                path: 'privilageallocation',
-                loadComponent: () => import('./privilage-allocation/privilage-allocation.component').then((c) => c.PrivilageAllocationComponent)
+                path: 'privilegeallocation',
+                loadComponent: () => import('./privilege-allocation/privilege-allocation.component').then((c) => c.PrivilegeAllocationComponent)
             },
             {
                 path: 'schedulesettings',
