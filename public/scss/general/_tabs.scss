@@ -3,21 +3,28 @@
     padding: 3px 4px;
     border-radius: 2px;
     align-items: center;
+    background: var(--tab-bg);
+    box-shadow: var(--tab-bs);
     .tab-item {
         cursor: pointer;
         padding: 2px 5px;
         font-weight: 500;
         font-size: 0.95em;
         text-align: center;
-        position: relative;       
+        position: relative;
+        color: var(--tab);
         &.active {
             left: -1px;
             border-radius: 1px;
             width: calc(100% + 2px);
             color: #ffffff !important;
+            background: var(--tab-active);
             &:after {
                 display: none;
             }
+        }
+        &:hover {
+            color: var(--tab-active);
         }
         &:after {
             right: 0;
@@ -26,7 +33,7 @@
             content: "";
             height: 17px;
             display: block;
-            position: absolute;            
+            position: absolute;
             background: #cccccc;
         }
         &:last-child {
@@ -49,6 +56,10 @@
         .tab-item {
             min-width: 25%;
         }
+    }
+
+    &.border-light {
+        box-shadow: var(--tab-light-bs);
     }
     &.patient {
         .tab-item {
@@ -108,6 +119,11 @@
         user-select: none;
         padding: 10px 12px;
         text-align: center;
-        position: relative;       
+        position: relative;
+        color: var(--tab-link);
+        &.active {
+            color: var(--tab-link-active);
+            border-bottom: var(--tab-link-border);
+        }
     }
 }

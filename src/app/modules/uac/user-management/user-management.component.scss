@@ -10,8 +10,8 @@
         position: relative;
         padding: 1.5rem 1rem;
         margin-bottom: 1.75rem;
-        background: $card-doc-bg;
-        box-shadow: $card-doc-bs;
+        background: var(--card-doc-bg);
+        box-shadow: var(--card-doc-bs);
         .doc-img {
             width: 60px;
             height: 60px;
@@ -28,14 +28,14 @@
                 bottom: -1px;
                 position: absolute;
                 border-radius: 50%;
-                background: $card-doc-bg;
+                background: var(--card-doc-bg);
                 &:after {
                     content: "";
                     width: 10px;
                     height: 10px;
                     display: block;
                     border-radius: 50%;
-                    background: $online;
+                    background: var(--online);
                 }
             }
         }
@@ -43,7 +43,7 @@
             .doc-name {
                 font-weight: 500;
                 font-size: 1.05em;
-                color: $cmn-doc-nd;
+                color: var(--cmn-doc-nd);
             }
             .doc-dpmt,
             .room-no,
@@ -54,7 +54,7 @@
             }
             .doc-dpmt {
                 margin-bottom: 3px;
-                color: $cmn-doc-dpmt;
+                color: var(--cmn-doc-dpmt);
             }
             .room-no,
             .avail-slots {

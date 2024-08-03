@@ -35,10 +35,10 @@ a {
     width: 7px;
 }
 ::-webkit-scrollbar-track {
-    background: $scrollbar-track;
+    background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-    background: $scrollbar-thumb;
+    background: var(--scrollbar-thumb);
 }
 
 // card
@@ -46,12 +46,26 @@ a {
     border: 0;
     border-radius: 0;
     margin-bottom: 1rem;
+    box-shadow: var(--card-bs);
+    .card-header,
+    .card-body,
+    .card-footer {
+        background: var(--card-bg);
+    }
     .card-header {
         border-radius: 0;
+        border-bottom: var(--card-h-border);
+        .header-label {
+            color: var(--card-h-label);
+        }
     }
     .card-footer {
         padding: 1rem;
         border-radius: 0;
+        border-top: var(--card-f-border);
+    }
+    &.card-dark {
+        box-shadow: var(--card-f-border);
     }
     &.uncover {
         border: 0;
@@ -132,6 +146,7 @@ a {
     font-weight: 500;
     user-select: none;
     margin-bottom: 1rem;
+    color: var(--page-title);
     &.middle {
         margin-top: 1.5rem;
     }
@@ -144,14 +159,17 @@ a {
     font-weight: 500;
     user-select: none;
     margin-bottom: 0.25rem;
+    color: var(--form-label);
     .gmap {
         cursor: pointer;
         font-size: 0.95em;
         padding-left: 1.5rem;
+        color: var(--gmap-label);
         .vi {
             top: 0.02rem;
             font-size: 14px;
             padding-right: 4px;
+            color: #ff3501;
         }
     }
 }
@@ -216,13 +234,14 @@ a {
         .nr-title {
             font-weight: 500;
             font-size: 1.1em;
+            color: var(--cmn-nr-title);
         }
         .nr-sub-title {
             margin-bottom: 15px;
+            color: var(--cmn-nr-sub-title);
         }
     }
 }
-
 
 // title
 

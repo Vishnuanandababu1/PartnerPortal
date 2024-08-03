@@ -5,8 +5,8 @@
     height: 50px;
     display: flex;
     padding: 0.5rem 1.5rem;
-    background: $page-f-bg;
-    box-shadow: $page-f-bs;
+    background: var(--page-f-bg);
+    box-shadow: var(--page-f-bs);
     justify-content: space-between;
     border-top: 1px solid #efefef;
     .btn-list {
@@ -27,6 +27,7 @@
         width: 70px;
         position: fixed;
         transition: 0.5s ease;
+        box-shadow: var(--app-nav-bs);
         app-navbar {
             display: block;
             width: inherit;
@@ -34,7 +35,7 @@
     }
     .page-layout {
         width: 100vw;
-        transition: 0.5s ease;        
+        transition: 0.5s ease;      
         .page-container {
             position: relative;
             overflow-y: overlay;
@@ -60,7 +61,8 @@
                 .page-content {
                     flex: 1;
                     overflow-y: auto;
-                    overflow-x: hidden;
+                    overflow-x: hidden; 
+                    background: var(--app-bg); 
                     padding: 1.5rem 1.75rem 0;
                 }
                 .page-footer {

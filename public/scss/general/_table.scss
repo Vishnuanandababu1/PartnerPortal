@@ -1,6 +1,7 @@
 .table-wrap {
-    padding: 5px;
-    background: $app-bg;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    background: var(--app-bg);
     box-shadow: 0 0 4px 0 #d0d0d0;
     .table-container {
         overflow: auto;

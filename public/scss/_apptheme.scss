@@ -4,372 +4,210 @@ body {
         background: #181c3a; // #2a2b40, #181f30
 
         // app general
-        $app-bg: #181c3a;
-        $app-icon: #ffffff;
-        $page-title: #ffffff;
-        $page-f-bg: #1a2050;
-        $page-f-bs: 0 0 4px 0 #221f1f;
-        $cmn-even-bg: #2e3459;
-        $cmn-list-border-bottom: 1px solid #494f6e;
-        $cmn-img-bs: 0 0 3px 0 #000000;
-        $cmn-img-border: 1px solid #393434;
-        $cmn-border-color: #000000;
-        $cmn-border-bottom-1: 1px solid #000000;
-        $cmn-border-bottom-2: 2px solid #1f1e1e;
-        $app-bs-bottom: 0 0 3px 0 #000000;
-        $cmn-pat-mrn: #e6e6e6;
-        $cmn-pat-age: #c5bdbd;
-        $cmn-doc-nd: #e8e8e8;
-        $cmn-doc-dpmt: #d6d2d2;
-        $cmn-warning-icon: #ff4d4d;
-        $cmn-nr-title: #ffffff;
-        $cmn-nr-sub-title: #d6d2d2;
-        $list-highlight-label: #b8c1f3;
+        --app-bg: #181c3a;
+        --app-icon: #ffffff;
+        --page-title: #ffffff;
+        --page-f-bg: #1a2050;
+        --page-f-bs: 0 0 4px 0 #221f1f;
+        --cmn-even-bg: #2e3459;
+        --cmn-list-border-bottom: 1px solid #494f6e;
+        --cmn-img-bs: 0 0 3px 0 #000000;
+        --cmn-img-border: 1px solid #393434;
+        --cmn-border-color: #000000;
+        --cmn-border-bottom-1: 1px solid #000000;
+        --cmn-border-bottom-2: 2px solid #1f1e1e;
+        --app-bs-bottom: 0 0 3px 0 #000000;
+        --cmn-pat-mrn: #e6e6e6;
+        --cmn-pat-age: #c5bdbd;
+        --cmn-doc-nd: #e8e8e8;
+        --cmn-doc-dpmt: #d6d2d2;
+        --cmn-warning-icon: #ff4d4d;
+        --cmn-nr-title: #ffffff;
+        --cmn-nr-sub-title: #d6d2d2;
+        --list-highlight-label: #b8c1f3;
 
         // layout
-        $app-nav-bs: 0 0 3px 0 #000000;
-        $app-h-bg: linear-gradient(to bottom, #151933, #2a3266); // #22223d
-        $h-menu-bar: #ffffff;
-        $h-ip-bg: #48497a;
-        $h-ip-border: #1b2040;
-        $h-ip-select-bg: linear-gradient(to top, #151933, #2a3266); // #373850;
-        $h-ip-search-icon: #ffffff;
-        $h-ip-select-icon: #ffffff;
-        $h-np-border: #444564;
-        $h-np-hover: #20285e;
+        --app-nav-bs: 0 0 3px 0 #000000;
+        --app-h-bg: linear-gradient(to bottom, #151933, #2a3266); // #22223d
+        --h-menu-bar: #ffffff;
+        --h-ip-bg: #48497a;
+        --h-ip-border: #1b2040;
+        --h-ip-select-bg: linear-gradient(to top, #151933, #2a3266); // #373850;
+        --h-ip-search-icon: #ffffff;
+        --h-ip-select-icon: #ffffff;
+        --h-np-border: #444564;
+        --h-np-hover: #20285e;
 
         // card
-        $card-bg: #21274a; // #30304d, dt: #212529
-        $card-bs: 0 0 0 0 #000000;
-        $card-h-border: 1px solid #000000;
-        $card-f-border: 1px solid #000000;
-        $card-dark-bs: 0 0 0 0 #000000;
-        $card-h-label: #e8e8e8; // #06c0d8;
-        $card-inner: #ffffff;
-        $card-inner-bg: #212529;
-        $card-inner-bs: 0 0 0 0 #000000;
-        $card-inner-light-bg: #353b5d;
-        $card-inner-light-bs: 0 0 0 0 #000000;
-        $card-doc-bg: #202647;
-        $card-doc-bs: 0 0 0 0 #000000;
+        --card-bg: #21274a; // #30304d, dt: #212529
+        --card-bs: 0 0 0 0 #000000;
+        --card-h-border: 1px solid #000000;
+        --card-f-border: 1px solid #000000;
+        --card-dark-bs: 0 0 0 0 #000000;
+        --card-h-label: #e8e8e8; // #06c0d8;
+        --card-inner: #ffffff;
+        --card-inner-bg: #212529;
+        --card-inner-bs: 0 0 0 0 #000000;
+        --card-inner-light-bg: #353b5d;
+        --card-inner-light-bs: 0 0 0 0 #000000;
+        --card-doc-bg: #202647;
+        --card-doc-bs: 0 0 0 0 #000000;
 
         // page/form title
-        $form-label: #099fb3;
-        $gmap-label: #ff0000;
-        $info-title: #ffffff;
-        $info-sub-title: #a5a2a2;
+        --form-label: #099fb3;
+        --gmap-label: #ff0000;
+        --info-title: #ffffff;
+        --info-sub-title: #a5a2a2;
 
         // charts
-        $apex-c-legend: #ffffff;
+        --apex-c-legend: #ffffff;
 
         // tabs
-        $tab: #ccc6c6;
-        $tab-bg: #333a70;
-        $tab-active: #0f9483;
-        $tab-bs: 0 0 0 0 #000000;
-        $tab-light-bs: 0 0 0 0 #000000;
-        $tab-link: #e2d7d7;
-        $tab-link-active: #12ceb7;
-        $tab-link-border: 2px solid #12ceb7;
+        --tab: #ccc6c6;
+        --tab-bg: #333a70;
+        --tab-active: #0f9483;
+        --tab-bs: 0 0 0 0 #000000;
+        --tab-light-bs: 0 0 0 0 #000000;
+        --tab-link: #e2d7d7;
+        --tab-link-active: #12ceb7;
+        --tab-link-border: 2px solid #12ceb7;
 
         // modules : patient administration
-        $pat-info-card-bg: #1f2651;
-        $pat-info-card-bs: 0 0 3px 0 #000000;
-        $pat-act-nav-bs: 0 0 0 0 #000000;
-        $pat-nav-link-border: 2px solid #000000;
-        $pat-nav-link-bs: 0 0 0 0 #000000;
-        $pat-nav-link-bg: #1a2051;
-        $cmn-data: #15a391;
-        $pat-img-bs: 0 0 7px 1px #000000;
-        $pat-doc-info: #b3b8c3;
-        $btn-upload-border: 1.5px dashed #5d5d5d;
-        $btn-upload-bg: rgb(31 36 77);
-        $app-add-info: #252f66;
-        $app-print-icon: #31d5ff;
+        --pat-info-card-bg: #1f2651;
+        --pat-info-card-bs: 0 0 3px 0 #000000;
+        --pat-act-nav-bs: 0 0 0 0 #000000;
+        --pat-nav-link-border: 2px solid #000000;
+        --pat-nav-link-bs: 0 0 0 0 #000000;
+        --pat-nav-link-bg: #1a2051;
+        --cmn-data: #15a391;
+        --pat-img-bs: 0 0 7px 1px #000000;
+        --pat-doc-info: #b3b8c3;
+        --btn-upload-border: 1.5px dashed #5d5d5d;
+        --btn-upload-bg: rgb(31 36 77);
+        --app-add-info: #252f66;
+        --app-print-icon: #31d5ff;
 
         // colors
-        $label-dark-grey: #ffffff;
-
-        //
-        //
-        //
-        //
-        //
+        --label-dark-grey: #ffffff;
 
         // buttons
-        $btn-out-primary: #6259ca;
-        $btn-out-primary-color: #ffffff;
-        $btn-out-secondary: #fb6b25;
-        $btn-out-secondary-color: #ffffff;
-        $btn-out-success: #13bfa6;
-        $btn-out-success-color: #ffffff;
-        $btn-out-info: #45aaf2;
-        $btn-out-info-color: #ffffff;
-        $btn-out-warning: #f7b731;
-        $btn-out-warning-color: #ffffff;
-        $btn-out-danger: #f82649;
-        $btn-out-danger-color: #ffffff;
+        --btn-out-primary: #6259ca;
+        --btn-out-primary-color: #ffffff;
+        --btn-out-secondary: #fb6b25;
+        --btn-out-secondary-color: #ffffff;
+        --btn-out-success: #13bfa6;
+        --btn-out-success-color: #ffffff;
+        --btn-out-info: #45aaf2;
+        --btn-out-info-color: #ffffff;
+        --btn-out-warning: #f7b731;
+        --btn-out-warning-color: #ffffff;
+        --btn-out-danger: #f82649;
+        --btn-out-danger-color: #ffffff;
 
         // primary color
-        $primary-bg-color: #6259ca;
-        $primary-bg-hover: #233ac5;
-        $primary-bg-border: #5161c1;
+        --primary-bg-color: #6259ca;
+        --primary-bg-hover: #233ac5;
+        --primary-bg-border: #5161c1;
 
         // sidenavbar
-        $sidenavbar-bg: #30304d;
-        $sidenavbar-color: #dedefd;
-        $sidenavbar-hover: #404061;
-        $sidenavbar-shadow: 0px 8px 14.72px 1.28px rgba(42, 38, 53, 50%);
-        $sidenavbar-active-shadow: 0 7px 12px 0 rgba(0, 0, 0, 10%);
-        $sidenavbar-active-bg: linear-gradient(to bottom right, #6259ca 0%, rgba(98, 89, 202, 0.6) 100%);
+        --sidenavbar-bg: #30304d;
+        --sidenavbar-color: #dedefd;
+        --sidenavbar-hover: #404061;
+        --sidenavbar-shadow: 0px 8px 14.72px 1.28px rgba(42, 38, 53, 50%);
+        --sidenavbar-active-shadow: 0 7px 12px 0 rgba(0, 0, 0, 10%);
+        --sidenavbar-active-bg: linear-gradient(to bottom right, #6259ca 0%, rgba(98, 89, 202, 0.6) 100%);
 
         // header
-        $header-bg: #30304d;
-        $header-nav-bg: transparent;
-        $header-nav-hover: #404061;
-        $header-nav-shadow: 0px 2px 8px #1a1a2f;
+        --header-bg: #30304d;
+        --header-nav-bg: transparent;
+        --header-nav-hover: #404061;
+        --header-nav-shadow: 0px 2px 8px #1a1a2f;
 
         // footer
-        $footer-bg: #30304d;
+        --footer-bg: #30304d;
 
         // custom - general
-        $section-bg: #30304d;
-        $section-border: rgba(255, 255, 255, 0.1);
-        $container-bg: #30304d;
-        $container-border: rgba(255, 255, 255, 0.2);
+        --section-bg: #30304d;
+        --section-border: rgba(255, 255, 255, 0.1);
+        --container-bg: #30304d;
+        --container-border: rgba(255, 255, 255, 0.2);
 
         // custom - scrollbar
-        $scrollbar-track: #414162;
-        $scrollbar-thumb: #3d3d90;
-        $scrollbar-thumb-hover: #6259ca;
+        --scrollbar-track: #414162;
+        --scrollbar-thumb: #3d3d90;
+        --scrollbar-thumb-hover: #6259ca;
 
         // elements - avatar
-        $avatar-border: 3px solid rgba(255, 255, 255, 80%);
+        --avatar-border: 3px solid rgba(255, 255, 255, 80%);
 
         // elements - media
-        $media-color: #dedefd;
-        $media-subtext: #9999bf;
-        $media-shadow: none;
+        --media-color: #dedefd;
+        --media-subtext: #9999bf;
+        --media-shadow: none;
 
         // elements - file upload
-        $file-name: #dedefd;
-        $file-bg: #30304d;
-        $file-border: rgba(255, 255, 255, 0.1);
-        $file-upload-bg: #23223a;
+        --file-name: #dedefd;
+        --file-bg: #30304d;
+        --file-border: rgba(255, 255, 255, 0.1);
+        --file-upload-bg: #23223a;
 
         // formcontrols
-        $formcontrol-bg: #2e2e4a;
-        $formcontrol-color: #dedefd;
-        $formcontrol-border: rgba(255, 255, 255, 0.1);
-        $formcontrol-focus-bg: #292941;
-        $formcontrol-focus-border: rgba(255, 255, 255, 0.1);
-        $formcontrol-disable-bg: rgba(0, 0, 0, 0.3);
-        $formcontrol-disable-border: rgba(0, 0, 0, 0.3);
-        $formcontrol-placeholder-color: #8888bc;
-        $formcontrol-section-border: rgba(255, 255, 255, 0.1);
-        $formcontrol-section-focus-border: rgba(255, 255, 255, 0.1);
+        --formcontrol-bg: #2e2e4a;
+        --formcontrol-color: #dedefd;
+        --formcontrol-border: rgba(255, 255, 255, 0.1);
+        --formcontrol-focus-bg: #292941;
+        --formcontrol-focus-border: rgba(255, 255, 255, 0.1);
+        --formcontrol-disable-bg: rgba(0, 0, 0, 0.3);
+        --formcontrol-disable-border: rgba(0, 0, 0, 0.3);
+        --formcontrol-placeholder-color: #8888bc;
+        --formcontrol-section-border: rgba(255, 255, 255, 0.1);
+        --formcontrol-section-focus-border: rgba(255, 255, 255, 0.1);
 
         // formcontrols - fieldset
-        $fieldset-bg: #30304d;
-        $fieldset-color: #dedefd;
-        $fieldset-border: rgba(255, 255, 255, 0.2);
-        $fieldset-section-bg: #30304d;
+        --fieldset-bg: #30304d;
+        --fieldset-color: #dedefd;
+        --fieldset-border: rgba(255, 255, 255, 0.2);
+        --fieldset-section-bg: #30304d;
 
         // formcontrols - form box
-        $formbox-bg: #30304d;
-        $formbox-border: rgba(255, 255, 255, 0.2);
-        $formbox-header-bg: rgba(0, 0, 0, 0.2);
-        $formbox-header-border: rgba(255, 255, 255, 0.1);
-        $formbox-footer-bg: rgba(255, 255, 255, 0.15);
+        --formbox-bg: #30304d;
+        --formbox-border: rgba(255, 255, 255, 0.2);
+        --formbox-header-bg: rgba(0, 0, 0, 0.2);
+        --formbox-header-border: rgba(255, 255, 255, 0.1);
+        --formbox-footer-bg: rgba(255, 255, 255, 0.15);
 
         // formcontrols - checkbox
-        $select-all: #ffffff;
+        --select-all: #ffffff;
 
         // list
-        $multi-action-hover: #404061;
-        $multi-menu-bg: #30304d;
-        $multi-menu-color: #dedefd;
-        $multi-menu-shadow: 0 10px 40px 0 rgba(34, 34, 61, 80%);
-        $multi-menu-hover-bg: #2e2e4a;
-        $multi-menu-title-color: #dedefd;
+        --multi-action-hover: #404061;
+        --multi-menu-bg: #30304d;
+        --multi-menu-color: #dedefd;
+        --multi-menu-shadow: 0 10px 40px 0 rgba(34, 34, 61, 80%);
+        --multi-menu-hover-bg: #2e2e4a;
+        --multi-menu-title-color: #dedefd;
 
         // modal
-        $modal-bg: #30304d;
-        $modal-border: rgba(255, 255, 255, 0.1);
-        $modal-rb-color: rgba(255, 255, 255, 0.8);
-        $modal-rb-title-bg: #22223d;
-        $modal-rb-title-border: rgba(255, 255, 255, 0.1);
-        $modal-shadow: 5px 4px 14px 1px rgba(0, 0, 0, 75%);
+        --modal-bg: #30304d;
+        --modal-border: rgba(255, 255, 255, 0.1);
+        --modal-rb-color: rgba(255, 255, 255, 0.8);
+        --modal-rb-title-bg: #22223d;
+        --modal-rb-title-border: rgba(255, 255, 255, 0.1);
+        --modal-shadow: 5px 4px 14px 1px rgba(0, 0, 0, 75%);
 
         // table - prime ng
-        $png-table-color: #dedefd;
-        $png-table-hover: rgba(0, 0, 0, 0.15);
-        $png-table-border: transparent;
-        $png-table-edit-icon: #cfcfcf;
-        $png-table-shadow: 0 3px 9px 0 rgba(28, 28, 51, 75%);
+        --png-table-color: #dedefd;
+        --png-table-hover: rgba(0, 0, 0, 0.15);
+        --png-table-border: transparent;
+        --png-table-edit-icon: #cfcfcf;
+        --png-table-shadow: 0 3px 9px 0 rgba(28, 28, 51, 75%);
 
         // table - basic
-        $basic-table-border: rgba(255, 255, 255, 0.1);
-        $basic-table-row-border: rgba(255, 255, 255, 0.1);
-        $basic-table-icon-hover: #404061;
-        $basic-table-grouphead-bg: rgba(0, 0, 0, 0.2);
-        $basic-table-subgroup-child-bg: rgba(0, 0, 0, 0.1);
+        --basic-table-border: rgba(255, 255, 255, 0.1);
+        --basic-table-row-border: rgba(255, 255, 255, 0.1);
+        --basic-table-icon-hover: #404061;
+        --basic-table-grouphead-bg: rgba(0, 0, 0, 0.2);
+        --basic-table-subgroup-child-bg: rgba(0, 0, 0, 0.1);
 
-        @import "appthemesettings";
-    }
-
-    &.trans-theme {
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        content: "";
-        color: #dedefd;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-color: transparent;
-        background-blend-mode: overlay;
-        $app-border: rgba(255, 255, 255, 0.1);
-        // background-image: url("../assets/images/theme/trans-bg.jpg");
-
-        // app general
-        $app-icon: #ffffff !important;
-        $app-font-family: system-ui, sans-serif;
-
-        // breadcrumb
-        $app-breadcrumb-bg: rgba(0, 0, 0, 0.275);
-        $app-breadcrumb-color: #dedefd;
-        $app-breadcrumb-border: rgba(255, 255, 255, 0.25);
-
-        // buttons
-        $btn-out-primary: #6259ca;
-        $btn-out-primary-color: #ffffff;
-        $btn-out-secondary: #fb6b25;
-        $btn-out-secondary-color: #ffffff;
-        $btn-out-success: #13bfa6;
-        $btn-out-success-color: #ffffff;
-        $btn-out-info: #45aaf2;
-        $btn-out-info-color: #ffffff;
-        $btn-out-warning: #f7b731;
-        $btn-out-warning-color: #ffffff;
-        $btn-out-danger: #f82649;
-        $btn-out-danger-color: #ffffff;
-
-        // primary color
-        $primary-bg-color: #7a6fff;
-        $primary-bg-hover: #233ac5;
-        $primary-bg-border: #5161c1;
-
-        // sidenavbar
-        $sidenavbar-bg: rgba(0, 0, 0, 0.2);
-        $sidenavbar-color: #dedefd;
-        $sidenavbar-hover: #404061;
-        $sidenavbar-shadow: 0 8px 16px 0 rgba(0, 0, 0, 30%);
-        $sidenavbar-active-shadow: 0 7px 12px 0 rgba(0, 0, 0, 10%);
-        $sidenavbar-active-bg: linear-gradient(to bottom right, #6259ca 0%, rgba(98, 89, 202, 0.6) 100%);
-
-        // header
-        $header-bg: rgba(0, 0, 0, 0.2);
-        $header-nav-bg: transparent;
-        $header-nav-hover: rgba(60, 34, 99, 0.3);
-        $header-nav-shadow: 0px 2px 6px #1a1a2f;
-
-        // footer
-        $footer-bg: rgba(0, 0, 0, 0.275);
-
-        // card
-        $card-bg: rgba(0, 0, 0, 0.2);
-        $card-options: rgba(0, 0, 0, 0.4);
-        $card-footer-nav: #dedefd;
-        $card-shadow: 0 3px 9px 0 rgba(28, 28, 51, 15%);
-        $card-role-color: #dedefd;
-        $card-role-title: #dedefd;
-
-        // custom - general
-        $section-bg: rgba(0, 0, 0, 0.2);
-        $section-border: rgba(255, 255, 255, 0.1);
-        $container-bg: rgba(0, 0, 0, 0.275);
-        $container-border: rgba(255, 255, 255, 0.2);
-
-        // custom - scrollbar
-        $scrollbar-track: rgba(0, 0, 0, 0.3);
-        $scrollbar-thumb: rgba(0, 0, 0, 0.5);
-        $scrollbar-thumb-hover: rgba(0, 0, 0, 0.75);
-
-        // elements - avatar
-        $avatar-border: 3px solid rgba(255, 255, 255, 80%);
-
-        // elements - media
-        $media-color: #dedefd; // not done
-        $media-subtext: #9999bf; // not done
-        $media-shadow: none; // not done
-
-        // elements - file upload
-        $file-bg: transparent;
-        $file-name: #dedefd;
-        $file-border: rgba(255, 255, 255, 0.3);
-        $file-upload-bg: rgba(0, 0, 0, 0.2);
-
-        // formcontrols
-        $formcontrol-bg: transparent;
-        $formcontrol-color: #dedefd;
-        $formcontrol-border: rgba(255, 255, 255, 0.3);
-        $formcontrol-focus-bg: rgba(0, 0, 0, 0.2);
-        $formcontrol-focus-border: rgba(255, 255, 255, 0.4);
-        $formcontrol-disable-bg: rgba(0, 0, 0, 0.3);
-        $formcontrol-disable-border: rgba(0, 0, 0, 0.3);
-        $formcontrol-placeholder-color: #a5a5a5;
-        $formcontrol-section-border: rgba(255, 255, 255, 0.3);
-        $formcontrol-section-focus-border: rgba(255, 255, 255, 0.4);
-
-        // formcontrols - fieldset
-        $fieldset-bg: rgb(99 52 120);
-        $fieldset-color: #dedefd;
-        $fieldset-border: rgba(255, 255, 255, 0.2);
-        $fieldset-section-bg: rgb(99 52 120);
-
-        // formcontrols - form box
-        $formbox-bg: rgba(0, 0, 0, 0.2);
-        $formbox-border: rgba(255, 255, 255, 0.2);
-        $formbox-header-bg: rgba(0, 0, 0, 0.15);
-        $formbox-header-border: rgba(255, 255, 255, 0.1);
-        $formbox-footer-bg: rgba(255, 255, 255, 0.15);
-
-        // formcontrols - checkbox
-        $select-all: #ffffff;
-
-        // list
-        $multi-action-hover: #404061;
-        $multi-menu-bg: rgba(0, 0, 0, 0.95);
-        $multi-menu-color: #dedefd;
-        $multi-menu-shadow: 0 10px 40px 0 rgba(34, 34, 61, 80%);
-        $multi-menu-hover-bg: #2e2e4a;
-        $multi-menu-title-color: #dedefd;
-
-        // modal
-        $modal-bg: #381e5b;
-        $modal-border: rgba(255, 255, 255, 0.1);
-        $modal-rb-color: rgba(255, 255, 255, 0.8);
-        $modal-rb-title-bg: rgba(0, 0, 0, 0.2);
-        $modal-rb-title-border: rgba(255, 255, 255, 0.2);
-        $modal-shadow: 0px 8px 14.72px 1.28px rgba(130, 130, 134, 20%);
-
-        // table - prime ng
-        $png-table-color: #dedefd;
-        $png-table-hover: rgba(0, 0, 0, 0.25);
-        $png-table-border: rgba(255, 255, 255, 0.3);
-        $png-table-edit-icon: #cfcfcf;
-        $png-table-shadow: none;
-
-        // table - basic
-        $basic-table-border: rgba(255, 255, 255, 0.1);
-        $basic-table-row-border: rgba(255, 255, 255, 0.1);
-        $basic-table-icon-hover: #404061;
-        $basic-table-grouphead-bg: rgba(0, 0, 0, 0.25);
-        $basic-table-subgroup-child-bg: rgba(0, 0, 0, 0.15);
-
-        @import "appthemesettings";
     }
 }

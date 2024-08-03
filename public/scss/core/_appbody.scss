@@ -8,8 +8,8 @@ body {
     color: #212529;
     overflow: hidden;
     // background: #f2f3f9;
-    background-color: $app-bg;
-    font-family: $app-font-family;
+    background-color: var(--app-bg);
+    font-family: var(--app-font-family);
     transition: color 0s ease-in-out, background-color 0s ease-in-out, border-color 0s ease-in-out,
         box-shadow 0s ease-in-out !important;
     &::-webkit-scrollbar-thumb {
