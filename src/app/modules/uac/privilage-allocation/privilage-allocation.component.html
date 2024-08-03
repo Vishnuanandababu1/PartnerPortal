@@ -27,23 +27,16 @@
                                 </label>
                             </ng-container>
                         </div>
-                        <!-- <div class="align-space-between">
-                            <div class="overall-info">{{ user.total }} Users</div>
-                            <div class="user-img-list">
-                                <ng-container *ngFor="let img of user.images">
-                                    <label class="avatar avatar-m">
-                                        <img class="user-image" [src]="img" alt="User Image">
-                                    </label>
-                                </ng-container>
-                            </div>
-                        </div> -->
                         <div class="auth-level align-space-between">
-                            <div class="auth-label fl fl-qat">Authority Level : <span>{{user.level}}</span></div>
-                            <div class="level-bar {{user.level}}">
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
+                            <div class="overall-info">{{ user.total }} Users</div>
+                            <div class="align-space-between gap-2">
+                                <div class="auth-label">Authority Level</div>
+                                <div class="level-bar {{user.level}}">
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

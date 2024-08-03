@@ -14,6 +14,7 @@
             .auth-level {
                 color: #6a5e5e;
                 font-size: 0.75em;
+                font-weight: 500;
                 text-transform: uppercase;
                 .auth-label {
                     span {
@@ -51,8 +52,8 @@
     gap: 2px;
     display: flex;
     .bar {
-        width: 3px;
-        height: 10px;
+        width: 4px;
+        height: 9px;
         background: #9c9090;
     }
     &.minor {
