@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, forwardRef, OnInit, OnDestroy } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
 
@@ -19,7 +19,6 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs'
   styleUrls: ['./multiselect-control.component.scss'],
 })
 export class MultiselectControlComponent implements ControlValueAccessor, OnInit, OnDestroy {
-
   onSearch = new Subject<string>();
   keySearch: string = '';
   @Input() title!: string;
@@ -34,14 +33,15 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   @Input() validationClass: boolean = false;
   @Input() error: boolean = false;
   @Input() errorMessage: string = '';
+  @Input() showSearch: boolean = false;
   @Output() optionsSelected = new EventEmitter<string[]>();
 
   selectedItemList: string = '';
   isDropdownOpen = false;
-  filteredOptions: any[] = []; // Add this property
+  filteredOptions: any[] = [];
   highlightedIndex: number | null = null;
-  private onChange: any = () => { };
-  private onTouched: any = () => { };
+  private onChange: any = () => {};
+  private onTouched: any = () => {};
   private subscription: Subscription = new Subscription();
 
   constructor() {
@@ -50,12 +50,14 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
   ngOnInit() {
     this.subscription = this.onSearch.pipe(
-      debounceTime(1000),
+      debounceTime(300),
       distinctUntilChanged()
     ).subscribe(searchText => {
       this.filterOptions(searchText);
-      this.keySearch = '';
     });
+
+    // Initialize filteredOptions to show all options initially
+    this.filteredOptions = [...this.options];
   }
 
   ngOnDestroy() {
@@ -63,27 +65,29 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   }
 
   writeValue(value: any): void {
-    if (value !== undefined) {
+    if (value && Array.isArray(value)) {
       this.selectedItems = value;
+      this.selectedItemList = this.selectedItems.join(', ');
+    } else {
+      this.selectedItems = [];
+      this.selectedItemList = '';
     }
   }
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void { }
+  setDisabledState?(isDisabled: boolean): void {}
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
-  openDropdown(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key === 'Enter') {
-      this.toggleDropdown();
+    if (this.isDropdownOpen) {
+      this.filterOptions('');
     }
   }
 
@@ -92,30 +96,20 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   }
 
   toggleCheckbox(option: string) {
-    this.selectedItems = this.selectedItems || [];
     if (this.isSelected(option)) {
       this.selectedItems = this.selectedItems.filter(item => item !== option);
     } else {
       this.selectedItems = [...this.selectedItems, option];
     }
-    const inputValue = this.selectedItems.join(', ');
-    this.selectedItemList = inputValue;
+    this.selectedItemList = this.selectedItems.join(', ');
     this.onChange(this.selectedItems);
     this.onTouched();
     this.optionsSelected.emit(this.selectedItems);
   }
 
   selectOption(option: string) {
-    const isSelected = this.selectedItems.includes(option);
-    if (isSelected) {
-      this.selectedItems = this.selectedItems.filter(item => item !== option);
-    } else {
-      this.selectedItems = [...this.selectedItems, option];
-    }
+    this.toggleCheckbox(option);
     this.isDropdownOpen = false;
-    this.onChange(this.selectedItems);
-    this.onTouched();
-    this.optionsSelected.emit(this.selectedItems);
   }
 
   resetSelection() {
@@ -126,11 +120,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     this.isDropdownOpen = false;
   }
 
-  selectListOutsideClick(e: Event) {
-    this.isDropdownOpen = false;
-  }
-
-  onModalClosed() {
+  selectListOutsideClick() {
     this.isDropdownOpen = false;
   }
 
@@ -142,7 +132,6 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   }
 
   onKeyDown(event: KeyboardEvent) {
-    const isAlphabetOrNumberKey = /^[a-zA-Z0-9]$/.test(event.key);
     if (this.isDropdownOpen) {
       switch (event.key) {
         case 'ArrowDown':
@@ -162,17 +151,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
         case 'Escape':
           this.isDropdownOpen = false;
           break;
-        case ' ':
-          this.isDropdownOpen = !this.isDropdownOpen;
-          event.preventDefault();
-          break;
         default:
-          if (isAlphabetOrNumberKey) {
-            this.keySearch += event.key?.toString();
-            if (this.keySearch !== '') {
-              this.onSearch.next(this.keySearch);
-            }
-          }
           break;
       }
     } else if (event.key === ' ') {
@@ -182,9 +161,9 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   }
 
   filterOptions(value: string) {
-    const filterValue = value?.toLowerCase();
+    const filterValue = value.toLowerCase();
     this.filteredOptions = this.options
-      .filter((option: string) => option?.toLowerCase()?.includes(filterValue))
+      .filter((option: string) => option.toLowerCase().includes(filterValue))
       .sort((a: string, b: string) => {
         const aIndex = a.toLowerCase().indexOf(filterValue);
         const bIndex = b.toLowerCase().indexOf(filterValue);
@@ -192,6 +171,8 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
       });
     if (this.filteredOptions.length > 0) {
       this.highlightedIndex = this.options.indexOf(this.filteredOptions[0]);
+    } else {
+      this.highlightedIndex = null;
     }
   }
 
@@ -201,6 +182,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     } else {
       this.highlightedIndex++;
     }
+    this.scrollToHighlighted();
   }
 
   highlightPrevious() {
@@ -209,5 +191,23 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     } else {
       this.highlightedIndex--;
     }
+    this.scrollToHighlighted();
+  }
+
+  handleInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.onSearch.next(input.value);
+  }
+
+  scrollToHighlighted() {
+    setTimeout(() => {
+      const container = document.querySelector('.option-list');
+      if (container) {
+        const highlighted = container.querySelector('.highlighted');
+        if (highlighted) {
+          highlighted.scrollIntoView({ block: 'nearest' });
+        }
+      }
+    }, 0);
   }
 }

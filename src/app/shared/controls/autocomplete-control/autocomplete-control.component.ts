@@ -14,16 +14,18 @@ import { createPopper, Instance as PopperInstance } from '@popperjs/core';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: AutocompleteControlComponent,
-      multi: true
+      multi: true,
     },
     {
       provide: NG_VALIDATORS,
       useExisting: AutocompleteControlComponent,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class AutocompleteControlComponent implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit, Validator {
+export class AutocompleteControlComponent
+  implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit, Validator
+{
   @Input() title!: string;
   @Input() validation!: string;
   @Input() placeholder: string = '';
@@ -34,9 +36,8 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   @Input() suggestions: any[] = [];
   @Input() field: string = '';
   @Input() forceSelection: boolean = false;
-  @Input() multiple: boolean = false;
   @Input() error: boolean = false;
-  @Input() errorMessage: string = ''; // New input for error message
+  @Input() errorMessage: string = '';
   @Output() select = new EventEmitter<any>();
   @Output() search = new EventEmitter<string>();
 
@@ -55,16 +56,14 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   private onTouched: any = () => {};
 
   constructor() {
-    this.inputControl.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    ).subscribe(value => {
-      const filterValue = value ?? ''; // Handle null case by providing an empty string
-      this.filterSuggestions(filterValue);
-      this.search.emit(filterValue);
-      this.onChange(filterValue); // Notify parent form about the value change
-      this.onTouched(); // Notify parent form about the touch event
-    });
+    this.inputControl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value) => {
+        const filterValue = value ?? '';
+        this.filterSuggestions(filterValue);
+        this.search.emit(filterValue);
+        this.onChange(filterValue);
+      });
   }
 
   ngOnInit() {}
@@ -81,11 +80,7 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   }
 
   writeValue(value: any): void {
-    if (this.multiple) {
-      this.selectedItems = value ? value : [];
-    } else {
-      this.inputControl.setValue(value, { emitEvent: false });
-    }
+    this.inputControl.setValue(value, { emitEvent: false });
   }
 
   registerOnChange(fn: any): void {
@@ -111,7 +106,7 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
       return;
     }
     const filterValue = value.toLowerCase();
-    this.filteredSuggestions = this.suggestions.filter(suggestion =>
+    this.filteredSuggestions = this.suggestions.filter((suggestion) =>
       suggestion[this.field]?.toLowerCase().includes(filterValue)
     );
     this.highlightedIndex = this.filteredSuggestions.length > 0 ? 0 : null;
@@ -120,19 +115,10 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   }
 
   selectSuggestion(suggestion: any) {
-    if (this.multiple) {
-      if (!this.selectedItems.includes(suggestion)) {
-        this.selectedItems.push(suggestion);
-        this.onChange(this.selectedItems);
-      }
-      this.inputControl.setValue('', { emitEvent: false });
-    } else {
-      this.inputControl.setValue(suggestion[this.field], { emitEvent: false });
-      this.onChange(suggestion);
-    }
+    this.inputControl.setValue(suggestion[this.field], { emitEvent: false });
+    this.onChange(suggestion);
     this.isDropdownOpen = false;
     this.select.emit(suggestion);
-    this.onTouched();
   }
 
   resetInput() {
@@ -140,16 +126,22 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
   }
 
   handleBlur() {
-    if (this.forceSelection && !this.filteredSuggestions.find(s => s[this.field] === this.inputControl.value)) {
-      // this.resetInput();
+    if (
+      this.forceSelection &&
+      !this.filteredSuggestions.find(
+        (s) => s[this.field] === this.inputControl.value
+      )
+    ) {
+      this.resetInput();
     }
+    this.onTouched();
     setTimeout(() => {
       this.isDropdownOpen = false;
     }, 200);
   }
 
   removeItem(item: any) {
-    this.selectedItems = this.selectedItems.filter(i => i !== item);
+    this.selectedItems = this.selectedItems.filter((i) => i !== item);
     this.onChange(this.selectedItems);
     this.select.emit(this.selectedItems);
   }
@@ -160,20 +152,28 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
     }
     switch (event.key) {
       case 'ArrowDown':
-        this.highlightedIndex = this.highlightedIndex === null || this.highlightedIndex === this.filteredSuggestions.length - 1
-          ? 0
-          : this.highlightedIndex + 1;
+        this.highlightedIndex =
+          this.highlightedIndex === null ||
+          this.highlightedIndex === this.filteredSuggestions.length - 1
+            ? 0
+            : this.highlightedIndex + 1;
         event.preventDefault();
         break;
       case 'ArrowUp':
-        this.highlightedIndex = this.highlightedIndex === null || this.highlightedIndex === 0
-          ? this.filteredSuggestions.length - 1
-          : this.highlightedIndex - 1;
+        this.highlightedIndex =
+          this.highlightedIndex === null || this.highlightedIndex === 0
+            ? this.filteredSuggestions.length - 1
+            : this.highlightedIndex - 1;
         event.preventDefault();
         break;
       case 'Enter':
-        if (this.highlightedIndex !== null && this.filteredSuggestions.length > 0) {
-          this.selectSuggestion(this.filteredSuggestions[this.highlightedIndex]);
+        if (
+          this.highlightedIndex !== null &&
+          this.filteredSuggestions.length > 0
+        ) {
+          this.selectSuggestion(
+            this.filteredSuggestions[this.highlightedIndex]
+          );
         } else {
           this.isDropdownOpen = false;
         }
@@ -192,13 +192,24 @@ export class AutocompleteControlComponent implements ControlValueAccessor, OnIni
       this.popperInstance.destroy();
     }
     if (this.inputElement && this.dropdownElement) {
-      this.popperInstance = createPopper(this.inputElement.nativeElement, this.dropdownElement.nativeElement, {
-        placement: 'bottom-start'
-      });
+      this.popperInstance = createPopper(
+        this.inputElement.nativeElement,
+        this.dropdownElement.nativeElement,
+        {
+          placement: 'bottom-start',
+        }
+      );
     }
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return this.inputControl.invalid ? { invalidForm: { valid: false, message: 'Autocomplete control is invalid' } } : null;
+    return this.inputControl.invalid
+      ? {
+          invalidForm: {
+            valid: false,
+            message: 'Autocomplete control is invalid',
+          },
+        }
+      : null;
   }
 }
