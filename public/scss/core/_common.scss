@@ -24,6 +24,19 @@
     display: block;
     margin: 0 auto;
 }
+.justify-center {
+    justify-content: center;
+}
+.align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.align-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .align-self {
     align-self: center;
 }
