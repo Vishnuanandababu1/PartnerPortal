@@ -13,14 +13,14 @@
                                             formControlName="category" [selectedItem]="categoryItem"
                                             [options]="categoryOptions" (optionSelected)="selectCategory($event)"
                                             [error]="scheduleSettingForm.controls['category'].invalid && scheduleSettingForm.controls['category'].touched"
-                                            [errorMessage]="'Custom error message'">
+                                            [errorMessage]="getErrorMessage('category')">
                                         </select-control>
                                     </div>
                                     <div class="col-lg-4">
                                         <input-control title="User Name" validation="required"
                                             formControlName="userName"
                                             [error]="scheduleSettingForm.controls['userName'].invalid && scheduleSettingForm.controls['userName'].touched"
-                                            [errorMessage]="'Custom error message'">
+                                            [errorMessage]="getErrorMessage('userName')">
                                         </input-control>
                                     </div>
                                     <div class="col-lg-4">
@@ -28,7 +28,7 @@
                                             formControlName="allowedSites" [options]="userSiteOptions"
                                             [selectedItems]="userSiteItem" (optionSelected)="selectSites($event)"
                                             [error]="scheduleSettingForm.controls['allowedSites'].invalid && scheduleSettingForm.controls['allowedSites'].touched"
-                                            [errorMessage]="'Custom error message'">
+                                            [errorMessage]="getErrorMessage('allowedSites')">
                                         </multiselect-control>
                                     </div>
                                 </div>
@@ -37,9 +37,9 @@
                                         <autocomplete-control [title]="'User Type'" validation="required"
                                             [suggestions]="suggestions" field="name" (select)="onSelect($event)"
                                             (search)="onSearch($event)" formControlName="userType"
-                                            [forceSelection]="true" [multiple]="true"
+                                            [forceSelection]="true" 
                                             [error]="scheduleSettingForm.controls['userType'].invalid && scheduleSettingForm.controls['userType'].touched"
-                                            [errorMessage]="'Custom error message'">
+                                            [errorMessage]="getErrorMessage('userType')">
                                         </autocomplete-control>
                                     </div>
                                     <div class="col-lg-4">
@@ -62,7 +62,7 @@
                                     <div class="col-lg-12">
                                         <textarea-control title="Remarks" formControlName="remarks"
                                             [error]="scheduleSettingForm.controls['remarks'].invalid && scheduleSettingForm.controls['remarks'].touched "
-                                            [errorMessage]="'Max Length is 100'">
+                                            [errorMessage]="getErrorMessage('remarks')">
                                         </textarea-control>
                                     </div>
                                 </div>
