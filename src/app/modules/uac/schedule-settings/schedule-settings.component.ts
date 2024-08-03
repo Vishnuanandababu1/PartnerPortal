@@ -126,4 +126,38 @@ export class ScheduleSettingsComponent implements OnInit {
     console.log('Search query:', query);
     // Handle the search query, possibly update suggestions based on the query
   }
+  getErrorMessage(formControlName: string): string {
+    const control = this.scheduleSettingForm.get(formControlName);
+  
+    if (control && control.errors) {
+      if (control.errors['required']) {
+        return 'This field is required';
+      }
+      if (control.errors['minlength']) {
+        return `Minimum length is ${control.errors['minlength'].requiredLength} characters`;
+      }
+      if (control.errors['maxlength']) {
+        return `Maximum length is ${control.errors['maxlength'].requiredLength} characters`;
+      }
+      if (control.errors['pattern']) {
+        return 'Invalid format';
+      }
+      if (control.errors['email']) {
+        return 'Invalid email address';
+      }
+      if (control.errors['min']) {
+        return `Minimum value is ${control.errors['min'].min}`;
+      }
+      if (control.errors['max']) {
+        return `Maximum value is ${control.errors['max'].max}`;
+      }
+      if (control.errors['customError']) {
+        return control.errors['customError'];  // Assuming custom error message is provided as a string
+      }
+      // Add other custom error checks here as needed
+    }
+  
+    return '';
+  }
+  
 }
