@@ -109,7 +109,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
   selectOption(option: string) {
     this.toggleCheckbox(option);
-    this.isDropdownOpen = false;
+ 
   }
 
   resetSelection() {

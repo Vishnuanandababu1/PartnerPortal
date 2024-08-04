@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
@@ -16,27 +16,36 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
   templateUrl: './input-control.component.html',
   styleUrls: ['./input-control.component.scss']
 })
-export class InputControlComponent implements ControlValueAccessor {
+export class InputControlComponent implements ControlValueAccessor, OnInit {
   @Input() title!: string;
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() validation!: string;
   @Input() validationClass: boolean = false;
   @Input() error: boolean = false;
   @Input() errorMessage: string = '';
+
+  private _disabled = false;
+  @Input() set disabled(isDisabled: boolean) {
+    this._disabled = isDisabled;
+    this.setDisabledState(isDisabled);
+  }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
   @Output() inputChange = new EventEmitter<string>();
 
   showPassword = false;
 
   inputControl = new FormControl('');
 
-  private onChange: any = () => { };
-  private onTouched: any = () => { };
+  private onChange: any = () => {};
+  private onTouched: any = () => {};
 
-  constructor() {
+  ngOnInit() {
     this.inputControl.valueChanges.subscribe(value => {
       this.onChange(value);
       this.onTouched();
@@ -45,10 +54,7 @@ export class InputControlComponent implements ControlValueAccessor {
   }
 
   getInputType() {
-    if (this.type === 'password') {
-      return this.showPassword ? 'text' : 'password';
-    }
-    return this.type;
+    return this.type === 'password' && this.showPassword ? 'text' : this.type;
   }
 
   writeValue(value: any): void {
@@ -65,7 +71,7 @@ export class InputControlComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     if (isDisabled) {
       this.inputControl.disable();
     } else {
