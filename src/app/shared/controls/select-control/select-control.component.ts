@@ -19,9 +19,9 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs'
   templateUrl: './select-control.component.html',
   styleUrl: './select-control.component.scss'
 })
-export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDestroy   {
+export class SelectControlComponent implements ControlValueAccessor, OnInit, OnDestroy {
   onSearch = new Subject<string>();
-  keySearch:string='';
+  keySearch: string = '';
   @Input() title!: string;
   @Input() options: any = [];
   @Input() selectedItem: any;
@@ -31,7 +31,7 @@ export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDes
   @Input() noLabel: boolean = false;
   @Input() clearVal: boolean = true;
   @Input() disabled: boolean = false;
-  @Input() error: boolean = false; 
+  @Input() error: boolean = false;
   @Input() errorMessage: string = '';
   @Input() validationClass: boolean = false;
   @Output() optionSelected = new EventEmitter<string>();
@@ -42,10 +42,10 @@ export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDes
   private onTouched: any = () => { };
   private subscription: Subscription = new Subscription();
 
-  ngOnInit(){
-    this.subscription=this.onSearch.pipe(debounceTime(1000),distinctUntilChanged()).subscribe(searchText=>{
-          this.filterOptions(searchText);
-          this.keySearch='';    
+  ngOnInit() {
+    this.subscription = this.onSearch.pipe(debounceTime(1000), distinctUntilChanged()).subscribe(searchText => {
+      this.filterOptions(searchText);
+      this.keySearch = '';
     })
   }
   ngOnDestroy() {
@@ -98,7 +98,7 @@ export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDes
     this.isDropdownOpen = false;
   }
 
-	/**
+  /**
  * Handles keydown events for navigating and selecting options in the dropdown.
  * @param event The keyboard event.
  */
@@ -125,44 +125,47 @@ export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDes
           break;
         default:
           if (isAlphabetOrNumberKey) {
-              this.keySearch+=event.key?.toString()
-              if(this.keySearch!=''){
-                this.onSearch.next(this.keySearch);
-              }
+            this.keySearch += event.key?.toString()
+            if (this.keySearch != '') {
+              this.onSearch.next(this.keySearch);
+            }
           }
           break;
       }
+    } else if (event.key === ' ') {
+      this.toggleDropdown();
+      event.preventDefault();
     }
   }
-/**
- * Filters and sorts options based on the provided value.
- * @param value The value to filter options by.
- */
+  /**
+   * Filters and sorts options based on the provided value.
+   * @param value The value to filter options by.
+   */
   filterOptions(value: string) {
     const filterValue = value?.toLowerCase();
     this.filteredOptions = this.options
-    .filter((option:string) => option?.toLowerCase()?.includes(filterValue))
-    .sort((a:string, b:string) => {
-      const aIndex = a.toLowerCase().indexOf(filterValue);
-      const bIndex = b.toLowerCase().indexOf(filterValue);
-      return aIndex - bIndex;
-    });
+      .filter((option: string) => option?.toLowerCase()?.includes(filterValue))
+      .sort((a: string, b: string) => {
+        const aIndex = a.toLowerCase().indexOf(filterValue);
+        const bIndex = b.toLowerCase().indexOf(filterValue);
+        return aIndex - bIndex;
+      });
     if (this.filteredOptions.length > 0) {
       const firstFilteredIndex = this.options?.indexOf(this.filteredOptions?.[0]);
-      if(firstFilteredIndex>=0){
+      if (firstFilteredIndex >= 0) {
         this.highlightedIndex = firstFilteredIndex;
         if (this.highlightedIndex !== null) {
           this.selectOption(this.options[this.highlightedIndex]);
         }
       }
-  
+
     }
   }
-   /**
- * Highlights the next option in the dropdown list.
- * If the current highlight is at the end of the list or no item is highlighted,
- * the first item will be highlighted.
- */
+  /**
+* Highlights the next option in the dropdown list.
+* If the current highlight is at the end of the list or no item is highlighted,
+* the first item will be highlighted.
+*/
   highlightNext() {
     if (this.highlightedIndex === null || this.highlightedIndex === this.options.length - 1) {
       this.highlightedIndex = 0;
@@ -170,11 +173,11 @@ export class SelectControlComponent implements ControlValueAccessor,OnInit,OnDes
       this.highlightedIndex++;
     }
   }
- /**
- * Highlights the previous option in the dropdown list.
- * If the current highlight is at the beginning of the list or no item is highlighted,
- * the last item will be highlighted.
- */
+  /**
+  * Highlights the previous option in the dropdown list.
+  * If the current highlight is at the beginning of the list or no item is highlighted,
+  * the last item will be highlighted.
+  */
   highlightPrevious() {
     if (this.highlightedIndex === null || this.highlightedIndex === 0) {
       this.highlightedIndex = this.options.length - 1;
