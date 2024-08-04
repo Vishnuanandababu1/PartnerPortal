@@ -213,7 +213,6 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
 
   onBlur() {
-    this.isDropdownOpen = false;
     this.onTouched();
   }
 }

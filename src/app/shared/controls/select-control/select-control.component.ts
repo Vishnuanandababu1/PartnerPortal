@@ -187,7 +187,6 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
   }
 
   onBlur() {
-    this.isDropdownOpen = false;
     this.onTouched();
   }
 }
