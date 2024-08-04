@@ -1,0 +1,87 @@
+<div class="split-layout">
+    <div class="layout-aside-left"></div>
+    <div class="layout-aside-right">
+        <form [formGroup]="roleCreationForm" autocomplete="off">
+            <div class="section">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="module-name ellipsis">Role Info</div>
+                        <div class="module-desc">The created role is applicable across all sites within the
+                            organization. The specified logout time (in minutes) will be enforced for users with this role when their system remains idle.</div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <input-control title="Role Name" validation="required" formControlName="roleName"
+                                    [error]="roleCreationForm.controls['roleName'].invalid && roleCreationForm.controls['roleName'].touched"
+                                    [errorMessage]="'Cannot exceed 30 characters'">
+                                </input-control>
+                            </div>
+                            <div class="col-lg-4">
+                                <select-control title="Authority Level" validation="required"
+                                    formControlName="authorityLevel" [selectedItem]="levelItem"
+                                    [options]="authLevelOptions" (optionSelected)="selectLevel($event)"
+                                    [error]="roleCreationForm.controls['authorityLevel'].invalid && roleCreationForm.controls['authorityLevel'].touched">
+                                </select-control>
+                            </div>
+                            <div class="col-lg-8">
+                                <select-control title="User Type" validation="required" formControlName="userType"
+                                    [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                    (optionSelected)="selectUserType($event)"
+                                    [error]="roleCreationForm.controls['userType'].invalid && roleCreationForm.controls['userType'].touched">
+                                </select-control>
+                            </div>
+                            <div class="col-lg-4">
+                                <input-control title="Logout Time (In Mins.)" type="number" validation="required"
+                                    formControlName="logoutTime"
+                                    [error]="roleCreationForm.controls['logoutTime'].invalid && roleCreationForm.controls['logoutTime'].touched"
+                                    [errorMessage]="'Cannot exceed 3 numbers'">
+                                </input-control>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section" *ngFor="let module of modules">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="module-name ellipsis">{{ module.moduleName }}</div>
+                        <div class="module-desc">{{ module.description }}</div>
+                    </div>
+                    <div class="col-lg-8" *ngIf="module.permissions.length">
+                        <div class="table-wrap border-none">
+                            <div class="table-container">
+                                <table class="table role-sel-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Page Name</th>
+                                            <th>Allow</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let permission of module.permissions">
+                                            <td>{{ permission.page }}</td>
+                                            <td>
+                                                <div class="check-wrap">
+                                                    <checkbox-control title="" formControlName="isAllowed">
+                                                    </checkbox-control>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="page-form-footer clear-margin">
+            <div></div>
+            <div class="btn-list">
+                <button class="btn btn-success" (click)="onSaveRole()">Save</button>
+                <button class="btn btn-outline-danger" (click)="onCancelClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

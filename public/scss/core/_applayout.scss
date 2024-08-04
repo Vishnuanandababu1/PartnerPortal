@@ -35,7 +35,7 @@
     }
     .page-layout {
         width: 100vw;
-        transition: 0.5s ease;      
+        transition: 0.5s ease;
         .page-container {
             position: relative;
             overflow-y: overlay;
@@ -57,12 +57,17 @@
                     background: #ffffff;
                     justify-content: space-between;
                     border-bottom: 1px solid #efefef;
+                    .btn {
+                        &.btn-xs {
+                            min-width: 110px;
+                        }
+                    }
                 }
                 .page-content {
                     flex: 1;
                     overflow-y: auto;
-                    overflow-x: hidden; 
-                    background: var(--app-bg); 
+                    overflow-x: hidden;
+                    background: var(--app-bg);
                     padding: 1.5rem 1.75rem 0;
                 }
                 .page-footer {
@@ -71,9 +76,47 @@
                 }
             }
             .page-form-footer {
-                margin: 0 -1.5rem;
                 @include bottom-footer;
                 width: -webkit-fill-available;
+                &.clear-margin {
+                    margin: 0 -1.5rem;
+                }
+            }
+            .split-layout {
+                height: 100%;
+                display: flex;
+                position: relative;
+                overflow-y: overlay;
+                .layout-aside-left {
+                    top: 0;
+                    z-index: 3;
+                    width: 250px;
+                    height: 100%;
+                    display: flex;
+                    color: #343f52;
+                    color: #0f7d8b;
+                    position: sticky;
+                    align-items: center;
+                    padding: 1rem 1.5rem;
+                    flex-direction: column;
+                    justify-content: center;
+                    background: #ffffff;
+                    box-shadow: 0 0 5px -1px #a1a1a1;
+                }
+                .layout-aside-right {
+                    width: 100%;
+                    height: 100%;
+                    overflow-y: auto;
+                    position: relative;
+                    padding: 1.5rem 1.5rem 0;
+                    form {
+                        min-height: calc(100% - 50px);
+                    }
+                }
+            
+                .layout-aside-left + .layout-aside-right {
+                    width: calc(100% - 250px);
+                }
             }
         }
         .app-banner + app-header + .page-container {

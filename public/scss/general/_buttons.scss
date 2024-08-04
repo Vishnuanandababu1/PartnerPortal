@@ -190,9 +190,9 @@
     &:hover,
     &:focus,
     &:not(:disabled):not(.disabled):active:focus {
-        opacity: 0.9;
+        opacity: 1;
         outline: none;
-        box-shadow: none;
+        box-shadow: 0px 0px 4px 0px #808080;
     }
     &.btn-min-width {
         min-width: 1px !important;

@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { FilterComponent } from '../../../shared/components/filter/filter.component';
+import { PrivilegeCreationComponent } from "../privilege-creation/privilege-creation.component";
 
 
 @Component({
   selector: 'app-privilage-allocation',
   standalone: true,
-  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent],
+  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, PrivilegeCreationComponent],
   templateUrl: './privilege-allocation.component.html',
   styleUrl: './privilege-allocation.component.scss'
 })
@@ -23,7 +24,6 @@ export class PrivilegeAllocationComponent implements OnInit {
     { id: 6, role: 'Front Office', totalUsers: 6, levelId: '1', level: 'minor', images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png', '../../../../images/avatars/user-4.png'] },
     { id: 7, role: 'Accountant', totalUsers: 2, levelId: '1', level: 'minor', images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png', '../../../../images/avatars/user-4.png'] },
   ];
-
 
   AllRoleList = [
     {
@@ -79,7 +79,7 @@ export class PrivilegeAllocationComponent implements OnInit {
           ]
         },
         {
-          pagename: 'Attendance Management',
+          pagename: 'User Group',
           roles: [
             { id: '1', name: 'Administrator', totalUsers: 4, levelId: '4', level: 'high', isActive: true },
             { id: '2', name: 'Manager', totalUsers: 3, levelId: '3', level: 'medium', isActive: false },
@@ -91,7 +91,7 @@ export class PrivilegeAllocationComponent implements OnInit {
           ]
         },
         {
-          pagename: 'User Group',
+          pagename: 'Attendance Management',
           roles: [
             { id: '1', name: 'Administrator', totalUsers: 4, levelId: '4', level: 'high', isActive: true },
             { id: '2', name: 'Manager', totalUsers: 3, levelId: '3', level: 'medium', isActive: false },
@@ -172,9 +172,12 @@ export class PrivilegeAllocationComponent implements OnInit {
     }
   ];
 
+
+
   currentRole: any;
-  roleListGridView: boolean = false;
+  roleListGridView: boolean = true;
   userFilterSearch: boolean = false;
+  privilegeCreation: boolean = false;
 
   constructor() { }
 
@@ -182,8 +185,9 @@ export class PrivilegeAllocationComponent implements OnInit {
 
   }
 
+  // general clicks
   addNewPrivilage() {
-
+    this.privilegeCreation = true;
   }
   onToggleSwitchView() {
     this.roleListGridView = !this.roleListGridView;

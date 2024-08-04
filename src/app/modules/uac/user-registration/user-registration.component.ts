@@ -137,10 +137,10 @@ export class UserRegistrationComponent implements OnInit {
   ];
   selectUserType(event: any) {
     const selectedUserTypeName = event as string;
-    const selectedUserTypeItem = this.userRoleList!.find(item => item.roleName === selectedUserTypeName);
+    const selectedUserTypeItem = this.userTypeList!.find(item => item.typeName === selectedUserTypeName);
     if (selectedUserTypeItem) {
       this.selectedUserTypeId = selectedUserTypeItem.id;
-      this.userTypeItem = selectedUserTypeItem.roleName;
+      this.userTypeItem = selectedUserTypeItem.typeName;
     }
   }
 

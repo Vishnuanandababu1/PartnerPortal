@@ -1,113 +1,120 @@
-<div class="page-wrap">
-    <div class="page-header">
-        <div>
-            <img src="https://flagcdn.com/w80/in.png" width="20" alt="Ukraine">
-
-        </div>
-        <div class="d-flex gap-3">
+<ng-container *ngIf="!privilegeCreation">
+    <div class="page-wrap">
+        <div class="page-header">
             <div>
-                <button type="button" class="btn btn-xs btn-primary" (click)="addNewPrivilage()">Add New
-                    Privilage</button>
+                <img src="https://flagcdn.com/w80/in.png" width="20" alt="Ukraine">
+
             </div>
-            <div class="icon-btn-list gap-1">
-                <a (click)="onToggleSwitchView()">
-                    <i class="vi" [ngClass]="{'vi-grid': !roleListGridView, 'vi-ordered-list': roleListGridView}"></i>
-                </a>
-                <a (click)="openUserFilterSearch()"><i class="vi vi-filter"></i></a>
+            <div class="d-flex gap-3">
+                <div>
+                    <button type="button" class="btn btn-xs btn-primary" (click)="addNewPrivilage()">Add
+                        Privilage</button>
+                </div>
+                <div class="icon-btn-list gap-1">
+                    <a (click)="onToggleSwitchView()">
+                        <i class="vi"
+                            [ngClass]="{'vi-grid': !roleListGridView, 'vi-ordered-list': roleListGridView}"></i>
+                    </a>
+                    <a (click)="openUserFilterSearch()"><i class="vi vi-filter"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="page-content">
-        <ng-container *ngIf="roleListGridView">
-            <div class="row">
-                <div class="col-lg-3 col-md-6" *ngFor="let user of userRoles">
-                    <div class="card card-role">
-                        <div class="card-body">
-                            <div class="role-name ellipsis">{{ user.role }}</div>
-                            <div class="user-img-list">
-                                <ng-container *ngFor="let img of user.images">
-                                    <label class="avatar avatar-m">
-                                        <img class="user-image" [src]="img" alt="User Image">
-                                    </label>
-                                </ng-container>
-                            </div>
-                            <div class="auth-level align-space-between">
-                                <div class="overall-info">{{ user.totalUsers }} Users</div>
-                                <div class="align-space-between gap-2">
-                                    <div class="auth-label">Authority Level</div>
-                                    <div class="level-bar {{user.level}}">
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
+        <div class="page-content">
+            <ng-container *ngIf="roleListGridView">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6" *ngFor="let user of userRoles">
+                        <div class="card card-role">
+                            <div class="card-body">
+                                <div class="role-name ellipsis">{{ user.role }}</div>
+                                <div class="user-img-list">
+                                    <ng-container *ngFor="let img of user.images">
+                                        <label class="avatar avatar-m">
+                                            <img class="user-image" [src]="img" alt="User Image">
+                                        </label>
+                                    </ng-container>
+                                </div>
+                                <div class="auth-level align-space-between">
+                                    <div class="overall-info">{{ user.totalUsers }} Users</div>
+                                    <div class="align-space-between gap-2">
+                                        <div class="auth-label">Authority Level</div>
+                                        <div class="level-bar {{user.level}}">
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                            <div class="bar"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ng-container>
-        <ng-container *ngIf="!roleListGridView">
-            <div class="table-wrap">
-                <div class="table-container">
-                    <table class="table privilege-table">
-                        <thead>
-                            <tr>
-                                <th class="module-name">Module Name</th>
-                                <th class="page-name">Page Name</th>
-                                <th *ngFor="let role of allRoles">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="overall-info">{{ role.totalUsers }} Users</div>
-                                            <div class="role-name ellipsis">{{ role.name }}</div>
-                                            <div class="auth-level align-space-between">
-                                                <div>Authority Level</div>
-                                                <div class="level-bar {{role.level}}">
-                                                    <div class="bar"></div>
-                                                    <div class="bar"></div>
-                                                    <div class="bar"></div>
-                                                    <div class="bar"></div>
+            </ng-container>
+            <ng-container *ngIf="!roleListGridView">
+                <div class="table-wrap">
+                    <div class="table-container">
+                        <table class="table privilege-table">
+                            <thead>
+                                <tr>
+                                    <th class="module-name">Module Name</th>
+                                    <th class="page-name">Page Name</th>
+                                    <th *ngFor="let role of allRoles">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="overall-info">{{ role.totalUsers }} Users</div>
+                                                <div class="role-name ellipsis">{{ role.name }}</div>
+                                                <div class="auth-level align-space-between">
+                                                    <div>Authority Level</div>
+                                                    <div class="level-bar {{role.level}}">
+                                                        <div class="bar"></div>
+                                                        <div class="bar"></div>
+                                                        <div class="bar"></div>
+                                                        <div class="bar"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-role-edit" *ngIf="role.id != '1'">
+                                                    <a (click)="editRole(role.id)" title="Edit Role"><i
+                                                            class="vi vi-pencil"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="btn-role-edit" *ngIf="role.id != '1'">
-                                                <a (click)="editRole(role.id)" title="Edit Role"><i class="vi vi-pencil"></i></a>
-                                            </div>
                                         </div>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <ng-container *ngFor="let module of AllRoleList">
-                                <ng-container *ngFor="let page of module.pages">
-                                    <tr>
-                                        <td class="module-name"
-                                            *ngIf="isFirstPageOfModule(page.pagename, module.module)"
-                                            [attr.rowspan]="module.pages.length">
-                                            {{ module.module }}
-                                            <div class="m-full-name">({{ module.moduleFullName }})</div>
-                                        </td>
-                                        <td class="page-name">{{ page.pagename }}</td>
-                                        <td class="role-status" *ngFor="let role of allRoles">
-                                            <ng-container
-                                                *ngIf="getRoleStatus(module.module, page.pagename, role.id); else inactiveIcon">
-                                                <i class="vi vi-check-circle-o" aria-hidden="true"></i>
-                                            </ng-container>
-                                            <ng-template #inactiveIcon>
-                                                <i class="vi vi-close-circle" aria-hidden="true"></i>
-                                            </ng-template>
-                                        </td>
-                                    </tr>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let module of AllRoleList">
+                                    <ng-container *ngFor="let page of module.pages">
+                                        <tr>
+                                            <td class="module-name"
+                                                *ngIf="isFirstPageOfModule(page.pagename, module.module)"
+                                                [attr.rowspan]="module.pages.length">
+                                                {{ module.module }}
+                                                <div class="m-full-name">({{ module.moduleFullName }})</div>
+                                            </td>
+                                            <td class="page-name">{{ page.pagename }}</td>
+                                            <td class="role-status" *ngFor="let role of allRoles">
+                                                <ng-container
+                                                    *ngIf="getRoleStatus(module.module, page.pagename, role.id); else inactiveIcon">
+                                                    <i class="vi vi-check-circle-o" aria-hidden="true"></i>
+                                                </ng-container>
+                                                <ng-template #inactiveIcon>
+                                                    <i class="vi vi-close-circle" aria-hidden="true"></i>
+                                                </ng-template>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
                                 </ng-container>
-                            </ng-container>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </ng-container>
+            </ng-container>
+        </div>
     </div>
-</div>
+</ng-container>
+<ng-container *ngIf="privilegeCreation">
+    <app-privilege-creation></app-privilege-creation>
+</ng-container>
 
 <app-filter *ngIf="userFilterSearch" (closed)="onFilterClosed()" [filterTitle]="'Filter Privilage'" [customClass]="''">
     <div class="filter-body">

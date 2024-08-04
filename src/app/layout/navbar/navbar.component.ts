@@ -27,8 +27,8 @@ export class NavbarComponent implements OnInit {
     { tabName: 'usermanagement', route: '/app/uac/usermanagement', iconClass: 'vi vi-employee-o', name: 'User Management' },
     { tabName: 'privilegeallocation', route: '/app/uac/privilegeallocation', iconClass: 'vi vi-employee-key-o', name: 'Privilege Allocation' },
     { tabName: 'schedulesettings', route: '/app/uac/schedulesettings', iconClass: 'vi vi-employee-schedule-o', name: 'Schedule Settings' },
-    { tabName: 'attendancemanagement', route: '/app/uac/attendancemanagement', iconClass: 'vi vi-calendar-o', name: 'Attendance Management' },
     { tabName: 'usergroup', route: '/app/uac/usergroup', iconClass: 'vi vi-user-group-o', name: 'User Group' },
+    { tabName: 'attendancemanagement', route: '/app/uac/attendancemanagement', iconClass: 'vi vi-calendar-o', name: 'Attendance Management' },
     { tabName: 'broadcast', route: '/app/uac/userbroadcast', iconClass: 'vi vi-bullhorn-o', name: 'Broadcast Messages' },
   ];
 

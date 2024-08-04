@@ -1,8 +1,8 @@
-<div class="user-reg">
-    <div class="reg-preview">
+<div class="split-layout">
+    <div class="layout-aside-left">
         <div>{{userRegistrationForm.value.firstName}}</div>
     </div>
-    <div class="reg-form">
+    <div class="layout-aside-right">
         <form [formGroup]="userRegistrationForm" autocomplete="off">
             <app-accordion [multiple]="true" [openall]="true" [customClass]="'info-panel'">
 
@@ -375,7 +375,7 @@
 
             </app-accordion>
         </form>
-        <div class="page-form-footer">
+        <div class="page-form-footer clear-margin">
             <div></div>
             <div class="btn-list">
                 <button class="btn btn-success" (click)="onRegisterUser()">Register</button>
