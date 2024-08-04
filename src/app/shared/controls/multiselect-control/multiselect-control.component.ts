@@ -40,8 +40,8 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   isDropdownOpen = false;
   filteredOptions: any[] = [];
   highlightedIndex: number | null = null;
-  private onChange: any = () => {};
-  private onTouched: any = () => {};
+  private onChange: any = () => { };
+  private onTouched: any = () => { };
   private subscription: Subscription = new Subscription();
 
   constructor() {
@@ -82,7 +82,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(isDisabled: boolean): void { }
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -109,7 +109,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
   selectOption(option: string) {
     this.toggleCheckbox(option);
- 
+
   }
 
   resetSelection() {
@@ -209,5 +209,10 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
         }
       }
     }, 0);
+  }
+
+
+  onBlur() {
+    this.isDropdownOpen = false;
   }
 }

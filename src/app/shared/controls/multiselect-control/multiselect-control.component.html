@@ -1,23 +1,25 @@
 <div class="form-group multi-select" [ngClass]="customClass" (clickOutside)="selectListOutsideClick()">
-    <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
-    <input type="text" class="form-control" placeholder="{{ placeholder }}" [ngClass]="{'is-invalid': validationClass || error}"
-      [disabled]="disabled" (click)="toggleDropdown()" readonly [value]="selectedItemList" (keydown)="onKeyDown($event)" />
-    <span class="focus-border"></span>
-    <label class="clear" *ngIf="isDropdownOpen && clearVal" (click)="resetSelection()">
-      <i class="vi vi-close"></i>
-    </label>
-    <label class="arrow"><i class="vi vi-chevron-down"></i></label>
-  
-    <div class="option-list" *ngIf="isDropdownOpen">
-      <input *ngIf="showSearch" type="text" class="form-control" placeholder="Search..." (input)="handleInput($event)" (keydown)="onKeyDown($event)" />
-      <div class="list-item" *ngFor="let option of filteredOptions ; let i = index" (change)="toggleCheckbox(option)"  [ngClass]="{'highlighted': i === highlightedIndex}">
-        <label class="checkbox-container multi-select">
-          <input type="checkbox" [checked]="isSelected(option)" />
-          <span class="checkmark"></span>{{ option }}
-        </label>
-      </div>
+  <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
+  <input type="text" class="form-control" placeholder="{{ placeholder }}"
+    [ngClass]="{'is-invalid': validationClass || error}" (blur)="onBlur()" [disabled]="disabled"
+    (click)="toggleDropdown()" readonly [value]="selectedItemList" (keydown)="onKeyDown($event)" />
+  <span class="focus-border"></span>
+  <label class="clear" *ngIf="isDropdownOpen && clearVal" (click)="resetSelection()">
+    <i class="vi vi-close"></i>
+  </label>
+  <label class="arrow"><i class="vi vi-chevron-down"></i></label>
+
+  <div class="option-list" *ngIf="isDropdownOpen">
+    <input *ngIf="showSearch" type="text" class="form-control" placeholder="Search..." (input)="handleInput($event)"
+      (keydown)="onKeyDown($event)" />
+    <div class="list-item" *ngFor="let option of filteredOptions ; let i = index" (change)="toggleCheckbox(option)"
+      [ngClass]="{'highlighted': i === highlightedIndex}">
+      <label class="checkbox-container multi-select">
+        <input type="checkbox" [checked]="isSelected(option)" />
+        <span class="checkmark"></span>{{ option }}
+      </label>
     </div>
-  
-    <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>
   </div>
-  
+
+  <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>
+</div>
