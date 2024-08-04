@@ -1,7 +1,7 @@
 <div class="form-group input" [ngClass]="customClass">
     <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{title}}</label>
     <input [type]="getInputType()" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
-        [ngClass]="{'is-invalid': validationClass || error}" [disabled]="disabled" (blur)="onBlur()" />
+        [ngClass]="{'is-invalid': validationClass || error}" (blur)="onBlur()" />
     <span class="focus-border"></span>
     <label class="clear" *ngIf="inputControl.value && type != 'password'" (click)="resetInput()">
         <i class="vi vi-close"></i>

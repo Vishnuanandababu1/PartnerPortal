@@ -45,7 +45,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label class="inp-label required">From Date</label>
-                                            <p-calendar [(ngModel)]="date" [iconDisplay]="'input'" [showIcon]="true"
+                                            <p-calendar formControlName="fromDate" [iconDisplay]="'input'" [showIcon]="true"
                                                 formControlName="fromDate" inputId="icondisplay"
                                                 [styleClass]="'form-control'"
                                                 [ngClass]="{'is-invalid' : (scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false}">
@@ -60,10 +60,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <textarea-control title="Remarks" formControlName="remarks"
+                                        <!-- <textarea-control title="Remarks" formControlName="remarks"
                                             [error]="scheduleSettingForm.controls['remarks'].invalid && scheduleSettingForm.controls['remarks'].touched "
                                             [errorMessage]="getErrorMessage('remarks')">
-                                        </textarea-control>
+                                        </textarea-control> -->
                                     </div>
                                 </div>
                             </div>

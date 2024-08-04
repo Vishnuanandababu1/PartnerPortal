@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, Renderer2, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
@@ -19,15 +19,19 @@ export class CheckboxControlComponent implements ControlValueAccessor {
 
   @Input() title!: string;
   @Input() customClass!: string;
-  @Input() disabled: boolean = false;
+  @Input() set disabled(value: boolean) {
+    this._disabled = value;
+    this.setDisabledState(value);
+  }
   @Output() checkboxChange = new EventEmitter<boolean>();
 
-  checkboxControl = new FormControl(false);
+  private _disabled = false;
+  checkboxControl = new FormControl({ value: false, disabled: this._disabled });
 
   private onChange: any = () => { };
   private onTouched: any = () => { };
 
-  constructor() {
+  constructor(private _renderer: Renderer2, private _elementRef: ElementRef) {
     this.checkboxControl.valueChanges.subscribe(value => {
       this.onChange(value);
       this.onTouched();
@@ -49,7 +53,8 @@ export class CheckboxControlComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
+    this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     if (isDisabled) {
       this.checkboxControl.disable();
     } else {
