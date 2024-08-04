@@ -1,4 +1,4 @@
-<label class="checkbox-container" [ngClass]="customClass">
-    <input type="checkbox" [formControl]="checkboxControl" (blur)="onBlur()" />
+<label class="checkbox-container" [ngClass]="customClass" #checkboxContainer>
+    <input type="checkbox" [formControl]="checkboxControl" (focus)="onFocus()" (blur)="onBlur()" />
     <span class="checkmark"></span>{{ title }}
 </label>

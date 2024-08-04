@@ -175,7 +175,7 @@ export class UserRegistrationComponent implements OnInit {
     { id: '1', roleName: 'Administrator' },
     { id: '2', roleName: 'Doctor' },
     { id: '3', roleName: 'Nurse' },
-    { id: '4', roleName: 'Technician' },
+    { id: '4', roleName: 'Assistant' },
     { id: '5', roleName: 'Front Office' },
     { id: '6', roleName: 'Accountant' },
     { id: '7', roleName: 'Manager' },

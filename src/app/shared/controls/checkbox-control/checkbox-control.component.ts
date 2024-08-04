@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, forwardRef, Renderer2, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
@@ -24,6 +24,7 @@ export class CheckboxControlComponent implements ControlValueAccessor {
     this.setDisabledState(value);
   }
   @Output() checkboxChange = new EventEmitter<boolean>();
+  @ViewChild('checkboxContainer') checkboxContainer!: ElementRef;
 
   private _disabled = false;
   checkboxControl = new FormControl({ value: false, disabled: this._disabled });
@@ -62,7 +63,12 @@ export class CheckboxControlComponent implements ControlValueAccessor {
     }
   }
 
+  onFocus() {
+    this.checkboxContainer.nativeElement.classList.add('focused');
+  }
+
   onBlur() {
     this.onTouched();
+    this.checkboxContainer.nativeElement.classList.remove('focused');
   }
 }

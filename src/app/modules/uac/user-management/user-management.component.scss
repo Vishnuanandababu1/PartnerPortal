@@ -116,20 +116,12 @@
     .table-container {
         table {
             &.user-table {
-                margin-bottom: 0;
                 tbody {
                     tr {
                         cursor: pointer;
                         td {
                             cursor: inherit;
-                            overflow-wrap: break-word;
-                            .user-name {
-                                line-height: 1.15;
-                            }
-                            .user-email {
-                                line-height: 1.15;
-                                color: #807979;
-                            }
+                            overflow-wrap: break-word;                           
                         }
                     }
                 }

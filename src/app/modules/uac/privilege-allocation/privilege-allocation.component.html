@@ -1,6 +1,9 @@
 <div class="page-wrap">
     <div class="page-header">
-        <div></div>
+        <div>
+            <img src="https://flagcdn.com/w80/in.png" width="20" alt="Ukraine">
+
+        </div>
         <div class="d-flex gap-3">
             <div>
                 <button type="button" class="btn btn-xs btn-primary" (click)="addNewPrivilage()">Add New
@@ -29,7 +32,7 @@
                                 </ng-container>
                             </div>
                             <div class="auth-level align-space-between">
-                                <div class="overall-info">{{ user.total }} Users</div>
+                                <div class="overall-info">{{ user.totalUsers }} Users</div>
                                 <div class="align-space-between gap-2">
                                     <div class="auth-label">Authority Level</div>
                                     <div class="level-bar {{user.level}}">
@@ -48,43 +51,52 @@
         <ng-container *ngIf="!roleListGridView">
             <div class="table-wrap">
                 <div class="table-container">
-                    <table class="table user-table">
-                      <thead>
-                        <tr>
-                          <th>Module</th>
-                          <th>Page</th>
-                          <th *ngFor="let role of allRoles">{{ role.name }}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <ng-container *ngFor="let module of AllRoleList">
-                          <!-- Loop through each page within the current module -->
-                          <ng-container *ngFor="let page of module.pages">
+                    <table class="table privilege-table">
+                        <thead>
                             <tr>
-                              <!-- Display module only for the first page of the module -->
-                              <td *ngIf="isFirstPageOfModule(page.pagename, module.module)" [attr.rowspan]="module.pages.length">
-                                {{ module.module }}
-                              </td>
-                              <td>{{ page.pagename }}</td>
-                              <!-- Loop through each role and display the status -->
-                              <td *ngFor="let role of allRoles">
-                                <ng-container *ngIf="getRoleStatus(module.module, page.pagename, role.id); else inactiveIcon">
-                                  <i class="vi vi-check-circle" aria-hidden="true"></i>
-                                </ng-container>
-                                <ng-template #inactiveIcon>
-                                  <i class="vi vi-close-circle" aria-hidden="true"></i>
-                                </ng-template>
-                              </td>
+                                <th class="module-name"></th>
+                                <th class="page-name"></th>
+                                <th *ngFor="let role of allRoles">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div>{{ role.name }}</div>
+                                            <div>{{ role.totalUsers }}</div>
+                                            <div>{{ role.levelId }}</div>
+                                            <div>{{ role.level }}</div>
+                                            <div>
+                                                <a (click)="editRole(role.id)"><i class="vi vi-pencil"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
                             </tr>
-                          </ng-container>
-                        </ng-container>
-                      </tbody>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let module of AllRoleList">
+                                <ng-container *ngFor="let page of module.pages">
+                                    <tr>
+                                        <td class="module-name"
+                                            *ngIf="isFirstPageOfModule(page.pagename, module.module)"
+                                            [attr.rowspan]="module.pages.length">
+                                            {{ module.module }}
+                                            <div class="m-full-name">({{ module.moduleFullName }})</div>
+                                        </td>
+                                        <td class="page-name">{{ page.pagename }}</td>
+                                        <td class="role-status" *ngFor="let role of allRoles">
+                                            <ng-container
+                                                *ngIf="getRoleStatus(module.module, page.pagename, role.id); else inactiveIcon">
+                                                <i class="vi vi-check-circle-o" aria-hidden="true"></i>
+                                            </ng-container>
+                                            <ng-template #inactiveIcon>
+                                                <i class="vi vi-close-circle" aria-hidden="true"></i>
+                                            </ng-template>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
                     </table>
-                  </div>
-                  
-
-
-
+                </div>
             </div>
         </ng-container>
     </div>

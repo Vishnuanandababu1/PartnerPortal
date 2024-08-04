@@ -414,9 +414,6 @@
         opacity: 0;
         cursor: pointer;
         position: absolute;
-        &:focus {
-            color: #3f3d78;
-        }
     }
     &:hover input ~ .checkmark {
         background-color: #727272;
@@ -459,6 +456,9 @@
             top: -11px;
         }
     }
+    &.focused {
+        color: #6dc0dc;
+    }
     &.multi-select {
         width: 100%;
         font-size: 1em;
@@ -473,6 +473,11 @@
         }
     }
 }
+.checkbox-container input[type="checkbox"]:focus ~ .checkmark,
+.checkbox-container input[type="checkbox"]:focus + .checkmark {
+    background-color: #6dc0dc;
+}
+
 .checkbox-list {
     display: flex;
     flex-wrap: wrap;
