@@ -1,53 +1,3 @@
-.card {
-    &.card-role {
-        min-height: 100px;
-        .card-body {
-            .role-name {
-                font-weight: 500;
-                font-size: 1.15em;
-                color: #526199;
-                letter-spacing: 0.015rem;
-            }
-            .user-img-list {
-                padding: 7px 10px;
-            }
-            .auth-level {
-                color: #6a5e5e;
-                font-size: 0.75em;
-                font-weight: 500;
-                text-transform: uppercase;
-                .auth-label {
-                    span {
-                        font-weight: 500;
-                        padding-left: 5px;
-                    }
-                }
-            }
-            .user-img-list {
-                .avatar-m {
-                    margin-left: -0.75rem;
-                    img {
-                        padding: 0;
-                        width: 2rem;
-                        height: 2rem;
-                        line-height: 2rem;
-                        border-radius: 50%;
-                        border: 2px solid #ffffff;
-                    }
-                    &:hover {
-                        img {
-                            z-index: 30;
-                            transition: all 0.3s ease;
-                            transform: translateY(-4px) scale(1.02);
-                            box-shadow: 0 0.25rem 1rem rgba(161, 172, 184, 45%);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
 .level-bar {
     gap: 2px;
     display: flex;
@@ -87,6 +37,56 @@
     }
 }
 
+.card {
+    &.card-role {
+        min-height: 100px;
+        .card-body {
+            .role-name {
+                font-weight: 500;
+                font-size: 1.15em;
+                color: #526199;
+                letter-spacing: 0.015rem;
+            }
+            .user-img-list {
+                padding: 7px 10px;
+            }
+            .user-img-list {
+                .avatar-m {
+                    margin-left: -0.75rem;
+                    img {
+                        padding: 0;
+                        width: 2rem;
+                        height: 2rem;
+                        line-height: 2rem;
+                        border-radius: 50%;
+                        border: 2px solid #ffffff;
+                    }
+                    &:hover {
+                        img {
+                            z-index: 30;
+                            transition: all 0.3s ease;
+                            transform: translateY(-4px) scale(1.02);
+                            box-shadow: 0 0.25rem 1rem rgba(161, 172, 184, 45%);
+                        }
+                    }
+                }
+            }
+            .auth-level {
+                color: #6a5e5e;
+                font-size: 0.75em;
+                font-weight: 500;
+                text-transform: uppercase;
+                .auth-label {
+                    span {
+                        font-weight: 500;
+                        padding-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .table-wrap {
     .table-container {
         table {
@@ -99,17 +99,74 @@
                             &.module-name {
                                 border-right: 1px solid #fbf7f4;
                             }
-
                             &.page-name {
                                 border-right: 1px solid #dee2e6;
+                            }
+                            &.module-name,
+                            &.page-name {
+                                font-size: 0.85em;
+                                vertical-align: bottom;
+                                text-transform: uppercase;
+                                color: #6a5e5e !important;
                             }
                             .card {
                                 margin-bottom: 0;
                                 box-shadow: none;
                                 border-radius: 5px;
                                 .card-body {
-                                    min-height: 100px;
+                                    min-height: 85px;
                                     border-radius: inherit;
+                                    padding: 1rem 0.75rem;
+                                    .overall-info {
+                                        color: #6a5e5e;
+                                        font-size: 0.75em;
+                                        font-weight: 500;
+                                        text-transform: uppercase;
+                                    }
+                                    .role-name {
+                                        font-weight: 500;
+                                        font-size: 1.15em;
+                                        color: #526199;
+                                        letter-spacing: 0.015rem;
+                                    }
+                                    .auth-level {
+                                        color: #6a5e5e;
+                                        font-size: 0.75em;
+                                        font-weight: 500;
+                                        text-transform: uppercase;
+                                        .auth-label {
+                                            span {
+                                                font-weight: 500;
+                                                padding-left: 5px;
+                                            }
+                                        }
+                                    }
+                                    .btn-role-edit {
+                                        top: 0.5rem;
+                                        right: 0.65rem;
+                                        position: absolute;
+                                        a {
+                                            width: 28px;
+                                            height: 28px;
+                                            display: grid;
+                                            cursor: pointer;
+                                            position: relative;
+                                            border-radius: 5px;
+                                            place-items: center;
+                                            text-decoration: none;
+                                            border: 1px solid #efefef;
+                                            box-shadow: 0 0 3px #ebebeb;
+                                            i {
+                                                font-size: 15px;
+                                            }
+                                            &:hover {
+                                                background: rgba(255, 127, 93, 0.1);
+                                                i {
+                                                    color: #ff7f5d;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -125,6 +182,9 @@
                             &.page-name {
                                 text-align: left;
                                 border-right: 1px solid #dee2e6;
+                            }
+                            &.module-name {                              
+                                vertical-align: top;
                             }
                             &.role-status {
                                 i {
@@ -159,7 +219,6 @@
                             &.module-name {
                                 min-width: 150px;
                                 max-width: 150px;
-                                vertical-align: top;
                                 .m-full-name {
                                     font-size: 0.9em;
                                 }

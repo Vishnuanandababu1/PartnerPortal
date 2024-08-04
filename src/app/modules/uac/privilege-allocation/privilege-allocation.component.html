@@ -54,17 +54,24 @@
                     <table class="table privilege-table">
                         <thead>
                             <tr>
-                                <th class="module-name"></th>
-                                <th class="page-name"></th>
+                                <th class="module-name">Module Name</th>
+                                <th class="page-name">Page Name</th>
                                 <th *ngFor="let role of allRoles">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div>{{ role.name }}</div>
-                                            <div>{{ role.totalUsers }}</div>
-                                            <div>{{ role.levelId }}</div>
-                                            <div>{{ role.level }}</div>
-                                            <div>
-                                                <a (click)="editRole(role.id)"><i class="vi vi-pencil"></i></a>
+                                            <div class="overall-info">{{ role.totalUsers }} Users</div>
+                                            <div class="role-name ellipsis">{{ role.name }}</div>
+                                            <div class="auth-level align-space-between">
+                                                <div>Authority Level</div>
+                                                <div class="level-bar {{role.level}}">
+                                                    <div class="bar"></div>
+                                                    <div class="bar"></div>
+                                                    <div class="bar"></div>
+                                                    <div class="bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class="btn-role-edit" *ngIf="role.id != '1'">
+                                                <a (click)="editRole(role.id)" title="Edit Role"><i class="vi vi-pencil"></i></a>
                                             </div>
                                         </div>
                                     </div>

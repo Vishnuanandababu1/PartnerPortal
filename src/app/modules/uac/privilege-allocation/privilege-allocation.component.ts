@@ -15,8 +15,7 @@ import { FilterComponent } from '../../../shared/components/filter/filter.compon
 export class PrivilegeAllocationComponent implements OnInit {
 
   userRoles = [
-    { id: 1, role: 'Administrator', levelId: '4', level: 'high', total: 5, images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png'] },
-
+    { id: 1, role: 'Administrator', totalUsers: 3, levelId: '4', level: 'high', images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png'] },
     { id: 2, role: 'Manager', totalUsers: 3, levelId: '3', level: 'medium', images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png', '../../../../images/avatars/user-4.png', '../../../../images/avatars/user-5.png'] },
     { id: 3, role: 'Doctor', totalUsers: 7, levelId: '3', level: 'medium', images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png', '../../../../images/avatars/user-4.png', '../../../../images/avatars/user-5.png', '../../../../images/avatars/user-6.png', '../../../../images/avatars/user-7.png'] },
     { id: 4, role: 'Nurse', totalUsers: 4, levelId: '2', level: 'low', images: ['../../../../images/avatars/user-1.png', '../../../../images/avatars/user-2.png', '../../../../images/avatars/user-3.png', '../../../../images/avatars/user-4.png'] },
