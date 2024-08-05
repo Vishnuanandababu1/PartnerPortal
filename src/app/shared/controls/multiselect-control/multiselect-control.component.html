@@ -12,6 +12,10 @@
   <div class="option-list" *ngIf="isDropdownOpen">
     <input *ngIf="showSearch" type="text" class="form-control" placeholder="Search..." (input)="handleInput($event)"
       (keydown)="onKeyDown($event)" />
+      <label class="checkbox-container select-all">
+        <input type="checkbox" [checked]="selectAllChecked" (change)="onSelectAllChange($event)" />
+        <span class="checkmark"></span>
+      </label>
     <div class="list-item" *ngFor="let option of filteredOptions ; let i = index" (change)="toggleCheckbox(option)"
       [ngClass]="{'highlighted': i === highlightedIndex}">
       <label class="checkbox-container multi-select">
