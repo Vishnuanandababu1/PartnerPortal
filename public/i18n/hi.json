@@ -75,7 +75,10 @@
         "changepassword": "पासवर्ड बदलें",
         "lockscreen": "स्क्रीन लॉक",
         "darktheme": "डार्क थीम",
-        "logout": "लॉग आउट"
+        "logout": "लॉग आउट",
+        "pinfo": "व्यक्तिगत जानकारी",
+        "cinfo": "संपर्क जानकारी",
+        "profinfo": "पेशेवर जानकारी"
     },
     "contact": {
         "phcode": "फोन कोड",

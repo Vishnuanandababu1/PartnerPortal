@@ -1,5 +1,5 @@
-<div class="page-wrap" *ngIf="!userRegistrationForm">
-    <ng-container *ngIf="userListView">
+<ng-container *ngIf="userListView">
+    <div class="page-wrap" *ngIf="!userRegistrationForm">
         <div class="page-header">
             <div class="fc-box-list">
                 <div class="fc-box">
@@ -52,8 +52,9 @@
                                     </div>
                                 </div>
                                 <div class="btn-book">
-                                    <button type="button" class="btn btn-outline-info" (click)="viewUserProfile()">View
-                                        Profile</button>
+                                    <button type="button" class="btn btn-outline-info"
+                                        (click)="viewUserProfile()">Manage
+                                        User</button>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +90,8 @@
                                     <td>{{ user.status }}</td>
                                     <td>
                                         <div class="icon-btn-list">
-                                            <a><i class="vi vi-more-horizontal"></i></a>
+                                            <a (click)="viewUserProfile()" title="View Profile"><i
+                                                    class="vi vi-eye"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -99,19 +101,70 @@
                 </div>
             </ng-container>
         </div>
-    </ng-container>
-    <ng-container *ngIf="userProfileView">
-        <div class="page-content">
-            <app-user-profile></app-user-profile>
-        </div>
-    </ng-container>
-</div>
+    </div>
+</ng-container>
 
 <ng-container *ngIf="userRegistrationForm">
     <app-user-registration></app-user-registration>
 </ng-container>
 
+<ng-container *ngIf="userProfileView">
+    <div class="split-layout">
+        <div class="layout-aside-left">
 
+        </div>
+        <div class="layout-aside-right page-tab-layout">
+            <app-tabs [customClass]="'tab-link'">
+                <ng-template tabContent title="User Profile">
+                    <app-user-profile></app-user-profile>
+                </ng-template>
+                <ng-template tabContent title="Documents">
+                    <p>Documents</p>
+                </ng-template>
+                <ng-template tabContent title="Privilege View">
+                    <p>Privilege View</p>
+                </ng-template>
+                <ng-template tabContent title="User Schedule">
+                    <p>User Schedule</p>
+                </ng-template>
+                <ng-template tabContent title="Attendance">
+                    <p>Attendance</p>
+                </ng-template>
+                <ng-template tabContent title="Payroll Settings">
+                    <p>Payroll Settings</p>
+                </ng-template>
+                <ng-template tabContent title="Log View">
+                    <p>Log View</p>
+                </ng-template>
+                <ng-template tabContent title="Settings">
+                    <p>Settings</p>
+                </ng-template>
+            </app-tabs>
+
+
+
+            <!-- <div class="pat-nav-link">
+                <div class="tab-link old">
+                    <div class="tab-item active" title="User Profile">User Profile</div>
+                    <div class="tab-item" title="Documents">Documents</div>
+                    <div class="tab-item" title="Privilege View">Privilege View</div>
+                    <div class="tab-item" title="User Schedule">User Schedule</div>
+                    working hours, block/freeze schedule
+                    <div class="tab-item" title="Attendance">Attendance</div>
+                    <div class="tab-item" title="Payroll">Payroll Settings</div>
+                    leave request, pay slips
+                    <div class="tab-item" title="Log View">Log View</div>
+                    <div class="tab-item" title="Settings">Settings</div>
+                </div>
+            </div>
+            <div class="page-content">
+                <ng-container>
+
+                </ng-container>
+            </div> -->
+        </div>
+    </div>
+</ng-container>
 
 <app-filter *ngIf="userFilterSearch" (closed)="onFilterClosed()" [filterTitle]="'Filter User'" [customClass]="''">
     <div class="filter-body">

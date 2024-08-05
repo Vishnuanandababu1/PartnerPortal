@@ -5,11 +5,13 @@ import { SelectControlComponent } from '../../../shared/controls/select-control/
 import { FilterComponent } from '../../../shared/components/filter/filter.component';
 import { UserProfileComponent } from "../user-profile/user-profile.component";
 import { UserRegistrationComponent } from "../user-registration/user-registration.component";
+import { TabComponent } from '../../../shared/components/tab/tab.component';
+import { TabContentDirective } from '../../../shared/directives/tab-content.directive';
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent],
+  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent, TabComponent, TabContentDirective],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })

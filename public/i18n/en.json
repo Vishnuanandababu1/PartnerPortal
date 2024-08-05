@@ -75,7 +75,10 @@
         "changepassword": "Change Password",
         "lockscreen": "Lock screen",
         "darktheme": "Dark Theme",
-        "logout": "Logout"
+        "logout": "Logout",
+        "pinfo": "Personal Info",
+        "cinfo": "Contact Information",
+        "profinfo": "Professional Information"
     },
     "contact": {
         "phcode": "Phone Code",

@@ -1,1 +1,13 @@
-<p>tab works!</p>
+<div class="tab-container" [ngClass]="customClass">
+    <div class="tab-header">
+        <div *ngFor="let tab of tabs; let i = index" class="tab-item" [ngClass]="{'active': activeTabIndex === i}"
+            (click)="selectTab(i)">
+            {{ tab.title }}
+        </div>
+    </div>
+    <div class="tab-content">
+        <ng-container *ngIf="tabs[activeTabIndex]">
+            <ng-container *ngTemplateOutlet="tabs[activeTabIndex].content"></ng-container>
+        </ng-container>
+    </div>
+</div>

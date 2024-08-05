@@ -1,0 +1,291 @@
+@mixin name {
+    font-size: 1em;
+    font-weight: 500;
+}
+@mixin date-info {
+    display: flex;
+    font-weight: 500;
+    line-height: 1.3;
+    font-size: 0.9em;
+}
+@mixin doc-no {
+    font-weight: 500;
+    font-size: 0.95em;
+    letter-spacing: 0.025rem;
+}
+
+.pat-info {
+    height: 100%;
+    overflow-y: overlay;
+    .pp-header {
+        top: 0;
+        z-index: 1;
+        height: 60px;
+        display: flex;
+        position: sticky;
+        align-items: center;
+        background: #ffffff;
+        padding: 0 1.75rem 0.25rem;
+        justify-content: space-between;
+        border-bottom: 1px solid #efefef;
+        .pp-completion {
+            width: 85%;
+            .pat-pc-steps {
+                width: 100%;
+                display: flex;
+                position: relative;
+                align-items: center;
+                .step-title {
+                    font-weight: 500;
+                    margin-top: -5px;
+                    min-width: 200px;
+                    font-size: 0.975em;
+                    .bad {
+                        color: #e66262;
+                    }
+                    .average {
+                        color: #f2bd18;
+                    }
+                    .good {
+                        color: #afc949;
+                    }
+                    .excellent {
+                        color: #1ce075;
+                    }
+                    label {
+                        padding-left: 5px;
+                    }
+                }
+                .steps-wrap {
+                    display: flex;
+                    width: inherit;
+                    position: relative;
+                    align-items: center;
+                    width: calc(100% - 200px);
+                    justify-content: space-evenly;
+                    .steps {
+                        height: 6px;
+                        width: inherit;
+                        margin-right: 5px;
+                        border-radius: 3px;
+                        position: relative;
+                        label {
+                            right: 0;
+                            top: 5px;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                            position: absolute;
+                        }
+                        &.step-1 {
+                            flex: 3;
+                            background: #e66262;
+                            label {
+                                color: #e66262;
+                            }
+                        }
+                        &.step-2 {
+                            flex: 2;
+                            background: #eca336;
+                            label {
+                                color: #eca336;
+                            }
+                        }
+                        &.step-3 {
+                            flex: 2;
+                            background: #ebc346;
+                            label {
+                                color: #ebc346;
+                            }
+                        }
+                        &.step-4 {
+                            flex: 1.5;
+                            background: #afc949;
+                            label {
+                                color: #afc949;
+                            }
+                        }
+                        &.step-5 {
+                            flex: 1.5;
+                            background: #1ce075;
+                            label {
+                                color: #1ce075;
+                            }
+                        }
+                    }
+                    .pc-position {
+                        width: 22px;
+                        height: 22px;
+                        margin-left: -2%;
+                        border-radius: 50%;
+                        position: absolute;
+                        background: #6c5e5e;
+                        left: calc(var(--value) * 1%);
+                        img {
+                            width: inherit;
+                            height: inherit;
+                            position: absolute;
+                            border-radius: inherit;
+                            -webkit-user-drag: none;
+                        }
+                    }
+                }
+            }
+        }
+        .btn-action {
+            top: 3px;
+            width: 15%;
+            min-width: 100px;
+            text-align: right;
+            position: relative;     
+            justify-content: flex-end;      
+        }
+    }
+    .pp-body {
+        overflow-y: overlay;
+        height: calc(100% - 60px);
+        padding: 1.5rem 1.75rem 1rem;
+        .card {
+            &.card-pat-info {
+                .card-header {
+                    .header-label {
+                        font-weight: 500;
+                        font-size: 1.025em;
+                    }
+                }
+                .card-body {
+                    min-height: 100px;
+                }
+            }
+            &.id-card {
+                .card-body {
+                    min-height: 75px;
+                    padding: 0.5rem 1rem;
+                    .card-name {
+                        @include name;
+                    }
+                    .card-no {
+                        @include doc-no;
+                    }
+                    .validity {
+                        @include date-info;
+                        span {
+                            padding: 0 7px;
+                        }
+                    }
+                    &.active {
+                        border-left: 6px solid #1ce075;
+                    }
+                    &.inactive {
+                        border-left: 6px solid #e66262;
+                        .validity {
+                            label {
+                                font-size: 0.9em;
+                                padding-top: 1px;
+                                color: #e66262;
+                            }
+                        }
+                    }
+                }
+            }
+            &.fam-card {
+                .card-body {
+                    min-height: 90px;
+                    .pat-card {
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        .pat-img {
+                            width: 70px;
+                            img {
+                                width: 55px;
+                                height: 55px;
+                                padding: 3px;
+                                border-radius: 50%;
+                                background: #ffffff;
+                            }
+                        }
+                        .pat-info {
+                            top: 18px;
+                            position: relative;
+                            width: calc(100% - 70px);
+                            .pat-name {
+                                @include name;
+                            }
+                            .pat-mrn {
+                                font-weight: 500;
+                                font-size: 0.925em;
+                                span {
+                                    padding-left: 5px;
+                                    font-size: 0.925em;
+                                }
+                            }
+                            .relation {
+                                left: 0;
+                                top: -28px;
+                                font-weight: 500;
+                                font-size: 0.9em;
+                                color: #eae2e2;
+                                position: absolute;
+                                span {
+                                    color: #ffffff;
+                                }
+                            }
+                        }
+                    }
+                }
+                &::before {
+                    content: "";
+                    width: 100%;
+                    height: 37px;
+                    position: absolute;
+                    background: linear-gradient(150deg, #39ef74, #4600f1 100%);
+                    background: linear-gradient(150deg, #f731db, #4600f1 100%);
+                    background: linear-gradient(150deg, #4600f1, #f731db 100%);
+                }
+            }
+            &.ins-card {
+                .card-body {
+                    padding: 0 1rem 0.5rem;
+                    .ins-info {
+                        .company-name {
+                            display: flex;
+                            font-weight: 500;
+                            min-height: 35px;
+                            color: #ffffff;
+                            position: relative;
+                            align-items: center;
+                        }
+                        .policy-holder {
+                            @include name;
+                            padding: 8px 0 4px;
+                        }
+                        .pln-info {
+                            @include date-info;
+                            line-height: 1.2;
+                            .plan-name {
+                                max-width: calc(100% - 90px);
+                            }
+                            .validity {
+                                width: 90px;
+                                padding-left: 5px;
+                            }
+                        }
+                        .policy-no {
+                            @include doc-no;
+                        }
+                    }
+                }
+                &::before {
+                    content: "";
+                    width: 100%;
+                    height: 37px;
+                    position: absolute;
+                    background: linear-gradient(150deg, #4600f1, #39ef74 100%);
+                }
+            }
+            &:last-of-type {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}

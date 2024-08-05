@@ -24,7 +24,7 @@ export class ScheduleSettingsComponent implements OnInit {
   selectedCategoryId: any;
   categoryItem: string = '';
   categoryOptions: any;
-  categoryArray: { id: string; categoryName: string }[] = [
+  categoryArray: Array<any>= [
     { id: '1', categoryName: 'Doctor' },
     { id: '3', categoryName: 'Anesthetist' },
     { id: '2', categoryName: 'OR Room' },
