@@ -23,12 +23,44 @@ export class ScheduleSettingsComponent implements OnInit {
   // normal category select setup *******************
   selectedCategoryId: any;
   categoryItem: string = '';
-  categoryOptions: any;
   categoryArray: Array<any>= [
-    { id: '1', categoryName: 'Doctor' },
-    { id: '3', categoryName: 'Anesthetist' },
-    { id: '2', categoryName: 'OR Room' },
+    { id: '1', displayname: 'Doctor' },
+    { id: '3', displayname: 'Anesthetist' },
+    { id: '2', displayname: 'OR Room' },
   ];
+options = [
+    {
+      displayname: 'United States',
+      countrycode: 'us',
+      countryname: 'United States'
+    },
+    {
+      displayname: 'Canada',
+      countrycode: 'ca',
+      countryname: 'Canada'
+    },
+    {
+      displayname: 'Germany',
+      countrycode: 'de',
+      countryname: 'Germany'
+    },
+    {
+      displayname: 'Japan',
+      countrycode: 'jp',
+      countryname: 'Japan'
+    },
+    {
+      displayname: 'India',
+      countrycode: 'in',
+      countryname: 'India'
+    },
+    {
+      displayname: 'Australia',
+      countrycode: 'au',
+      countryname: 'Australia'
+    }
+  ];
+  
   suggestions = [
     { name: 'Apple', code: 'APL' },
     { name: 'Avocado', code: 'APL' },
@@ -51,7 +83,6 @@ export class ScheduleSettingsComponent implements OnInit {
   formChangeWarningDialog: boolean = false;
   date: Date | undefined;
   constructor(private router: Router, private fb: FormBuilder) {
-    this.categoryOptions = this.categoryArray.map(option => option.categoryName);
     this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
   }
 
@@ -69,13 +100,7 @@ export class ScheduleSettingsComponent implements OnInit {
     })
   }
   selectCategory(event: any) {
-    const selectedCategoryName = event as string;
-    const selectedCategory = this.categoryArray!.find(item => item.categoryName === selectedCategoryName);
 
-    if (selectedCategory) {
-      this.selectedCategoryId = selectedCategory.id;
-      this.categoryItem = selectedCategory.categoryName;
-    }
   }
 
   selectSites(event: any) {

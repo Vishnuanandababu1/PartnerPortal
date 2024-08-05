@@ -10,8 +10,8 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <select-control title="Category" validation="required"
-                                            formControlName="category" [selectedItem]="categoryItem"
-                                            [options]="categoryOptions" (optionSelected)="selectCategory($event)"
+                                            formControlName="category" optionDisplayProperty="displayname" 
+                                            [options]="options" (optionSelected)="selectCategory($event)"
                                             [error]="scheduleSettingForm.controls['category'].invalid && scheduleSettingForm.controls['category'].touched"
                                             [errorMessage]="getErrorMessage('category')">
                                         </select-control>
