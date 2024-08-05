@@ -10,16 +10,16 @@
   <label class="arrow"><i class="vi vi-chevron-down"></i></label>
 
   <div class="option-list" *ngIf="isDropdownOpen">
-    <input *ngIf="showSearch" type="text" class="form-control" placeholder="Search..." (input)="handleInput($event)"
+    <input *ngIf="showSearch" type="text" class="form-control" placeholder="Search..." (input)="handleInput($event) "
       (keydown)="onKeyDown($event)" />
       <label class="checkbox-container select-all">
-        <input type="checkbox" [checked]="selectAllChecked" (change)="onSelectAllChange($event)" />
+        <input type="checkbox" [checked]="selectAllChecked" (change)="onSelectAllChange($event)" tabindex="-1"  />
         <span class="checkmark"></span>
       </label>
     <div class="list-item" *ngFor="let option of filteredOptions ; let i = index" (change)="toggleCheckbox(option)"
       [ngClass]="{'highlighted': i === highlightedIndex}">
       <label class="checkbox-container multi-select">
-        <input type="checkbox" [checked]="isSelected(option)" />
+        <input type="checkbox" [checked]="isSelected(option)" tabindex="-1" />
         <span class="checkmark"></span>{{ option }}
       </label>
     </div>
