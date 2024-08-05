@@ -64,7 +64,7 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     this.subscription = this.onSearch
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe(searchText => {
-        this.filterOptions(searchText);
+        this.focusOption(searchText);
         this.keySearch = '';
       });
 
@@ -174,25 +174,6 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
       event.preventDefault();
     }
   }
-
-  filterOptions(value: string) {
-    const filterValue = value.toLowerCase();
-    this.filteredOptions = this.options
-      .filter(option => option[this.optionDisplayProperty]?.toLowerCase().includes(filterValue))
-      .sort((a, b) => {
-        const aIndex = a[this.optionDisplayProperty].toLowerCase().indexOf(filterValue);
-        const bIndex = b[this.optionDisplayProperty].toLowerCase().indexOf(filterValue);
-        return aIndex - bIndex;
-      });
-
-    if (this.filteredOptions.length > 0) {
-      const firstFilteredIndex = this.options.indexOf(this.filteredOptions[0]);
-      if (firstFilteredIndex >= 0) {
-        this.highlightedIndex = firstFilteredIndex;
-      }
-    }
-  }
-
   highlightNext() {
     if (this.highlightedIndex === null || this.highlightedIndex === this.filteredOptions.length - 1) {
       this.highlightedIndex = 0;
@@ -208,7 +189,34 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
       this.highlightedIndex--;
     }
   }
-
+  focusOption(value: string) {
+    const filterValue = value.toLowerCase();
+    let foundIndex = this.options.findIndex(option => option[this.optionDisplayProperty]?.toLowerCase() === filterValue);
+    if (foundIndex === -1) {
+      foundIndex = this.options.findIndex(option => option[this.optionDisplayProperty]?.toLowerCase().startsWith(filterValue));
+    }
+    if (foundIndex === -1) {
+      foundIndex = this.options.findIndex(option => option[this.optionDisplayProperty]?.toLowerCase().includes(filterValue));
+    }
+  
+    if (foundIndex !== -1) {
+      this.highlightedIndex = foundIndex;
+      this.scrollToHighlighted();
+    } else {
+      this.highlightedIndex = null;
+    }
+  }
+  scrollToHighlighted() {
+    setTimeout(() => {
+      const container = document.querySelector('.option-list');
+      if (container) {
+        const highlighted = container.querySelector('.highlighted');
+        if (highlighted) {
+          highlighted.scrollIntoView({ block: 'nearest' });
+        }
+      }
+    }, 0);
+  }
   onBlur() {
     this.onTouched();
   }
