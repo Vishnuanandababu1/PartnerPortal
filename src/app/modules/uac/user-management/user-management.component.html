@@ -116,28 +116,28 @@
         <div class="layout-aside-right page-tab-layout">
             <app-tabs [customClass]="'tab-link'">
                 <ng-template tabContent title="User Profile">
-                    <app-user-profile></app-user-profile>
+                    <app-user-profile />
                 </ng-template>
                 <ng-template tabContent title="Documents">
                     <p>Documents</p>
                 </ng-template>
                 <ng-template tabContent title="Privilege View">
-                    <p>Privilege View</p>
+                    <app-privilege-view />
                 </ng-template>
                 <ng-template tabContent title="User Schedule">
                     <p>User Schedule</p>
                 </ng-template>
-                <ng-template tabContent title="Attendance">
-                    <p>Attendance</p>
+                <ng-template tabContent title="Timesheet">
+                    <app-user-timesheet />
                 </ng-template>
                 <ng-template tabContent title="Payroll Settings">
-                    <p>Payroll Settings</p>
+                    <app-payroll-settings />
                 </ng-template>
-                <ng-template tabContent title="Log View">
-                    <p>Log View</p>
+                <ng-template tabContent title="Login History">
+                    <app-login-history />
                 </ng-template>
                 <ng-template tabContent title="Settings">
-                    <p>Settings</p>
+                    <app-user-settings />
                 </ng-template>
             </app-tabs>
 

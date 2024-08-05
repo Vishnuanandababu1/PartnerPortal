@@ -14,7 +14,7 @@
     letter-spacing: 0.025rem;
 }
 
-.pat-info {
+.prof-info {
     height: 100%;
     overflow-y: overlay;
     .pp-header {
@@ -25,12 +25,12 @@
         position: sticky;
         align-items: center;
         background: #ffffff;
-        padding: 0 1.75rem 0.25rem;
+        padding: 0 1.5rem 0.25rem;
         justify-content: space-between;
         border-bottom: 1px solid #efefef;
         .pp-completion {
             width: 85%;
-            .pat-pc-steps {
+            .prof-pc-steps {
                 width: 100%;
                 display: flex;
                 position: relative;
@@ -136,16 +136,17 @@
             width: 15%;
             min-width: 100px;
             text-align: right;
-            position: relative;     
-            justify-content: flex-end;      
+            position: relative;
+            padding-right: 5px;
+            justify-content: flex-end;
         }
     }
     .pp-body {
         overflow-y: overlay;
         height: calc(100% - 60px);
-        padding: 1.5rem 1.75rem 1rem;
+        padding: 1.5rem 1.5rem 1rem;
         .card {
-            &.card-pat-info {
+            &.card-prof-info {
                 .card-header {
                     .header-label {
                         font-weight: 500;
@@ -154,133 +155,6 @@
                 }
                 .card-body {
                     min-height: 100px;
-                }
-            }
-            &.id-card {
-                .card-body {
-                    min-height: 75px;
-                    padding: 0.5rem 1rem;
-                    .card-name {
-                        @include name;
-                    }
-                    .card-no {
-                        @include doc-no;
-                    }
-                    .validity {
-                        @include date-info;
-                        span {
-                            padding: 0 7px;
-                        }
-                    }
-                    &.active {
-                        border-left: 6px solid #1ce075;
-                    }
-                    &.inactive {
-                        border-left: 6px solid #e66262;
-                        .validity {
-                            label {
-                                font-size: 0.9em;
-                                padding-top: 1px;
-                                color: #e66262;
-                            }
-                        }
-                    }
-                }
-            }
-            &.fam-card {
-                .card-body {
-                    min-height: 90px;
-                    .pat-card {
-                        display: flex;
-                        align-items: center;
-                        position: relative;
-                        .pat-img {
-                            width: 70px;
-                            img {
-                                width: 55px;
-                                height: 55px;
-                                padding: 3px;
-                                border-radius: 50%;
-                                background: #ffffff;
-                            }
-                        }
-                        .pat-info {
-                            top: 18px;
-                            position: relative;
-                            width: calc(100% - 70px);
-                            .pat-name {
-                                @include name;
-                            }
-                            .pat-mrn {
-                                font-weight: 500;
-                                font-size: 0.925em;
-                                span {
-                                    padding-left: 5px;
-                                    font-size: 0.925em;
-                                }
-                            }
-                            .relation {
-                                left: 0;
-                                top: -28px;
-                                font-weight: 500;
-                                font-size: 0.9em;
-                                color: #eae2e2;
-                                position: absolute;
-                                span {
-                                    color: #ffffff;
-                                }
-                            }
-                        }
-                    }
-                }
-                &::before {
-                    content: "";
-                    width: 100%;
-                    height: 37px;
-                    position: absolute;
-                    background: linear-gradient(150deg, #39ef74, #4600f1 100%);
-                    background: linear-gradient(150deg, #f731db, #4600f1 100%);
-                    background: linear-gradient(150deg, #4600f1, #f731db 100%);
-                }
-            }
-            &.ins-card {
-                .card-body {
-                    padding: 0 1rem 0.5rem;
-                    .ins-info {
-                        .company-name {
-                            display: flex;
-                            font-weight: 500;
-                            min-height: 35px;
-                            color: #ffffff;
-                            position: relative;
-                            align-items: center;
-                        }
-                        .policy-holder {
-                            @include name;
-                            padding: 8px 0 4px;
-                        }
-                        .pln-info {
-                            @include date-info;
-                            line-height: 1.2;
-                            .plan-name {
-                                max-width: calc(100% - 90px);
-                            }
-                            .validity {
-                                width: 90px;
-                                padding-left: 5px;
-                            }
-                        }
-                        .policy-no {
-                            @include doc-no;
-                        }
-                    }
-                }
-                &::before {
-                    content: "";
-                    width: 100%;
-                    height: 37px;
-                    position: absolute;
-                    background: linear-gradient(150deg, #4600f1, #39ef74 100%);
                 }
             }
             &:last-of-type {
