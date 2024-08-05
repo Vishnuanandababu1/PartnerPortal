@@ -227,7 +227,11 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     this.toggleSelectAll();
   }
 
-  onBlur() {
-    this.onTouched();
+  onBlur(event: FocusEvent) {
+    const target = event.relatedTarget as HTMLElement;
+    if (target && !target.classList.contains('option-list') && !target.classList.contains('list-item')) {
+      this.onTouched();
+      this.isDropdownOpen = false;
+    }
   }
 }

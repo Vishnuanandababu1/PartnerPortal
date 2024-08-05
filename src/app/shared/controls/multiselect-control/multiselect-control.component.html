@@ -1,7 +1,7 @@
 <div class="form-group multi-select" [ngClass]="customClass" (clickOutside)="selectListOutsideClick()">
   <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
   <input type="text" class="form-control" placeholder="{{ placeholder }}"
-    [ngClass]="{'is-invalid': validationClass || error}" (blur)="onBlur()" [disabled]="disabled"
+    [ngClass]="{'is-invalid': validationClass || error}" (blur)="onBlur($event)" [disabled]="disabled"
     (click)="toggleDropdown()" readonly [value]="selectedItemList" (keydown)="onKeyDown($event)" />
   <span class="focus-border"></span>
   <label class="clear" *ngIf="isDropdownOpen && clearVal" (click)="resetSelection()">
