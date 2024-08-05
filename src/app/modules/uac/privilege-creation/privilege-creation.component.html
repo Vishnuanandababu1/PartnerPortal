@@ -19,14 +19,14 @@
                             </div>
                             <div class="col-lg-4">
                                 <select-control title="Authority Level" validation="required"
-                                    formControlName="authorityLevel" [selectedItem]="levelItem"
+                                    formControlName="authorityLevel" 
                                     [options]="authLevelOptions" (optionSelected)="selectLevel($event)"
                                     [error]="roleCreationForm.controls['authorityLevel'].invalid && roleCreationForm.controls['authorityLevel'].touched">
                                 </select-control>
                             </div>
                             <div class="col-lg-8">
                                 <select-control title="User Type" validation="required" formControlName="userType"
-                                    [selectedItem]="userTypeItem" [options]="userTypeOptions"
+                                    [options]="userTypeOptions"
                                     (optionSelected)="selectUserType($event)"
                                     [error]="roleCreationForm.controls['userType'].invalid && roleCreationForm.controls['userType'].touched">
                                 </select-control>

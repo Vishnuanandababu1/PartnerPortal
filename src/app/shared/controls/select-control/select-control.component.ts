@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, forwardRef, OnInit, OnDestroy } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'select-control',
   standalone: true,
-  imports: [CommonModule, ClickOutsideModule],
+  imports: [CommonModule, ReactiveFormsModule, ClickOutsideModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -17,78 +16,120 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs'
     },
   ],
   templateUrl: './select-control.component.html',
-  styleUrl: './select-control.component.scss'
+  styleUrls: ['./select-control.component.scss']
 })
 export class SelectControlComponent implements ControlValueAccessor, OnInit, OnDestroy {
   onSearch = new Subject<string>();
   keySearch: string = '';
+
   @Input() title!: string;
-  @Input() options: any = [];
-  @Input() selectedItem: any;
+  @Input() options: any[] = [];
+  @Input() optionDisplayProperty: string = 'displayname';
   @Input() validation!: string;
   @Input() placeholder!: string;
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
   @Input() clearVal: boolean = true;
-  @Input() disabled: boolean = false;
   @Input() error: boolean = false;
   @Input() errorMessage: string = '';
   @Input() validationClass: boolean = false;
-  @Output() optionSelected = new EventEmitter<string>();
+  @Output() optionSelected = new EventEmitter<any>();
+
+  inputControl: FormControl = new FormControl({ value: '', disabled: false });
   filteredOptions: any[] = [];
   isDropdownOpen = false;
   highlightedIndex: number | null = null;
-  private onChange: any = () => { };
-  private onTouched: any = () => { };
+  selectedItem: any = null;
+  private onChange: (value: any) => void = () => { };
+  private onTouched: () => void = () => { };
   private subscription: Subscription = new Subscription();
 
-  ngOnInit() {
-    this.subscription = this.onSearch.pipe(debounceTime(1000), distinctUntilChanged()).subscribe(searchText => {
-      this.filterOptions(searchText);
-      this.keySearch = '';
-    })
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
   }
+  set disabled(value: boolean) {
+    this._disabled = value;
+    if (this.inputControl) {
+      if (value) {
+        this.inputControl.disable();
+      } else {
+        this.inputControl.enable();
+      }
+    }
+  }
+
+  ngOnInit() {
+    this.subscription = this.onSearch
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(searchText => {
+        this.filterOptions(searchText);
+        this.keySearch = '';
+      });
+
+    this.filteredOptions = this.options;
+
+    // Sync the input control value with the selected item
+    this.inputControl.valueChanges.subscribe(value => {
+      this.onChange(value);
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
   writeValue(value: any): void {
-    if (value !== undefined) {
-      this.selectedItem = value;
-    }
+    this.selectedItem = value || null;
+    const displayValue = this.selectedItem && this.selectedItem[this.optionDisplayProperty] ? this.selectedItem[this.optionDisplayProperty] : ' ';
+    this.inputControl.setValue(displayValue, { emitEvent: false });
+    this.filteredOptions = this.options;
+    console.log('selectedItem set to:', this.selectedItem);
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void { }
-
   toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+    if (!this.inputControl.disabled) {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    }
   }
+
   openDropdown(event: KeyboardEvent) {
     if (event.ctrlKey && event.key === 'Enter') {
       this.toggleDropdown();
     }
   }
+
   hideDropdown() {
     setTimeout(() => {
       this.isDropdownOpen = false;
     }, 200);
   }
 
-  selectOption(option: string) {
+  selectOption(option: any) {
+    console.log('selectOption called with:', option);
     this.selectedItem = option;
     this.isDropdownOpen = false;
+    const displayValue = this.selectedItem[this.optionDisplayProperty];
+    console.log('Setting inputControl value to:', displayValue);
+    this.inputControl.setValue(displayValue, { emitEvent: false });
     this.onChange(this.selectedItem);
     this.onTouched();
     this.optionSelected.emit(this.selectedItem);
+    console.log('selectedItem after selection:', this.selectedItem);
   }
 
   resetSelection() {
     this.selectedItem = null;
+    this.inputControl.setValue(' ', { emitEvent: false });
     this.onChange(null);
     this.onTouched();
     this.isDropdownOpen = false;
@@ -98,10 +139,6 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     this.isDropdownOpen = false;
   }
 
-  /**
- * Handles keydown events for navigating and selecting options in the dropdown.
- * @param event The keyboard event.
- */
   onKeyDown(event: KeyboardEvent) {
     const isAlphabetOrNumberKey = /^[a-zA-Z0-9]$/.test(event.key);
     if (this.isDropdownOpen) {
@@ -116,7 +153,7 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
           break;
         case 'Enter':
           if (this.highlightedIndex !== null) {
-            this.selectOption(this.options[this.highlightedIndex]);
+            this.selectOption(this.filteredOptions[this.highlightedIndex]);
           }
           event.preventDefault();
           break;
@@ -125,8 +162,8 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
           break;
         default:
           if (isAlphabetOrNumberKey) {
-            this.keySearch += event.key?.toString()
-            if (this.keySearch != '') {
+            this.keySearch += event.key.toString();
+            if (this.keySearch !== '') {
               this.onSearch.next(this.keySearch);
             }
           }
@@ -137,50 +174,36 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
       event.preventDefault();
     }
   }
-  /**
-   * Filters and sorts options based on the provided value.
-   * @param value The value to filter options by.
-   */
+
   filterOptions(value: string) {
-    const filterValue = value?.toLowerCase();
+    const filterValue = value.toLowerCase();
     this.filteredOptions = this.options
-      .filter((option: string) => option?.toLowerCase()?.includes(filterValue))
-      .sort((a: string, b: string) => {
-        const aIndex = a.toLowerCase().indexOf(filterValue);
-        const bIndex = b.toLowerCase().indexOf(filterValue);
+      .filter(option => option[this.optionDisplayProperty]?.toLowerCase().includes(filterValue))
+      .sort((a, b) => {
+        const aIndex = a[this.optionDisplayProperty].toLowerCase().indexOf(filterValue);
+        const bIndex = b[this.optionDisplayProperty].toLowerCase().indexOf(filterValue);
         return aIndex - bIndex;
       });
+
     if (this.filteredOptions.length > 0) {
-      const firstFilteredIndex = this.options?.indexOf(this.filteredOptions?.[0]);
+      const firstFilteredIndex = this.options.indexOf(this.filteredOptions[0]);
       if (firstFilteredIndex >= 0) {
         this.highlightedIndex = firstFilteredIndex;
-        if (this.highlightedIndex !== null) {
-          this.selectOption(this.options[this.highlightedIndex]);
-        }
       }
-
     }
   }
-  /**
-* Highlights the next option in the dropdown list.
-* If the current highlight is at the end of the list or no item is highlighted,
-* the first item will be highlighted.
-*/
+
   highlightNext() {
-    if (this.highlightedIndex === null || this.highlightedIndex === this.options.length - 1) {
+    if (this.highlightedIndex === null || this.highlightedIndex === this.filteredOptions.length - 1) {
       this.highlightedIndex = 0;
     } else {
       this.highlightedIndex++;
     }
   }
-  /**
-  * Highlights the previous option in the dropdown list.
-  * If the current highlight is at the beginning of the list or no item is highlighted,
-  * the last item will be highlighted.
-  */
+
   highlightPrevious() {
     if (this.highlightedIndex === null || this.highlightedIndex === 0) {
-      this.highlightedIndex = this.options.length - 1;
+      this.highlightedIndex = this.filteredOptions.length - 1;
     } else {
       this.highlightedIndex--;
     }
