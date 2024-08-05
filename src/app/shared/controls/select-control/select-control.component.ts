@@ -198,7 +198,7 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     if (foundIndex === -1) {
       foundIndex = this.options.findIndex(option => option[this.optionDisplayProperty]?.toLowerCase().includes(filterValue));
     }
-  
+
     if (foundIndex !== -1) {
       this.highlightedIndex = foundIndex;
       this.scrollToHighlighted();

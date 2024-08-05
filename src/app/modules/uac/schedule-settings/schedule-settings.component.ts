@@ -14,7 +14,7 @@ import { DialogComponent } from '../../../shared/components/dialog/dialog.compon
 @Component({
   selector: 'app-schedule-settings',
   standalone: true,
-  imports: [CommonModule,RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, AutocompleteControlComponent, CalendarModule, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, AutocompleteControlComponent, CalendarModule, DialogComponent],
   templateUrl: './schedule-settings.component.html',
   styleUrl: './schedule-settings.component.scss'
 })
@@ -23,12 +23,12 @@ export class ScheduleSettingsComponent implements OnInit {
   // normal category select setup *******************
   selectedCategoryId: any;
   categoryItem: string = '';
-  categoryArray: Array<any>= [
+  categoryArray: Array<any> = [
     { id: '1', displayname: 'Doctor' },
     { id: '3', displayname: 'Anesthetist' },
     { id: '2', displayname: 'OR Room' },
   ];
-options = [
+  options = [
     {
       displayname: 'United States',
       countrycode: 'us',
@@ -60,7 +60,7 @@ options = [
       countryname: 'Australia'
     }
   ];
-  
+
   suggestions = [
     { name: 'Apple', code: 'APL' },
     { name: 'Avocado', code: 'APL' },
@@ -71,6 +71,7 @@ options = [
     { name: 'Fig', code: 'FIG' },
     { name: 'Grape', code: 'GRP' }
   ];
+  
   selectedSiteId: any;
   userSiteItem: any[] = [];
   userSiteOptions: any;
@@ -94,7 +95,7 @@ options = [
       allowedSites: [[], [Validators.required]],
       fromDate: ['', [Validators.required]],
       isActive: [true],
-      userType:['', [Validators.required]],
+      userType: ['', [Validators.required]],
       remarks: ['', [Validators.maxLength(100)]],
 
     })
@@ -113,7 +114,7 @@ options = [
     }
   }
 
-   get scheduleInfo() {
+  get scheduleInfo() {
     return this.scheduleSettingForm;
   }
 
@@ -153,7 +154,7 @@ options = [
   }
   getErrorMessage(formControlName: string): string {
     const control = this.scheduleSettingForm.get(formControlName);
-  
+
     if (control && control.errors) {
       if (control.errors['required']) {
         return 'This field is required';
@@ -181,8 +182,8 @@ options = [
       }
       // Add other custom error checks here as needed
     }
-  
+
     return '';
   }
-  
+
 }

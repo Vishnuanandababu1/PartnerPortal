@@ -42,8 +42,8 @@ export class InputControlComponent implements ControlValueAccessor, OnInit {
 
   inputControl = new FormControl('');
 
-  private onChange: any = () => {};
-  private onTouched: any = () => {};
+  private onChange: any = () => { };
+  private onTouched: any = () => { };
 
   ngOnInit() {
     this.inputControl.valueChanges.subscribe(value => {

@@ -91,6 +91,10 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     }
   }
 
+  onCloseDropdown() {
+    this.isDropdownOpen = false;
+  }
+
   isSelected(option: string): boolean {
     return Array.isArray(this.selectedItems) && this.selectedItems.includes(option);
   }
@@ -213,7 +217,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
   toggleSelectAll() {
     if (this.selectAllChecked) {
-      this.selectedItems =this.options;
+      this.selectedItems = this.options;
     } else {
       this.selectedItems = [];
     }

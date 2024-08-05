@@ -197,6 +197,57 @@
             overflow-y: overlay;
             background: #ffffff;
             box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.125);
+            .list-filter {
+                gap: 10px;
+                display: flex;
+                padding: 9px 10px;
+                align-items: center;
+                border-bottom: 1px solid #efefef;
+                .checkbox-container {
+                    &.select-all {
+                        top: -10px;
+                        margin-bottom: 0;
+                        padding-left: 22px;
+                    }
+                }
+                .form-group {
+                    margin-bottom: 0;
+                    .form-control {
+                        height: 34px;
+                        border-radius: 5px;
+                        background: #ffffff;
+                        padding: 0.275rem 0.5rem;
+                        border: 1px solid #cccccc !important;
+                        &::placeholder {
+                            font-size: 0.925em;
+                        }
+                    }
+                }
+                .ms-close {
+                    a {
+                        width: 28px;
+                        height: 28px;
+                        display: grid;
+                        cursor: pointer;
+                        position: relative;
+                        border-radius: 5px;
+                        place-items: center;
+                        text-decoration: none;
+                        border: 1px solid #efefef;
+                        box-shadow: 0 0 3px #ebebeb;
+                        i {
+                            font-size: 14px;
+                            font-weight: 400;
+                        }
+                        &:hover {
+                            background: rgba(255, 127, 93, 0.1);
+                            i {
+                                color: #ff7f5d;
+                            }
+                        }
+                    }
+                }
+            }
             .list-item {
                 font-size: 1em;
                 cursor: default;

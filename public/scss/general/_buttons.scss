@@ -231,6 +231,21 @@ button[disabled] {
     color: #004b91;
 }
 
+.icon-button {
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    &:focus {
+        a {
+            background: rgba(255, 127, 93, 0.1);
+            i {
+                color: #ff7f5d;
+            }
+        }
+    }
+}
+
 .icon-btn-list {
     display: flex;
     align-items: center;

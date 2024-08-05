@@ -24,8 +24,7 @@ import { createPopper, Instance as PopperInstance } from '@popperjs/core';
   ],
 })
 export class AutocompleteControlComponent
-  implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit, Validator
-{
+  implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit, Validator {
   @Input() title!: string;
   @Input() validation!: string;
   @Input() placeholder: string = '';
@@ -52,8 +51,8 @@ export class AutocompleteControlComponent
   private popperInstance!: PopperInstance;
   highlightedIndex: number | null = null;
 
-  private onChange: any = () => {};
-  private onTouched: any = () => {};
+  private onChange: any = () => { };
+  private onTouched: any = () => { };
 
   constructor() {
     this.inputControl.valueChanges
@@ -66,7 +65,7 @@ export class AutocompleteControlComponent
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.createPopper();
@@ -154,7 +153,7 @@ export class AutocompleteControlComponent
       case 'ArrowDown':
         this.highlightedIndex =
           this.highlightedIndex === null ||
-          this.highlightedIndex === this.filteredSuggestions.length - 1
+            this.highlightedIndex === this.filteredSuggestions.length - 1
             ? 0
             : this.highlightedIndex + 1;
         event.preventDefault();
@@ -205,11 +204,11 @@ export class AutocompleteControlComponent
   validate(control: AbstractControl): ValidationErrors | null {
     return this.inputControl.invalid
       ? {
-          invalidForm: {
-            valid: false,
-            message: 'Autocomplete control is invalid',
-          },
-        }
+        invalidForm: {
+          valid: false,
+          message: 'Autocomplete control is invalid',
+        },
+      }
       : null;
   }
 }

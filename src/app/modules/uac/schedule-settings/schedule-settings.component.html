@@ -10,7 +10,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <select-control title="Category" validation="required"
-                                            formControlName="category" optionDisplayProperty="displayname" 
+                                            formControlName="category" optionDisplayProperty="displayname"
                                             [options]="options" (optionSelected)="selectCategory($event)"
                                             [error]="scheduleSettingForm.controls['category'].invalid && scheduleSettingForm.controls['category'].touched"
                                             [errorMessage]="getErrorMessage('category')">
@@ -26,7 +26,8 @@
                                     <div class="col-lg-4">
                                         <multiselect-control [title]="'Allowed Sites'" validation="required"
                                             formControlName="allowedSites" [options]="userSiteOptions"
-                                            [selectedItems]="userSiteItem" (optionSelected)="selectSites($event)"
+                                            [showSearch]="true" [selectedItems]="userSiteItem"
+                                            (optionSelected)="selectSites($event)"
                                             [error]="scheduleSettingForm.controls['allowedSites'].invalid && scheduleSettingForm.controls['allowedSites'].touched"
                                             [errorMessage]="getErrorMessage('allowedSites')">
                                         </multiselect-control>
@@ -37,7 +38,7 @@
                                         <autocomplete-control [title]="'User Type'" validation="required"
                                             [suggestions]="suggestions" field="name" (select)="onSelect($event)"
                                             (search)="onSearch($event)" formControlName="userType"
-                                            [forceSelection]="true" 
+                                            [forceSelection]="true"
                                             [error]="scheduleSettingForm.controls['userType'].invalid && scheduleSettingForm.controls['userType'].touched"
                                             [errorMessage]="getErrorMessage('userType')">
                                         </autocomplete-control>
@@ -45,8 +46,8 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label class="inp-label required">From Date</label>
-                                            <p-calendar formControlName="fromDate" [iconDisplay]="'input'" [showIcon]="true"
-                                                formControlName="fromDate" inputId="icondisplay"
+                                            <p-calendar formControlName="fromDate" [iconDisplay]="'input'"
+                                                [showIcon]="true" formControlName="fromDate" inputId="icondisplay"
                                                 [styleClass]="'form-control'"
                                                 [ngClass]="{'is-invalid' : (scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false}">
                                             </p-calendar>

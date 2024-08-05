@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormControl } from '@angular/forms';
 
-
 @Component({
   selector: 'textarea-control',
   standalone: true,

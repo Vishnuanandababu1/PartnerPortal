@@ -18,8 +18,8 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="double-sel-inp md-80">
-                                <select-control title="Prefix" formControlName="prefix" 
-                                    [options]="prefixOptions" (optionSelected)="selectPrefix($event)">
+                                <select-control title="Prefix" formControlName="prefix" [options]="prefixOptions"
+                                    (optionSelected)="selectPrefix($event)">
                                 </select-control>
                                 <input-control title="First Name" validation="required" formControlName="firstName"
                                     [error]="userRegistrationForm.controls['firstName'].invalid && userRegistrationForm.controls['firstName'].touched"
@@ -43,8 +43,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="Gender" validation="required" formControlName="gender"
-                                 [options]="genderOptions"
-                                (optionSelected)="selectGender($event)"
+                                [options]="genderOptions" (optionSelected)="selectGender($event)"
                                 [error]="userRegistrationForm.controls['gender'].invalid && userRegistrationForm.controls['gender'].touched">
                             </select-control>
                         </div>
@@ -84,14 +83,12 @@
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Marital Status" formControlName="maritalStatus"
-                            [options]="maritalStatusOptions"
-                                (optionSelected)="selectMaritalStatus($event)">
+                                [options]="maritalStatusOptions" (optionSelected)="selectMaritalStatus($event)">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Nationality" formControlName="nationality"
-                                [options]="nationalityOptions"
-                                (optionSelected)="selectNationality($event)"
+                                [options]="nationalityOptions" (optionSelected)="selectNationality($event)"
                                 [error]="userRegistrationForm.controls['nationality'].invalid && userRegistrationForm.controls['nationality'].touched">
                             </select-control>
                         </div>
@@ -193,8 +190,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="User Type" validation="required" formControlName="userType"
-                              [options]="userTypeOptions"
-                                (optionSelected)="selectUserType($event)"
+                                [options]="userTypeOptions" (optionSelected)="selectUserType($event)"
                                 [error]="userRegistrationForm.controls['userType'].invalid && userRegistrationForm.controls['userType'].touched">
                             </select-control>
                         </div>
@@ -213,20 +209,18 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="Department" validation="required" formControlName="department"
-                                [options]="userTypeOptions"
-                                (optionSelected)="selectUserType($event)"
+                                [options]="userTypeOptions" (optionSelected)="selectUserType($event)"
                                 [error]="userRegistrationForm.controls['department'].invalid && userRegistrationForm.controls['department'].touched">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
-                            <select-control title="Speciality" formControlName="speciality"
-                                [options]="userTypeOptions"
+                            <select-control title="Speciality" formControlName="speciality" [options]="userTypeOptions"
                                 (optionSelected)="selectUserType($event)">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Designation / Job Title" validation="required"
-                                formControlName="userType"  [options]="userTypeOptions"
+                                formControlName="userType" [options]="userTypeOptions"
                                 (optionSelected)="selectUserType($event)"
                                 [error]="userRegistrationForm.controls['designation'].invalid && userRegistrationForm.controls['designation'].touched">
                             </select-control>
@@ -246,8 +240,7 @@
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Reporting Manager" formControlName="reportingManager"
-                                [options]="userTypeOptions"
-                                (optionSelected)="selectUserType($event)">
+                                [options]="userTypeOptions" (optionSelected)="selectUserType($event)">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
@@ -317,8 +310,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="User Status" validation="required" formControlName="userStatus"
-                                [options]="userStatusOptions"
-                                (optionSelected)="selectUserStatus($event)"
+                                [options]="userStatusOptions" (optionSelected)="selectUserStatus($event)"
                                 [validationClass]="(userRegistrationForm.get('userStatus')?.invalid && userRegistrationForm.get('userStatus')?.touched) ?? false">
                             </select-control>
                         </div>
