@@ -125,7 +125,7 @@ export class AutocompleteControlComponent
     this.inputControl.setValue('');
   }
 
-  handleBlur() {
+  onBlur() {
     if (
       this.forceSelection &&
       !this.filteredSuggestions.find(

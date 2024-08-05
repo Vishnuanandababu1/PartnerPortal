@@ -1,7 +1,7 @@
 <div class="form-group auto-complete" [ngClass]="customClass">
   <label class="inp-label" [ngClass]="validation" *ngIf="!noLabel">{{ title }}</label>
   <input #inputElement type="text" class="form-control" [placeholder]="placeholder" [formControl]="inputControl"
-    [disabled]="disabled" (blur)="handleBlur()" (keydown)="onKeyDown($event)" [ngClass]="{'is-invalid': error}" />
+    [disabled]="disabled" (blur)="onBlur()" (keydown)="onKeyDown($event)" [ngClass]="{'is-invalid': error}" />
   <span class="focus-border"></span>
   <label class="clear" *ngIf="inputControl.value && clearVal" (click)="resetInput()">
     <i class="vi vi-close"></i>
