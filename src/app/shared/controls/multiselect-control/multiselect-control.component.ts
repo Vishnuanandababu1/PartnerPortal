@@ -35,7 +35,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   @Input() errorMessage: string = '';
   @Input() showSearch: boolean = false;
   @Output() optionsSelected = new EventEmitter<string[]>();
-
+  selectAllChecked: boolean = false; // New property
   selectedItemList: string = '';
   isDropdownOpen = false;
   filteredOptions: any[] = [];
@@ -211,6 +211,21 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     }, 0);
   }
 
+  toggleSelectAll() {
+    if (this.selectAllChecked) {
+      this.selectedItems =this.options;
+    } else {
+      this.selectedItems = [];
+    }
+    this.selectedItemList = this.selectedItems.join(', ');
+    this.onChange(this.selectedItems);
+    this.optionsSelected.emit(this.selectedItems);
+  }
+  onSelectAllChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.selectAllChecked = input.checked;
+    this.toggleSelectAll();
+  }
 
   onBlur() {
     this.onTouched();
