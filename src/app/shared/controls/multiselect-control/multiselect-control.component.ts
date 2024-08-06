@@ -155,6 +155,9 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
         case 'Escape':
           this.isDropdownOpen = false;
           break;
+          case 'Tab':  
+          this.isDropdownOpen = false;
+          break;
         default:
           break;
       }
@@ -233,9 +236,11 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
   onBlur(event: FocusEvent) {
     const target = event.relatedTarget as HTMLElement;
-    if (target && !target.classList.contains('option-list') && !target.classList.contains('list-item')) {
+    if (target && (target.closest('.option-list') || target.closest('.list-filter'))) {
+      return;
+    }
       this.onTouched();
       this.isDropdownOpen = false;
-    }
+    
   }
 }
