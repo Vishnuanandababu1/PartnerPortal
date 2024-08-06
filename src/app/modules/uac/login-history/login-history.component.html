@@ -1,1 +1,45 @@
-<p>login-history works!</p>
+<div class="page-wrap">
+    <div class="page-content">
+        <div class="table-wrap pt-0">
+            <div class="table-filter sticky">
+                <div class="align-space-between gap-3">
+                    <div>
+                        <select-control title="Site" [noLabel]="true" placeholder="Site"
+                            [customClass]="'group-sm no-label clear-bottom'"></select-control>
+                    </div>
+                    <div>
+                        <select-control title="Status" [noLabel]="true" placeholder="Status"
+                            [customClass]="'group-sm no-label clear-bottom'"></select-control>
+                    </div>
+                </div>
+                <div class="icon-btn-list ">
+                    <button type="button" class="icon-button">
+                        <a (click)="openUserFilterSearch()"><i class="vi vi-filter"></i></a>
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="table user-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Site</th>
+                            <th>Login Time</th>
+                            <th>Logout Time</th>
+                            <th>Login Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let log of login">
+                            <td>{{ log.date }}</td>
+                            <td>{{ log.site }}</td>
+                            <td>{{ log.loginTime }}</td>
+                            <td>{{ log.logoutTime }}</td>
+                            <td>{{ log.loginStatus }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

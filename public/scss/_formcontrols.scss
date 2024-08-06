@@ -224,25 +224,28 @@
                     }
                 }
                 .ms-close {
-                    a {
-                        width: 28px;
-                        height: 28px;
-                        display: grid;
-                        cursor: pointer;
-                        position: relative;
-                        border-radius: 5px;
-                        place-items: center;
-                        text-decoration: none;
-                        border: 1px solid #efefef;
-                        box-shadow: 0 0 3px #ebebeb;
-                        i {
-                            font-size: 14px;
-                            font-weight: 400;
-                        }
-                        &:hover {
-                            background: rgba(255, 127, 93, 0.1);
+                    .icon-button {
+                        background: #f0f0f0;
+                        a {
+                            width: 28px;
+                            height: 28px;
+                            display: grid;
+                            cursor: pointer;
+                            position: relative;
+                            border-radius: 5px;
+                            place-items: center;
+                            text-decoration: none;
+                            border: 1px solid #efefef;
+                            box-shadow: 0 0 3px #ebebeb;
                             i {
-                                color: #ff7f5d;
+                                font-size: 14px;
+                                font-weight: 400;
+                            }
+                            &:hover {
+                                background: rgba(255, 127, 93, 0.1);
+                                i {
+                                    color: #ff7f5d;
+                                }
                             }
                         }
                     }
@@ -294,12 +297,6 @@
             }
         }
     }
-    &.group-sm {
-        .form-control {
-            height: 36px;
-            font-size: 0.85rem;
-        }
-    }
     &.search {
         .ls-search {
             top: 9px;
@@ -326,6 +323,26 @@
         }
         .option-list {
             top: 44px;
+        }
+    }
+    &.group-sm {
+        .form-control {
+            height: 36px;
+            font-size: 0.85rem;
+        }
+        .arrow {
+            top: 31px;
+        }
+        .clear {
+            top: 29px;
+        }
+        &.no-label {
+            .arrow {
+                top: 8px;
+            }
+            .clear {
+                top: 7px;
+            }
         }
     }
     &.fg-select {
@@ -671,35 +688,6 @@ input::-webkit-inner-spin-button {
                 }
             }
         }
-        // &.input-box {
-        //     .fc-control {
-        //         padding: 0;
-        //         .form-group {
-        //             border-radius: 0 5px 5px 0;
-        //             .form-control {
-        //                 height: 22px;
-        //                 min-width: 50px;
-        //                 color: #302f2f;
-        //                 font-size: 0.8rem;
-        //                 position: relative;
-        //                 background: #ffffff;
-        //                 padding: 0.1rem 0.5rem;
-        //                 padding-right: 1.5rem;
-        //                 border-radius: inherit;
-        //                 border-bottom: 0 !important;
-        //             }
-        //             &.select {
-        //                 .arrow {
-        //                     top: 5px;
-        //                     right: 6px;
-        //                     .vi {
-        //                         font-size: 11px;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
 
