@@ -239,8 +239,9 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     if (target && (target.closest('.option-list') || target.closest('.list-filter'))) {
       return;
     }
-      this.onTouched();
-      this.isDropdownOpen = false;
-    
+      this.onTouched();    
+      setTimeout(() => {
+        this.isDropdownOpen = false;
+      }, 250);
   }
 }
