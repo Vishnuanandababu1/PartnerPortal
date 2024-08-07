@@ -1,6 +1,6 @@
 @mixin set-sub-title {
     line-height: 18px;
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: #686772;
 }
 
@@ -13,8 +13,8 @@
         margin-bottom: 1.25rem;
         border-bottom: 1px solid #efefef;
         .set-title {
+            font-size: 1em;
             font-weight: 600;
-            font-size: 1.05em;
             margin-bottom: 3px;
             color: #0088ab;
         }
@@ -26,7 +26,6 @@
         }
         .not-actions {
             padding-left: 5rem;
-            padding-top: 1.65rem;
             .not-item {
                 display: flex;
                 align-items: start;
@@ -53,7 +52,7 @@
         &:last-of-type {
             margin-bottom: 0;
             border-bottom: 0;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0;
         }
     }
 }

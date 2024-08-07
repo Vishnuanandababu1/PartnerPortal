@@ -8,16 +8,17 @@ import { UserRegistrationComponent } from "../user-registration/user-registratio
 import { TabComponent } from '../../../shared/components/tab/tab.component';
 import { TabContentDirective } from '../../../shared/directives/tab-content.directive';
 import { LoginHistoryComponent } from "../login-history/login-history.component";
-import { PayrollSettingsComponent } from "../payroll-settings/payroll-settings.component";
+import { PayrollComponent } from "../payroll/payroll.component";
 import { UserTimesheetComponent } from "../user-timesheet/user-timesheet.component";
 import { PrivilegeViewComponent } from "../privilege-view/privilege-view.component";
 import { UserSettingsComponent } from "../user-settings/user-settings.component";
 
+
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent, TabComponent, TabContentDirective, LoginHistoryComponent, PayrollSettingsComponent, UserTimesheetComponent, PrivilegeViewComponent, UserSettingsComponent],
-  templateUrl: './user-management.component.html', 
+  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent, TabComponent, TabContentDirective, LoginHistoryComponent, PayrollComponent, UserTimesheetComponent, PrivilegeViewComponent, UserSettingsComponent],
+  templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })
 export class UserManagementComponent implements OnInit {
@@ -43,8 +44,8 @@ export class UserManagementComponent implements OnInit {
     { userId: 'U010', fullname: 'Jessica Blue', userRole: 'Nurse', designation: 'Assistant Nurse', emailId: 'jessica.blue@example.com', site: 'Kochi', status: 'Active', online: true, img: '../../../../images/avatars/avatar-4.jpg' }
   ];
 
-  userListView: boolean = true;
-  userProfileView: boolean = false;
+  userListView: boolean = false;
+  userProfileView: boolean = true;
   userRegistrationForm: boolean = false;
   patListGridView: boolean = true;
   userFilterSearch: boolean = false;
