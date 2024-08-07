@@ -36,9 +36,9 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <autocomplete-control [title]="'User Type'" validation="required"
-                                            [suggestions]="suggestions" field="name" (select)="onSelect($event)"
+                                            [options]="options" field="name" (select)="onSelect($event)"
                                             (search)="onSearch($event)" formControlName="userType"
-                                            [forceSelection]="true"
+                                            [forceSelection]="true" optionDisplayProperty="displayname"
                                             [error]="scheduleSettingForm.controls['userType'].invalid && scheduleSettingForm.controls['userType'].touched"
                                             [errorMessage]="getErrorMessage('userType')">
                                         </autocomplete-control>

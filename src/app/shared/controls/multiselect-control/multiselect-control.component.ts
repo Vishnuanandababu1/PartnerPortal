@@ -220,7 +220,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
 
   toggleSelectAll() {
     if (this.selectAllChecked) {
-      this.selectedItems = this.options;
+      this.selectedItems = this.filteredOptions;
     } else {
       this.selectedItems = [];
     }
@@ -239,9 +239,11 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     if (target && (target.closest('.option-list') || target.closest('.list-filter'))) {
       return;
     }
-      this.onTouched();    
-      setTimeout(() => {
-        this.isDropdownOpen = false;
-      }, 250);
+    if(event instanceof KeyboardEvent && event.key==='Tab'){
+      this.onTouched();
+      setTimeout(()=>{
+        this.isDropdownOpen = false; 
+      },300)
+    }
   }
 }

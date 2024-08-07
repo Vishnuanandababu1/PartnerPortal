@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, ReactiveFormsModule, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ControlValueAccessor, FormControl, ReactiveFormsModule, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { createPopper, Instance as PopperInstance } from '@popperjs/core';
 
@@ -15,31 +15,40 @@ import { createPopper, Instance as PopperInstance } from '@popperjs/core';
       provide: NG_VALUE_ACCESSOR,
       useExisting: AutocompleteControlComponent,
       multi: true,
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: AutocompleteControlComponent,
-      multi: true,
-    },
+    }
   ],
 })
 export class AutocompleteControlComponent
-  implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit, Validator {
+  implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit {
   @Input() title!: string;
   @Input() validation!: string;
   @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;
   @Input() clearVal: boolean = true;
-  @Input() disabled: boolean = false;
-  @Input() suggestions: any[] = [];
+  @Input() options: any[] = [];
   @Input() field: string = '';
   @Input() forceSelection: boolean = false;
   @Input() error: boolean = false;
   @Input() errorMessage: string = '';
+  @Input() optionDisplayProperty: string = 'displayname';
   @Output() select = new EventEmitter<any>();
   @Output() search = new EventEmitter<string>();
-
+  private _disabled: boolean = false;
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: boolean) {
+    this._disabled = value;
+    if (this.inputControl) {
+      if (value) {
+        this.inputControl.disable();
+      } else {
+        this.inputControl.enable();
+      }
+    }
+  }
   @ViewChild('inputElement') inputElement!: ElementRef;
   @ViewChild('dropdownElement') dropdownElement!: ElementRef;
 
@@ -50,6 +59,7 @@ export class AutocompleteControlComponent
   private subscription: Subscription = new Subscription();
   private popperInstance!: PopperInstance;
   highlightedIndex: number | null = null;
+  private preventDropdownReopen = false;
 
   private onChange: any = () => { };
   private onTouched: any = () => { };
@@ -58,6 +68,10 @@ export class AutocompleteControlComponent
     this.inputControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((value) => {
+        if (this.preventDropdownReopen) {
+          this.preventDropdownReopen = false;
+          return;
+        }
         const filterValue = value ?? '';
         this.filterSuggestions(filterValue);
         this.search.emit(filterValue);
@@ -105,8 +119,8 @@ export class AutocompleteControlComponent
       return;
     }
     const filterValue = value.toLowerCase();
-    this.filteredSuggestions = this.suggestions.filter((suggestion) =>
-      suggestion[this.field]?.toLowerCase().includes(filterValue)
+    this.filteredSuggestions = this.options.filter((suggestion) =>
+      suggestion[this.optionDisplayProperty]?.toLowerCase().includes(filterValue)
     );
     this.highlightedIndex = this.filteredSuggestions.length > 0 ? 0 : null;
     this.isDropdownOpen = true;
@@ -114,8 +128,11 @@ export class AutocompleteControlComponent
   }
 
   selectSuggestion(suggestion: any) {
-    this.inputControl.setValue(suggestion[this.field], { emitEvent: false });
+    this.preventDropdownReopen = true;
+    this.inputControl.setValue(suggestion[this.optionDisplayProperty], { emitEvent: false });
     this.onChange(suggestion);
+    this.inputControl.markAsTouched();
+    this.inputControl.updateValueAndValidity(); // Trigger validation update
     this.isDropdownOpen = false;
     this.select.emit(suggestion);
   }
@@ -128,7 +145,7 @@ export class AutocompleteControlComponent
     if (
       this.forceSelection &&
       !this.filteredSuggestions.find(
-        (s) => s[this.field] === this.inputControl.value
+        (s) => s[this.optionDisplayProperty] === this.inputControl.value
       )
     ) {
       this.resetInput();
@@ -136,7 +153,7 @@ export class AutocompleteControlComponent
     this.onTouched();
     setTimeout(() => {
       this.isDropdownOpen = false;
-    }, 200);
+    }, 300);
   }
 
   removeItem(item: any) {
@@ -153,7 +170,7 @@ export class AutocompleteControlComponent
       case 'ArrowDown':
         this.highlightedIndex =
           this.highlightedIndex === null ||
-            this.highlightedIndex === this.filteredSuggestions.length - 1
+          this.highlightedIndex === this.filteredSuggestions.length - 1
             ? 0
             : this.highlightedIndex + 1;
         event.preventDefault();
@@ -186,6 +203,10 @@ export class AutocompleteControlComponent
     }
   }
 
+  onMouseOver(index: number) {
+    this.highlightedIndex = index;
+  }
+
   private createPopper() {
     if (this.popperInstance) {
       this.popperInstance.destroy();
@@ -199,16 +220,5 @@ export class AutocompleteControlComponent
         }
       );
     }
-  }
-
-  validate(control: AbstractControl): ValidationErrors | null {
-    return this.inputControl.invalid
-      ? {
-        invalidForm: {
-          valid: false,
-          message: 'Autocomplete control is invalid',
-        },
-      }
-      : null;
   }
 }
