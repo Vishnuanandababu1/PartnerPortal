@@ -221,6 +221,7 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     this.onTouched();
     setTimeout(() => {
       this.isDropdownOpen = false;
-    }, 200);
+    }, 300);
   }
+  
 }
