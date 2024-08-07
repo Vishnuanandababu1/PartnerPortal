@@ -1,0 +1,96 @@
+<div class="pat-docs">
+    <div class="docs-header">
+        <div class="docs-info">
+            <div class="up-title">Documents Upload</div>
+            <div class="up-sub-title">
+                <div>Drag and drop or scan your files here to start uploading,</div>
+                <div>You can encrypt the files before uploading.</div>
+            </div>
+        </div>
+        <div class="docs-upload">
+            <div class="btn-upload">
+                <label><i class="vi vi-paper-clip"></i></label>
+                <div class="action">Attach</div>
+            </div>
+            <div class="btn-camera">
+                <label><i class="vi vi-camera"></i></label>
+                <div class="action">Capture</div>
+            </div>
+            <div class="btn-scan">
+                <label><i class="vi vi-qr-scan"></i></label>
+                <div class="action">Scan</div>
+            </div>
+        </div>
+    </div>
+    <div class="docs-body">
+        <div class="card docs-list">
+            <div class="card-header align-space-between">
+                <div class="align-space-between gap-3">
+                    <div>
+                        <select-control title="Document Type" [noLabel]="true" placeholder="Document Type"
+                            [customClass]="'group-sm no-label'"></select-control>
+                    </div>
+                    <div>
+                        <input-control title="Search" type="search" [noLabel]="true" placeholder="Search..."
+                            [customClass]="'group-sm no-label search-control'"></input-control>
+                    </div>
+                </div>
+                <div class="icon-btn-list gap-1">
+                    <button type="button" class="icon-button">
+                        <a (click)="onTogglePatPreview()">
+                            <i class="vi" [ngClass]="{'vi-eye': !patInfoPreview, 'vi-eye-off': patInfoPreview}"></i>
+                        </a>
+                    </button>
+                    <button type="button" class="icon-button">
+                        <a (click)="onToggleAlphaView()"><i class="vi"
+                                [ngClass]="{'vi-sort-alpha-asc': !patListAlphaSort, 'vi-sort-alpha-desc': patListAlphaSort}"></i></a>
+                    </button>
+                    <button type="button" class="icon-button">
+                        <a (click)="onToggleSwitchView()"><i class="vi"
+                                [ngClass]="{'vi-grid': !patListGridView, 'vi-ordered-list': patListGridView}"></i></a>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-container *ngIf="patListGridView">
+                    <div class="doc-view">
+                        <div class="doc-list">
+                            <div class="doc-list-item" *ngFor="let doc of documentList">
+                                <div class="doc-img">
+                                    <img src="{{doc.img}}" />
+                                </div>
+                                <div class="doc-type ellipsis">{{doc.type}}</div>
+                                <div class="doc-name ellipsis">{{doc.name}}</div>
+                                <div class="uploaded-date ellipsis">{{doc.date}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!patListGridView">
+                    <div class="table-wrap">
+                        <div class="table-container">
+                            <table class="table doc-table">
+                                <tbody>
+                                    <tr *ngFor="let doc of documentList">
+                                        <td class="doc-img">
+                                            <img src="{{doc.img}}" alt="" />
+                                        </td>
+                                        <td>{{doc.type}}</td>
+                                        <td>{{doc.name}}</td>
+                                        <td>{{doc.user}}</td>
+                                        <td>{{doc.date}}</td>
+                                        <td>
+                                            <button type="button" class="icon-button icon-btn-list">
+                                                <a><i class="vi vi-more-horizontal"></i></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, FormsModule } from '@angular/forms';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { AutocompleteControlComponent } from "../../../shared/controls/autocomplete-control/autocomplete-control.component";
@@ -17,7 +17,7 @@ import { DialogComponent } from '../../../shared/components/dialog/dialog.compon
 @Component({
   selector: 'app-user-registration',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, SelectControlComponent, InputControlComponent, AutocompleteControlComponent, MultiselectControlComponent, CalendarModule, TextareaControlComponent, CheckboxControlComponent, AccordionComponent, SectionContentDirective, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, AutocompleteControlComponent, MultiselectControlComponent, CalendarModule, TextareaControlComponent, CheckboxControlComponent, AccordionComponent, SectionContentDirective, DialogComponent],
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.scss'
 })

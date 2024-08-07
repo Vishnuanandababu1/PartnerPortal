@@ -116,16 +116,16 @@
             <app-tabs [customClass]="'tab-link'">
                 <ng-template tabContent title="User Profile">
                     <app-user-profile />
+                </ng-template>                         
+                <ng-template tabContent title="Schedule Setup">
+                    <app-user-schedule />
                 </ng-template>
                 <ng-template tabContent title="Documents">
-                    <p>Documents</p>
-                </ng-template>
+                    <app-documents />
+                </ng-template>   
                 <ng-template tabContent title="Privilege View">
                     <app-privilege-view />
-                </ng-template>
-                <ng-template tabContent title="Schedule Setup">
-                    <p>User Schedule</p>
-                </ng-template>
+                </ng-template> 
                 <ng-template tabContent title="Timesheet">
                     <app-user-timesheet />
                 </ng-template>

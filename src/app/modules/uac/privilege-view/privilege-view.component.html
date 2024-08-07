@@ -1,1 +1,86 @@
-<p>privilege-view works!</p>
+<div class="page-wrap">
+    <div class="page-content">
+        <div class="table-wrap pt-0">
+            <div class="table-filter sticky">
+                <div class="align-space-between gap-3">
+                    <div>
+                        <select-control title="Site" [noLabel]="true" placeholder="Site"
+                            [customClass]="'group-sm no-label'"></select-control>
+                    </div>
+                    <div>
+                        <select-control title="Status" [noLabel]="true" placeholder="Status"
+                            [customClass]="'group-sm no-label'"></select-control>
+                    </div>
+                </div>
+                <div class="icon-btn-list ">
+                    <button type="button" class="icon-button">
+                        <a><i class="vi vi-filter"></i></a>
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- <div class="table-wrap">
+                <div class="table-container">
+                    <table class="table privilege-table">
+                        <thead>
+                            <tr>
+                                <th class="module-name">Module Name</th>
+                                <th class="page-name">Page Name</th>
+                                <th *ngFor="let role of allRoles">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="overall-info">{{ role.totalUsers }} Users</div>
+                                            <div class="role-name ellipsis">{{ role.name }}</div>
+                                            <div class="auth-level align-space-between">
+                                                <div>Authority Level</div>
+                                                <div class="level-bar {{role.level}}">
+                                                    <div class="bar"></div>
+                                                    <div class="bar"></div>
+                                                    <div class="bar"></div>
+                                                    <div class="bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class="btn-role-edit" *ngIf="role.id != '1'">
+                                                <a (click)="editRole(role.id)" title="Edit Role"><i
+                                                        class="vi vi-pencil"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let module of AllRoleList">
+                                <ng-container *ngFor="let page of module.pages">
+                                    <tr>
+                                        <td class="module-name"
+                                            *ngIf="isFirstPageOfModule(page.pagename, module.module)"
+                                            [attr.rowspan]="module.pages.length">
+                                            {{ module.module }}
+                                            <div class="m-full-name">({{ module.moduleFullName }})</div>
+                                        </td>
+                                        <td class="page-name">{{ page.pagename }}</td>
+                                        <td class="role-status" *ngFor="let role of allRoles">
+                                            <ng-container
+                                                *ngIf="getRoleStatus(module.module, page.pagename, role.id); else inactiveIcon">
+                                                <i class="vi vi-check-circle-o" aria-hidden="true"></i>
+                                            </ng-container>
+                                            <ng-template #inactiveIcon>
+                                                <i class="vi vi-close-circle-o" aria-hidden="true"></i>
+                                            </ng-template>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+
+
+
+        </div>
+    </div>
+</div>

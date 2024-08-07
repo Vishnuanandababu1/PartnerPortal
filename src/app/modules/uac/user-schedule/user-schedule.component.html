@@ -1,0 +1,43 @@
+<div class="page-wrap">
+    <div class="page-header">
+        <div class="tab-pills">
+            <div class="tab-item active">Work Hours</div>
+            <div class="tab-item">Appointment</div>
+        </div>
+    </div>
+    <div class="page-content">
+
+        <form [formGroup]="userScheduleForm" autocomplete="off">
+            <div class="card schedule-card">
+                <div class="card-body">
+                    <div class="slots-row" *ngFor="let day of daysOfWeek">
+                        <div class="day">
+                            <checkbox-control [title]="day" [customClass]="'clear-bottom'"></checkbox-control>
+                        </div>
+                        <div>
+                            <p-calendar [inputId]="getTimeFromId(day)" [(ngModel)]="timeFrom[day]" [timeOnly]="true"
+                                [hourFormat]="'12'">
+                            </p-calendar>
+                        </div>
+                        <div>to</div>
+                        <div>
+                            <p-calendar [inputId]="getTimeToId(day)" [(ngModel)]="timeTo[day]" [timeOnly]="true"
+                                [hourFormat]="'12'">
+                            </p-calendar>
+                        </div>
+                        <div>
+                            <a (click)="addSchedule(day)"><i class="vi vi-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+    </div>
+</div>

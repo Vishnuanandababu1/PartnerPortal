@@ -18,7 +18,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ReactiveFormsModule, FormContr
 })
 export class InputControlComponent implements ControlValueAccessor, OnInit {
   @Input() title!: string;
-  @Input() type: string = 'text';
+  @Input() type: 'text' | 'password' | 'number' | 'email' | 'search' = 'text';
   @Input() placeholder: string = '';
   @Input() customClass!: string;
   @Input() noLabel: boolean = false;

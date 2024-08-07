@@ -6,6 +6,7 @@
     <label class="clear" *ngIf="inputControl.value && type != 'password'" (click)="resetInput()">
         <i class="vi vi-close"></i>
     </label>
+    <label class="ls-search" *ngIf="type === 'search'"><i class="vi vi-search"></i></label>
     <label class="toggle-eye" (click)="passwordVisible()" *ngIf="type === 'password'">
         <i class="vi" [ngClass]="showPassword ? 'vi-eye-off' : 'vi-eye'"></i>
     </label>

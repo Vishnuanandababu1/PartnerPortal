@@ -1,0 +1,15 @@
+.card {
+    &.schedule-card {
+        .card-body {
+            .slots-row {
+                gap: 1rem;
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+                .day {
+                    min-width: 110px;
+                }
+            }
+        }
+    }
+}

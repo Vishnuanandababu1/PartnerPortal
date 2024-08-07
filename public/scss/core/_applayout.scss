@@ -115,15 +115,12 @@
                     &.page-tab-layout {
                         padding: 0;
                         .tab-container {
-                            height: 100%;
-                            .tab-header {
-                                top: 0;
-                                z-index: 2;
-                                position: sticky;
-                            }
-                            .tab-content {
-                                overflow-y: auto;
-                                height: calc(100% - 40px);
+                            height: 100%; 
+                            &.tab-link {                              
+                                .tab-content {
+                                    overflow-y: auto;
+                                    height: calc(100% - 40px);
+                                }
                             }
                         }
                     }

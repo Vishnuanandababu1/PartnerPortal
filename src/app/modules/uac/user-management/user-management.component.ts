@@ -12,12 +12,15 @@ import { PayrollComponent } from "../payroll/payroll.component";
 import { UserTimesheetComponent } from "../user-timesheet/user-timesheet.component";
 import { PrivilegeViewComponent } from "../privilege-view/privilege-view.component";
 import { UserSettingsComponent } from "../user-settings/user-settings.component";
+import { UserScheduleComponent } from "../user-schedule/user-schedule.component";
+import { DiagnosisPlanComponent } from "../../emr/diagnosis-plan/diagnosis-plan.component";
+import { DocumentsComponent } from "../../common/documents/documents.component";
 
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent, TabComponent, TabContentDirective, LoginHistoryComponent, PayrollComponent, UserTimesheetComponent, PrivilegeViewComponent, UserSettingsComponent],
+  imports: [CommonModule, InputControlComponent, SelectControlComponent, FilterComponent, UserProfileComponent, UserRegistrationComponent, UserProfileComponent, TabComponent, TabContentDirective, LoginHistoryComponent, PayrollComponent, UserTimesheetComponent, PrivilegeViewComponent, UserSettingsComponent, UserScheduleComponent, DiagnosisPlanComponent, DocumentsComponent],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss'
 })

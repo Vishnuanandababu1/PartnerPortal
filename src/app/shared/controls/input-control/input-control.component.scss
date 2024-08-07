@@ -1,0 +1,16 @@
+.form-group {
+    &.search-control {
+        .ls-search {
+            top: 9px;
+            left: 10px;
+            position: absolute;
+            .vi {
+                font-size: 1em;
+                color: #807a7a;
+            }
+        }
+        .form-control {
+            text-indent: 1.25rem;
+        }
+    }
+}

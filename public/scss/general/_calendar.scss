@@ -47,6 +47,16 @@
             }
         }
     }
+    .p-timepicker {
+        padding: 0;
+        margin: -0.25rem;
+        .p-separator {
+            padding: 0 !important;
+        }
+        span {
+            font-size: 1em;
+        }
+    }
 }
 
 // control specific

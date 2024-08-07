@@ -1,0 +1,167 @@
+.pat-docs {
+    height: 100%;
+    overflow-y: overlay;
+    .docs-header {
+        top: 0;
+        z-index: 1;
+        height: 100px;
+        display: flex;
+        position: sticky;
+        align-items: center;
+        padding: 0 1.75rem 0.25rem;
+        justify-content: space-between;
+        background: #ffffff;
+        border-bottom: 1px solid #efefef;
+        .docs-info {
+            width: 60%;
+            .up-title {
+                font-weight: 600;
+                margin-bottom: 3px;
+                color: #0088ab;
+            }
+            .up-sub-title {
+                color: #686772;
+                line-height: 18px;
+                font-size: 0.925em;
+            }
+        }
+        .docs-upload {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .btn-upload,
+            .btn-camera,
+            .btn-scan {
+                top: 2px;
+                width: 30%;
+                cursor: pointer;
+                position: relative;
+                text-align: center;
+                border-radius: 5px;
+                padding: 12px 20px;
+                border: var(--btn-upload-border);
+                background: var(--btn-upload-bg);
+                label {
+                    color: #ff7f5d;
+                    .vi {
+                        color: inherit;
+                        font-size: 17px;
+                        &.vi-qr-scan {
+                            font-size: 15px;
+                        }
+                    }
+                }
+                .action {
+                    line-height: 1em;
+                    font-size: 0.9em;
+                    font-weight: 500;
+                    color: #ff7f5d;
+                }
+            }
+        }
+    }
+    .docs-body {
+        overflow-y: overlay;
+        height: calc(100% - 100px);
+        padding: 1.5rem 1.75rem 1rem;
+        .card {
+            &.docs-list {
+                margin-bottom: 0;
+                border-radius: 0;
+                min-height: calc(100% - 0.5rem);
+                .card-header {
+                    height: 55px;
+                    padding: 0 1.25rem;
+                    border-bottom: 2px solid #efefef;
+                    .vi {
+                        top: 1px;
+                        font-size: 17px;
+                        &.vi-eye {
+                            left: 1px;
+                            font-size: 20px;
+                            font-weight: 400;
+                        }
+                        &.vi-eye-off {
+                            left: 1px;
+                            font-size: 19px;
+                            font-weight: 500;
+                        }
+                        &.vi-sort-alpha-asc,
+                        &.vi-sort-alpha-desc {
+                            font-size: 14px;
+                        }
+                        &.vi-ordered-list {
+                            top: 1px;
+                            font-size: 19px;
+                        }
+                        &.vi-grid {
+                            font-size: 15px;
+                            font-weight: 500;
+                        }
+                        &.vi-more-horizontal {
+                            top: 1px;
+                            font-size: 15px;
+                        }
+                    }
+                }
+                .card-body {
+                    padding: 0;
+                    .doc-view {
+                        .doc-list {
+                            display: grid;
+                            padding: 1.25rem;
+                            column-gap: 1.25em;
+                            padding-bottom: 0.5rem;
+                            grid-template-columns: repeat(5, minmax(0px, 1fr));
+                            .doc-list-item {
+                                padding: 10px;
+                                cursor: pointer;
+                                margin-bottom: 1.5rem;
+                                color: #566a7f;
+                                background: #ffffff;
+                                box-shadow: 0px 0px 2px 0px #c0baba;
+                                .doc-img {
+                                    text-align: center;
+                                    margin-bottom: 0.5rem;
+                                    img {
+                                        width: 100%;
+                                        height: 100px;
+                                        object-fit: fill;
+                                        min-height: 100px;
+                                        -webkit-user-drag: none;
+                                    }
+                                }
+                                .doc-type {
+                                    font-weight: 500;
+                                }
+                                .doc-name,
+                                .uploaded-date {
+                                    font-size: 0.9em;
+                                    line-height: 18px;
+                                }
+                            }
+                        }
+                    }
+                    .table-wrap {
+                        box-shadow: none;
+                        margin-bottom: 0;
+                        .table-container {
+                            .table {
+                                &.doc-table {
+                                    .doc-img {
+                                        img {
+                                            width: 35px;
+                                            height: 35px;
+                                            box-shadow: 0 0 2px 1px #c0baba;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
