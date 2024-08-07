@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <multiselect-control [title]="'Allowed Sites'" validation="required"
-                                            formControlName="allowedSites" [options]="userSiteOptions"
+                                            formControlName="allowedSites" [options]="options" optionDisplayProperty="displayname"
                                             [showSearch]="true" [selectedItems]="userSiteItem"
                                             (optionSelected)="selectSites($event)"
                                             [error]="scheduleSettingForm.controls['allowedSites'].invalid && scheduleSettingForm.controls['allowedSites'].touched"

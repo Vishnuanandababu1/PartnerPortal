@@ -34,8 +34,9 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   @Input() error: boolean = false;
   @Input() errorMessage: string = '';
   @Input() showSearch: boolean = false;
+  @Input() optionDisplayProperty: string = 'displayname';  // New property
   @Output() optionsSelected = new EventEmitter<string[]>();
-  selectAllChecked: boolean = false; // New property
+  selectAllChecked: boolean = false;
   selectedItemList: string = '';
   isDropdownOpen = false;
   filteredOptions: any[] = [];
@@ -54,9 +55,9 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
       distinctUntilChanged()
     ).subscribe(searchText => {
       this.filterOptions(searchText);
+      this.areAllItemsSelected();
     });
 
-    // Initialize filteredOptions to show all options initially
     this.filteredOptions = [...this.options];
   }
 
@@ -67,11 +68,13 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   writeValue(value: any): void {
     if (value && Array.isArray(value)) {
       this.selectedItems = value;
-      this.selectedItemList = this.selectedItems.join(', ');
+      this.selectedItemList = this.selectedItems.map(item => item[this.optionDisplayProperty]).join(', ');
     } else {
       this.selectedItems = [];
       this.selectedItemList = '';
+      this.selectAllChecked = false;
     }
+    this.areAllItemsSelected(); // Check if all items are selected
   }
 
   registerOnChange(fn: any): void {
@@ -95,25 +98,33 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     this.isDropdownOpen = false;
   }
 
-  isSelected(option: string): boolean {
+  isSelected(option: any): boolean {
     return Array.isArray(this.selectedItems) && this.selectedItems.includes(option);
   }
 
-  toggleCheckbox(option: string) {
+  toggleCheckbox(option: any) {
     if (this.isSelected(option)) {
       this.selectedItems = this.selectedItems.filter(item => item !== option);
     } else {
       this.selectedItems = [...this.selectedItems, option];
     }
-    this.selectedItemList = this.selectedItems.join(', ');
+    this.selectedItemList = this.selectedItems.map(item => item[this.optionDisplayProperty]).join(', ');
+    this.areAllItemsSelected();
     this.onChange(this.selectedItems);
     this.onTouched();
     this.optionsSelected.emit(this.selectedItems);
   }
 
-  selectOption(option: string) {
-    this.toggleCheckbox(option);
+  private areAllItemsSelected(): void {
+    if (this.filteredOptions.length === 0) {
+      this.selectAllChecked = false;
+    } else {
+      this.selectAllChecked = this.filteredOptions.every(option => this.selectedItems.includes(option));
+    }
+  }
 
+  selectOption(option: any) {
+    this.toggleCheckbox(option);
   }
 
   resetSelection() {
@@ -122,13 +133,14 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     this.onChange([]);
     this.onTouched();
     this.isDropdownOpen = false;
+    this.selectAllChecked = false;
   }
 
   selectListOutsideClick() {
     this.isDropdownOpen = false;
   }
 
-  removeSelectedOption(option: string) {
+  removeSelectedOption(option: any) {
     this.selectedItems = this.selectedItems.filter(item => item !== option);
     this.onChange(this.selectedItems);
     this.onTouched();
@@ -155,7 +167,7 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
         case 'Escape':
           this.isDropdownOpen = false;
           break;
-          case 'Tab':  
+        case 'Tab':
           this.isDropdownOpen = false;
           break;
         default:
@@ -170,10 +182,10 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
   filterOptions(value: string) {
     const filterValue = value.toLowerCase();
     this.filteredOptions = this.options
-      .filter((option: string) => option.toLowerCase().includes(filterValue))
-      .sort((a: string, b: string) => {
-        const aIndex = a.toLowerCase().indexOf(filterValue);
-        const bIndex = b.toLowerCase().indexOf(filterValue);
+      .filter((option: any) => option[this.optionDisplayProperty].toLowerCase().includes(filterValue))
+      .sort((a: any, b: any) => {
+        const aIndex = a[this.optionDisplayProperty].toLowerCase().indexOf(filterValue);
+        const bIndex = b[this.optionDisplayProperty].toLowerCase().indexOf(filterValue);
         return aIndex - bIndex;
       });
     if (this.filteredOptions.length > 0) {
@@ -224,10 +236,11 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     } else {
       this.selectedItems = [];
     }
-    this.selectedItemList = this.selectedItems.join(', ');
+    this.selectedItemList = this.selectedItems.map(item => item[this.optionDisplayProperty]).join(', ');
     this.onChange(this.selectedItems);
     this.optionsSelected.emit(this.selectedItems);
   }
+
   onSelectAllChange(event: Event) {
     const input = event.target as HTMLInputElement;
     this.selectAllChecked = input.checked;
@@ -239,11 +252,11 @@ export class MultiselectControlComponent implements ControlValueAccessor, OnInit
     if (target && (target.closest('.option-list') || target.closest('.list-filter'))) {
       return;
     }
-    if(event instanceof KeyboardEvent && event.key==='Tab'){
+    if (event instanceof KeyboardEvent && event.key === 'Tab') {
       this.onTouched();
-      setTimeout(()=>{
-        this.isDropdownOpen = false; 
-      },300)
+      setTimeout(() => {
+        this.isDropdownOpen = false;
+      }, 300);
     }
   }
 }
