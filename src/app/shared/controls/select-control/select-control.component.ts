@@ -115,16 +115,13 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
   }
 
   selectOption(option: any) {
-    console.log('selectOption called with:', option);
     this.selectedItem = option;
     this.isDropdownOpen = false;
     const displayValue = this.selectedItem[this.optionDisplayProperty];
-    console.log('Setting inputControl value to:', displayValue);
     this.inputControl.setValue(displayValue, { emitEvent: false });
     this.onChange(this.selectedItem);
     this.onTouched();
     this.optionSelected.emit(this.selectedItem);
-    console.log('selectedItem after selection:', this.selectedItem);
   }
 
   resetSelection() {
@@ -180,6 +177,7 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     } else {
       this.highlightedIndex++;
     }
+    this.scrollToHighlighted();
   }
 
   highlightPrevious() {
@@ -188,6 +186,7 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     } else {
       this.highlightedIndex--;
     }
+    this.scrollToHighlighted();
   }
   focusOption(value: string) {
     const filterValue = value.toLowerCase();
