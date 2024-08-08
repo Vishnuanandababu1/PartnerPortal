@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, FormsModule, FormControl } from '@angular/forms';
 import { SelectControlComponent } from '../../../shared/controls/select-control/select-control.component';
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { AutocompleteControlComponent } from "../../../shared/controls/autocomplete-control/autocomplete-control.component";
@@ -218,6 +218,19 @@ export class UserRegistrationComponent implements OnInit {
   confirmPasswordHide = false;
   formChangeWarningDialog: boolean = false;
 
+  controlPoints: { [key: string]: number } = {};
+  totalPoints: number = 0;
+  currentPoints: number = 0;
+  percentage: number = 0;
+  pointValues: { [points: number]: string[] } = {
+    5: ['firstName', 'gender', 'dateOfBirth', 'age', 'phoneCode', 'phoneNumber', 'emailId', 'userType', 'department', 'allowedSites', 'role'],
+    4: ['lastName', 'languagesKnown', 'defaultSite', 'defaultRole', 'userID', 'password', 'userStatus'],
+    3: ['nationality', 'altPhoneCode', 'altPhoneNumber', 'reportingManager'],
+    2: ['middleName', 'houseName', 'qualification', 'designation', 'dateOfJoining'],
+    1: ['prefix', 'maritalStatus', 'streetName', 'pinCode', 'city', 'state', 'country', 'regNumber', 'speciality'],
+    0: ['remarks', 'isChangePassword', 'confirmPassword', 'windowsID']
+  };
+
   constructor(private router: Router, private fb: FormBuilder) {
     this.prefixOptions = this.prefixList.map(option => option.prefix);
     this.genderOptions = this.genderList.map(option => option.genderName);
@@ -290,6 +303,13 @@ export class UserRegistrationComponent implements OnInit {
       userStatus: ['', [Validators.required]],
       windowsID: ['', [Validators.maxLength(75)]],
     })
+
+
+    // weightage calculation
+    this.initializeControlPoints();
+    this.userRegistrationForm.valueChanges.subscribe(() => {
+      this.updateProfilePercentage();
+    });
   }
 
   controlClass(controlName: string) {
@@ -369,4 +389,51 @@ export class UserRegistrationComponent implements OnInit {
     this.formChangeWarningDialog = false;
     this.router.navigate(['/app/uac/usermanagement']);
   }
+
+
+  // calculate profile completion percentage
+  initializeControlPoints(): void {
+    Object.keys(this.pointValues).forEach(points => {
+      const pointValue = Number(points);
+      this.pointValues[pointValue].forEach(field => {
+        this.controlPoints[field] = pointValue;
+      });
+    });
+    this.totalPoints = Object.values(this.controlPoints).reduce((acc, points) => acc + points, 0);
+  }
+
+  isFieldCompleted(control: any): boolean {
+    if (control instanceof FormControl) {
+      const value = control.value;
+      if (value instanceof Date) {
+        return !isNaN(value.getTime());
+      } else if (typeof value === 'string') {
+        return value.trim().length > 0;
+      } else if (Array.isArray(value)) {
+        return value.length > 0;
+      } else {
+        return !!value;
+      }
+    }
+    return false;
+  }
+
+  updateProfilePercentage(): void {
+    this.currentPoints = 0;
+
+    Object.keys(this.userRegistrationForm.controls).forEach(field => {
+      const control = this.userRegistrationForm.get(field);
+      if (control) {
+        if (control.valid && (control.touched || control.dirty)) {
+          if (this.isFieldCompleted(control)) {
+            this.currentPoints += this.controlPoints[field] || 0;
+          }
+        }
+      }
+    });
+    this.percentage = (this.currentPoints / this.totalPoints) * 100;
+    this.percentage = parseFloat(this.percentage.toFixed(2));
+  }
+
+
 }

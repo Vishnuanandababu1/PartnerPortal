@@ -1,6 +1,9 @@
 <div class="split-layout">
     <div class="layout-aside-left">
         <div>{{userRegistrationForm.value.firstName}}</div>
+        <div>Profile Completion: {{ percentage }}%</div>
+        <div [style.width.%]="percentage" style="background-color: lightblue; height: 20px;">
+        </div>
     </div>
     <div class="layout-aside-right">
         <form [formGroup]="userRegistrationForm" autocomplete="off">
