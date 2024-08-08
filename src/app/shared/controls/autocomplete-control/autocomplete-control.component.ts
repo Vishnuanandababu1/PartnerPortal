@@ -174,6 +174,7 @@ export class AutocompleteControlComponent
             ? 0
             : this.highlightedIndex + 1;
         event.preventDefault();
+        this.scrollHighlightedItemIntoView();
         break;
       case 'ArrowUp':
         this.highlightedIndex =
@@ -181,6 +182,7 @@ export class AutocompleteControlComponent
             ? this.filteredSuggestions.length - 1
             : this.highlightedIndex - 1;
         event.preventDefault();
+        this.scrollHighlightedItemIntoView();
         break;
       case 'Enter':
         if (
@@ -219,6 +221,14 @@ export class AutocompleteControlComponent
           placement: 'bottom-start',
         }
       );
+    }
+  }
+  private scrollHighlightedItemIntoView() {
+    if (this.highlightedIndex !== null) {
+      const highlightedItem = this.dropdownElement.nativeElement.querySelectorAll('.list-item')[this.highlightedIndex];
+      if (highlightedItem) {
+        highlightedItem.scrollIntoView({ block: 'nearest' });
+      }
     }
   }
 }
