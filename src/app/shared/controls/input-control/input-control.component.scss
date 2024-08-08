@@ -1,4 +1,23 @@
 .form-group {
+    .toggle-eye {
+        top: 31px;
+        right: 10px;
+        padding: 5px;
+        line-height: 1;
+        position: absolute;
+        .vi {
+            font-size: 18px;
+        }
+        .rb {
+            font-size: 17px;
+            color: #5f6554;
+        }
+    }
+    &.no-label {
+        .toggle-eye {
+            top: 9px;
+        }
+    }
     &.search-control {
         .ls-search {
             top: 9px;

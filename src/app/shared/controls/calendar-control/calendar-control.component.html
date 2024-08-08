@@ -1,0 +1,9 @@
+<div class="form-group" [ngClass]="customClass">
+    <label class="inp-label" [ngClass]="validation" *ngIf="title">{{ title }}</label>
+    <p-calendar [formControl]="calendarControl" [iconDisplay]="'input'" [showIcon]="showIcon"
+        (onSelect)="onDateSelect($event)" (onBlur)="onBlur()" [showButtonBar]="showButtonBar" [timeOnly]="timeOnly"
+        [hourFormat]="'12'" [appendTo]="'body'" [styleClass]="'form-control'"
+        [ngClass]="{'is-invalid': validationClass || error}"></p-calendar>
+    <span class="focus-border"></span>
+    <div *ngIf="error" class="val-msg">{{ errorMessage }}</div>
+</div>

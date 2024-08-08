@@ -1,0 +1,15 @@
+.form-group {
+    textarea {
+        resize: none;
+        min-height: 100px;
+        &.resize {
+            resize: auto;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #e8eaf1;
+        }
+    }
+}

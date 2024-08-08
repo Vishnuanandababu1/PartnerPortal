@@ -27,12 +27,14 @@
         </button>
       </div>
     </div>
-    <div class="list-item" *ngFor="let option of filteredOptions ; let i = index" (change)="toggleCheckbox(option)"
-      [ngClass]="{'highlighted': i === highlightedIndex}">
-      <label class="checkbox-container multi-select">
-        <input type="checkbox" [checked]="isSelected(option)" tabindex="-1" />
-        <span class="checkmark"></span>{{ option[optionDisplayProperty] }}
-      </label>
+    <div class="list-wrap">
+      <div class="list-item" *ngFor="let option of filteredOptions ; let i = index" (change)="toggleCheckbox(option)"
+        [ngClass]="{'highlighted': i === highlightedIndex}">
+        <label class="checkbox-container multi-select">
+          <input type="checkbox" [checked]="isSelected(option)" tabindex="-1" />
+          <span class="checkmark"></span>{{ option[optionDisplayProperty] }}
+        </label>
+      </div>
     </div>
     <div class="no-results" *ngIf="filteredOptions.length === 0">No results found</div>
   </div>

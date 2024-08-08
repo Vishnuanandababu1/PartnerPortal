@@ -8,26 +8,27 @@ import { CheckboxControlComponent } from '../../../shared/controls/checkbox-cont
 import { TextareaControlComponent } from '../../../shared/controls/textarea-control/textarea-control.component';
 import { MultiselectControlComponent } from '../../../shared/controls/multiselect-control/multiselect-control.component';
 import { AutocompleteControlComponent } from "../../../shared/controls/autocomplete-control/autocomplete-control.component";
-import { CalendarModule } from 'primeng/calendar';
 import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
+import { CalendarControlComponent } from '../../../shared/controls/calendar-control/calendar-control.component';
 
 @Component({
   selector: 'app-schedule-settings',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, AutocompleteControlComponent, CalendarModule, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, CheckboxControlComponent, TextareaControlComponent, MultiselectControlComponent, AutocompleteControlComponent, DialogComponent, CalendarControlComponent],
   templateUrl: './schedule-settings.component.html',
   styleUrl: './schedule-settings.component.scss'
 })
 export class ScheduleSettingsComponent implements OnInit {
 
-  // normal category select setup *******************
-  selectedCategoryId: any;
-  categoryItem: string = '';
-  categoryArray: Array<any> = [
-    { id: '1', displayname: 'Doctor' },
-    { id: '3', displayname: 'Anesthetist' },
-    { id: '2', displayname: 'OR Room' },
-  ];
+  // // normal category select setup *******************
+  // selectedCategoryId: any;
+  // categoryItem: string = '';
+  // categoryArray: Array<any> = [
+  //   { id: '1', displayname: 'Doctor' },
+  //   { id: '3', displayname: 'Anesthetist' },
+  //   { id: '2', displayname: 'OR Room' },
+  // ];
+  
   options = [
     {
       displayname: 'United States',

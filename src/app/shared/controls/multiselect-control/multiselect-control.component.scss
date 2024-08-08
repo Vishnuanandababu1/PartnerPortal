@@ -1,10 +1,87 @@
-.list-item.highlighted {
-  color: #ffffff;
-  background-color: #007bff;
-}
-.no-results {
-    padding: 10px;
-    color: #9b9b9b;
-    text-align: center;
+.form-group {
+  &.multi-select {
+    .option-list {
+      .list-filter {
+        gap: 10px;
+        display: flex;
+        padding: 9px 10px;
+        align-items: center;
+        border-bottom: 1px solid #efefef;
+        .checkbox-container {
+          &.select-all {
+            top: -10px;
+            margin-bottom: 0;
+            padding-left: 22px;
+          }
+        }
+        .form-group {
+          margin-bottom: 0;
+          .form-control {
+            height: 34px;
+            border-radius: 5px;
+            background: #ffffff;
+            padding: 0.275rem 0.5rem;
+            border: 1px solid #cccccc !important;
+            &::placeholder {
+              font-size: 0.925em;
+            }
+          }
+        }
+        .ms-close {
+          .icon-button {
+            background: #f0f0f0;
+            a {
+              width: 28px;
+              height: 28px;
+              display: grid;
+              cursor: pointer;
+              position: relative;
+              border-radius: 5px;
+              place-items: center;
+              text-decoration: none;
+              border: 1px solid #efefef;
+              box-shadow: 0 0 3px #ebebeb;
+              i {
+                font-size: 14px;
+                font-weight: 400;
+              }
+              &:hover {
+                background: rgba(255, 127, 93, 0.1);
+                i {
+                  color: #ff7f5d;
+                }
+              }
+            }
+          }
+        }
+      }
+      .list-wrap {
+        overflow: auto;
+        max-height: calc(220px - 53px);
+      }
+      .list-item {
+        padding: 0;
+        .checkbox-container {
+          &.multi-select {
+            width: 100%;
+            font-size: 1em;
+            margin-bottom: 0;
+            font-weight: 400;
+            color: #584e4e;
+            letter-spacing: 0.015rem;
+            padding: 10px 10px 10px 40px;
+            .checkmark {
+              top: 9px;
+              left: 10px;
+            }
+          }
+        }
+      }
+      .no-results {
+        padding: 10px;
+        color: #9b9b9b;
+        text-align: center;
+      }
+    }
   }
-
+}

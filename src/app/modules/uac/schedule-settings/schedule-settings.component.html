@@ -25,9 +25,9 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <multiselect-control [title]="'Allowed Sites'" validation="required"
-                                            formControlName="allowedSites" [options]="options" optionDisplayProperty="displayname"
-                                            [showSearch]="true" [selectedItems]="userSiteItem"
-                                            (optionSelected)="selectSites($event)"
+                                            formControlName="allowedSites" [options]="options"
+                                            optionDisplayProperty="displayname" [showSearch]="true"
+                                            [selectedItems]="userSiteItem" (optionSelected)="selectSites($event)"
                                             [error]="scheduleSettingForm.controls['allowedSites'].invalid && scheduleSettingForm.controls['allowedSites'].touched"
                                             [errorMessage]="getErrorMessage('allowedSites')">
                                         </multiselect-control>
@@ -36,23 +36,21 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <autocomplete-control [title]="'User Type'" validation="required"
-                                            [options]="options" field="name" (select)="onSelect($event)"
+                                            [options]="suggestions" field="name" (select)="onSelect($event)"
                                             (search)="onSearch($event)" formControlName="userType"
-                                            [forceSelection]="true" optionDisplayProperty="displayname"
+                                            [forceSelection]="true" optionDisplayProperty="name"
                                             [error]="scheduleSettingForm.controls['userType'].invalid && scheduleSettingForm.controls['userType'].touched"
                                             [errorMessage]="getErrorMessage('userType')">
                                         </autocomplete-control>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="inp-label required">From Date</label>
-                                            <p-calendar formControlName="fromDate" [iconDisplay]="'input'"
-                                                [showIcon]="true" formControlName="fromDate" inputId="icondisplay"
-                                                [styleClass]="'form-control'"
-                                                [ngClass]="{'is-invalid' : (scheduleSettingForm.get('fromDate')?.invalid && scheduleSettingForm.get('fromDate')?.touched) ?? false}">
-                                            </p-calendar>
-                                            <span class="focus-border"></span>
-                                        </div>
+                                        <calendar-control title="From Date" validation="required"
+                                            formControlName="fromDate" [showButtonBar]="false" [timeOnly]="false"
+                                            [showIcon]="true"
+                                            [error]="scheduleSettingForm.controls['fromDate'].invalid && scheduleSettingForm.controls['fromDate'].touched"
+                                            [errorMessage]="'Invalid date selection'">
+                                        </calendar-control>
+
                                     </div>
                                     <div class="col-lg-4">
                                         <checkbox-control title="Active" customClass="checkbox-form"
@@ -61,17 +59,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <!-- <textarea-control title="Remarks" formControlName="remarks"
+                                        <textarea-control title="Remarks" formControlName="remarks"
                                             [error]="scheduleSettingForm.controls['remarks'].invalid && scheduleSettingForm.controls['remarks'].touched "
                                             [errorMessage]="getErrorMessage('remarks')">
-                                        </textarea-control> -->
+                                        </textarea-control>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <div class="btn-list">
-                                    <button type="button" class="btn btn-success" (click)="onRegisterUser()">Save</button>
-                                    <button type="button" class="btn btn-outline-danger" (click)="onCancelClick()">Clear</button>
+                                    <button type="button" class="btn btn-success"
+                                        (click)="onRegisterUser()">Save</button>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="onCancelClick()">Clear</button>
                                 </div>
                             </div>
                         </div>

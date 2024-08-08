@@ -1,21 +1,17 @@
-.auto-complete {
-  .no-results {
-    padding: 10px;
-    color: #9b9b9b;
-    text-align: center;
-  }
-
-  .selected-item {
-    display: inline-block;
-    margin-right: 5px;
-    padding: 5px 10px;
-    background-color: #eee;
-    border-radius: 4px;
-
-    .remove-item {
-      cursor: pointer;
-      margin-left: 5px;
-      color: #dc3545;
+.form-group {
+  &.auto-complete {
+    .form-control {
+      padding-right: unset;
+    }
+    .clear {
+      right: 7px;
+    }
+    .option-list {
+      .no-results {
+        padding: 10px;
+        color: #9b9b9b;
+        text-align: center;
+      }
     }
   }
 }
