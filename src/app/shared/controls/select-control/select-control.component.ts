@@ -85,7 +85,6 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
     const displayValue = this.selectedItem && this.selectedItem[this.optionDisplayProperty] ? this.selectedItem[this.optionDisplayProperty] : ' ';
     this.inputControl.setValue(displayValue, { emitEvent: false });
     this.filteredOptions = this.options;
-    console.log('selectedItem set to:', this.selectedItem);
   }
 
   registerOnChange(fn: any): void {
@@ -99,9 +98,20 @@ export class SelectControlComponent implements ControlValueAccessor, OnInit, OnD
   toggleDropdown() {
     if (!this.inputControl.disabled) {
       this.isDropdownOpen = !this.isDropdownOpen;
+      if (this.isDropdownOpen && this.selectedItem) {
+        this.highlightSelectedItem();
+      }
     }
   }
-
+  highlightSelectedItem() {
+    const selectedIndex = this.filteredOptions.findIndex(option => option === this.selectedItem);
+    if (selectedIndex !== -1) {
+      this.highlightedIndex = selectedIndex;
+      this.scrollToHighlighted();
+    } else {
+      this.highlightedIndex = null;
+    }
+  }
   openDropdown(event: KeyboardEvent) {
     if (event.ctrlKey && event.key === 'Enter') {
       this.toggleDropdown();
