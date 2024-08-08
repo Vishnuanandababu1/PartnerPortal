@@ -9,12 +9,12 @@
         margin-bottom: 2px;
         font-size: 0.975em;
         &.required:after {
-            top: -1px;
             content: "*";
-            font-size: 20px;
+            top: -0.075em;
+            font-size: 1.5em;
             color: #ff0000;
-            padding-left: 5px;
             font-weight: 600;
+            padding-left: 5px;
             position: absolute;
         }
     }
@@ -45,7 +45,7 @@
         line-height: 1.5;
         box-shadow: none;
         border-radius: 0;
-        font-size: 0.9rem;
+        font-size: 1.1em;
         background: #eff2f9;
         border-color: #eff2f9;
         padding: 0.375rem 0.75rem;
@@ -57,7 +57,7 @@
             box-shadow 0.15s ease-in-out;
         &::placeholder {
             color: #a8a8a8;
-            font-size: 0.95em;
+            font-size: 1.025em;
         }
         &:disabled,
         &[readonly] {
@@ -114,7 +114,7 @@
         }
     }
     .val-msg {
-        font-size: 12px;
+        font-size: 0.9em;
         color: #ff0000;
         font-weight: 500;
         position: absolute;
@@ -188,7 +188,7 @@
             }
         }
         .option-list {
-            top: 68px;
+            top: 65px;
             z-index: 2;
             width: 100%;
             cursor: default;
@@ -314,7 +314,7 @@
     &.group-sm {
         .form-control {
             height: 36px;
-            font-size: 0.85rem;
+            font-size: 1.05em;
         }
         .arrow {
             top: 31px;
@@ -377,23 +377,6 @@
     }
     &.clear-bottom {
         margin-bottom: 0;
-    }
-    &.ec-disable {
-        .form-control {
-            padding: 0;
-            font-size: 1.5em;
-            font-weight: 500;
-            width: fit-content;
-            text-align: center;
-            border-radius: 2px;
-            height: fit-content;
-            background: transparent;
-            border-color: transparent;
-            border-bottom: 2px solid transparent !important;
-            &:focus {
-                border-bottom: 2px solid #0d6efd !important;
-            }
-        }
     }
     textarea {
         resize: none;
@@ -634,23 +617,23 @@ input::-webkit-inner-spin-button {
         display: flex;
         border-radius: 5px;
         border: 1px solid #c3c5ca;
-        .fc-label {
+        .fc-label,
+        .fc-control {
             height: 22px;
+            font-size: 0.95em;
+            padding: 0.1rem 0.5rem;
+        }       
+        .fc-label {
             cursor: default;
             color: #625c5c;
-            font-size: 0.8rem;
             background: #f1f1f1;
-            padding: 0.1rem 0.5rem;
             border-radius: 5px 0 0 5px;
         }
         .fc-control {
-            height: 22px;
             min-width: 50px;
             color: #302f2f;
-            font-size: 0.8rem;
             position: relative;
             background: #ffffff;
-            padding: 0.1rem 0.5rem;
             padding-right: 1.5rem;
             border-radius: 0 5px 5px 0;
             a {
