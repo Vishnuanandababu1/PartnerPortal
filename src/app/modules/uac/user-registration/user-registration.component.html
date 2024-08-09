@@ -22,7 +22,7 @@
                         <div class="col-lg-4">
                             <div class="double-sel-inp md-80">
                                 <select-control title="Prefix" formControlName="prefix" [options]="prefixOptions"
-                                    (optionSelected)="selectPrefix($event)">
+                                    optionDisplayProperty="prefix" (optionSelected)="selectPrefix($event)">
                                 </select-control>
                                 <input-control title="First Name" validation="required" formControlName="firstName"
                                     [error]="userRegistrationForm.controls['firstName'].invalid && userRegistrationForm.controls['firstName'].touched"
@@ -46,12 +46,13 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="Gender" validation="required" formControlName="gender"
-                                [options]="genderOptions" (optionSelected)="selectGender($event)"
+                                [options]="genderOptions" optionDisplayProperty="genderName"
+                                (optionSelected)="selectGender($event)"
                                 [error]="userRegistrationForm.controls['gender'].invalid && userRegistrationForm.controls['gender'].touched">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="inp-label required">Date of Birth</label>
                                 <p-calendar [(ngModel)]="dateOfBirth" [iconDisplay]="'input'" [showIcon]="true"
                                     (change)="calculateAge()" formControlName="dateOfBirth" inputId="icondisplay"
@@ -62,10 +63,17 @@
                                 <label class="val-msg"
                                     *ngIf="userRegistrationForm.get('dateOfBirth')?.errors?.['invalidAge'] && userRegistrationForm.get('dateOfBirth')?.value !== '' && userRegistrationForm.get('dateOfBirth')?.value !== null">Under
                                     Age</label>
-                            </div>
+                            </div> -->
+
+                            <calendar-control title="Date of Birth" validation="required" formControlName="dateOfBirth"
+                                [showButtonBar]="false" [timeOnly]="false" [showIcon]="true"
+                                [error]="userRegistrationForm.controls['dateOfBirth'].invalid && userRegistrationForm.controls['dateOfBirth'].touched"
+                                [errorMessage]="'Invalid date selection'">
+                            </calendar-control>
+
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="inp-label required">Age</label>
                                 <input type="number" class="form-control" formControlName="age"
                                     [ngClass]="{'is-invalid': (userRegistrationForm.get('age')?.errors?.['invalidAge'] && userRegistrationForm.get('age')?.value !== '' && userRegistrationForm.get('age')?.value !== null) || (userRegistrationForm.get('age')?.errors?.['invalidAge'] && userRegistrationForm.get('age')?.touched)}" />
@@ -73,25 +81,33 @@
                                 <label class="val-msg"
                                     *ngIf="userRegistrationForm.get('age')?.errors?.['invalidAge'] && userRegistrationForm.get('age')?.value !== '' && userRegistrationForm.get('age')?.value !== null">Must
                                     be 18 or older</label>
-                            </div>
+                            </div> -->
+
+                            <input-control title="Age" type="number" validation="required" formControlName="age"
+                                [error]="userRegistrationForm.controls['age'].invalid && userRegistrationForm.controls['age'].touched"
+                                [errorMessage]="'Must be 18 or older'">
+                            </input-control>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <multiselect-control [title]="'Languages Known'" validation="required"
                                 formControlName="languagesKnown" [options]="userLanguageOptions"
-                                [selectedItems]="userLanguageItem" (optionSelected)="selectLanguageType($event)"
+                                optionDisplayProperty="language" [showSearch]="true" [selectedItems]="userLanguageItem"
+                                (optionSelected)="selectLanguageType($event)"
                                 [error]="userRegistrationForm.controls['languagesKnown'].invalid && userRegistrationForm.controls['languagesKnown'].touched">
                             </multiselect-control>
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Marital Status" formControlName="maritalStatus"
-                                [options]="maritalStatusOptions" (optionSelected)="selectMaritalStatus($event)">
+                                [options]="maritalStatusOptions" optionDisplayProperty="maritalStatus"
+                                (optionSelected)="selectMaritalStatus($event)">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
-                            <select-control title="Nationality" formControlName="nationality"
-                                [options]="nationalityOptions" (optionSelected)="selectNationality($event)"
+                            <select-control title="Nationality" formControlName="nationality" [options]="countryOptions"
+                                optionDisplayProperty="nationality" (optionSelected)="selectNationality($event)"
                                 [error]="userRegistrationForm.controls['nationality'].invalid && userRegistrationForm.controls['nationality'].touched">
                             </select-control>
                         </div>
@@ -112,7 +128,8 @@
                         <div class="col-lg-4">
                             <div class="double-sel-inp md-80">
                                 <select-control title="Phone Code" validation="required" formControlName="phoneCode"
-                                    [clearVal]="false"
+                                    [clearVal]="false" [options]="countryOptions" optionDisplayProperty="telCode"
+                                    (optionSelected)="selectCountryCode($event)"
                                     [error]="userRegistrationForm.controls['phoneCode'].invalid && userRegistrationForm.controls['phoneCode'].touched"></select-control>
                                 <input-control title="Phone Number" type="number" validation="required"
                                     formControlName="phoneNumber"
@@ -123,7 +140,9 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="double-sel-inp md-80">
-                                <select-control title="Phone Code" formControlName="altPhoneCode" [clearVal]="false"
+                                <select-control title="Phone Code" validation="required" formControlName="altPhoneCode"
+                                    [clearVal]="false" [options]="countryOptions" optionDisplayProperty="telCode"
+                                    (optionSelected)="selectAltCountryCode($event)"
                                     [error]="userRegistrationForm.controls['altPhoneCode'].invalid && userRegistrationForm.controls['altPhoneCode'].touched"></select-control>
                                 <input-control title="Alternate Phone Number" type="number"
                                     formControlName="altPhoneNumber"
@@ -193,7 +212,8 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="User Type" validation="required" formControlName="userType"
-                                [options]="userTypeOptions" (optionSelected)="selectUserType($event)"
+                                [options]="userTypeOptions" optionDisplayProperty="userTypeName"
+                                (optionSelected)="selectUserType($event)"
                                 [error]="userRegistrationForm.controls['userType'].invalid && userRegistrationForm.controls['userType'].touched">
                             </select-control>
                         </div>
@@ -212,42 +232,39 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="Department" validation="required" formControlName="department"
-                                [options]="userTypeOptions" (optionSelected)="selectUserType($event)"
+                                [options]="departmentOptions" optionDisplayProperty="department"
+                                (optionSelected)="selectDepartment($event)"
                                 [error]="userRegistrationForm.controls['department'].invalid && userRegistrationForm.controls['department'].touched">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
-                            <select-control title="Speciality" formControlName="speciality" [options]="userTypeOptions"
-                                (optionSelected)="selectUserType($event)">
+                            <select-control title="Speciality" formControlName="speciality"
+                                [options]="specialityOptions" optionDisplayProperty="speciality"
+                                (optionSelected)="selectSpecilaity($event)">
                             </select-control>
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Designation / Job Title" validation="required"
-                                formControlName="userType" [options]="userTypeOptions"
-                                (optionSelected)="selectUserType($event)"
+                                formControlName="designation" [options]="designationOptions"
+                                optionDisplayProperty="designation" (optionSelected)="selectDesignation($event)"
                                 [error]="userRegistrationForm.controls['designation'].invalid && userRegistrationForm.controls['designation'].touched">
                             </select-control>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="inp-label required">Date of Joining</label>
-                                <p-calendar [(ngModel)]="dateOfJoin" [iconDisplay]="'input'" [showIcon]="true"
-                                    (change)="calculateAge()" formControlName="dateOfJoining" inputId="icondisplay"
-                                    [styleClass]="'form-control'"
-                                    [ngClass]="{'is-invalid' : (userRegistrationForm.get('dateOfJoining')?.invalid && userRegistrationForm.get('dateOfJoining')?.touched) ?? false}">
-                                </p-calendar>
-                                <span class="focus-border"></span>
-                            </div>
+                            <calendar-control title="Date of Joining" validation="required"
+                                formControlName="dateOfJoining" [showButtonBar]="false" [timeOnly]="false"
+                                [showIcon]="true"
+                                [error]="userRegistrationForm.controls['dateOfJoining'].invalid && userRegistrationForm.controls['dateOfJoining'].touched"
+                                [errorMessage]="'Invalid date selection'">
+                            </calendar-control>
                         </div>
                         <div class="col-lg-4">
                             <select-control title="Reporting Manager" formControlName="reportingManager"
-                                [options]="userTypeOptions" (optionSelected)="selectUserType($event)">
+                                [options]="reportingManagerOptions" optionDisplayProperty="userName"
+                                (optionSelected)="selectReportingManager($event)">
                             </select-control>
-                        </div>
-                        <div class="col-lg-4">
-
                         </div>
                     </div>
                     <div class="row">
@@ -273,7 +290,8 @@
                         <div class="col-lg-8">
                             <multiselect-control [title]="'Allowed Sites'" validation="required"
                                 formControlName="allowedSites" [options]="userSiteOptions"
-                                [selectedItems]="userSiteItem" (optionSelected)="selectSiteType($event)"
+                                optionDisplayProperty="siteName" [selectedItems]="userSiteItem"
+                                (optionSelected)="selectSiteType($event)"
                                 [error]="userRegistrationForm.controls['allowedSites'].invalid && userRegistrationForm.controls['allowedSites'].touched">
                             </multiselect-control>
                         </div>
@@ -287,7 +305,7 @@
                         <div class="col-lg-8">
                             <multiselect-control title="User Role" validation="required" formControlName="role"
                                 [selectedItems]="userRoleItem" [options]="userRoleOptions"
-                                (optionSelected)="selectRoleType($event)"
+                                optionDisplayProperty="roleName" (optionSelected)="selectRoleType($event)"
                                 [error]="userRegistrationForm.controls['role'].invalid && userRegistrationForm.controls['role'].touched">
                             </multiselect-control>
                         </div>
@@ -313,7 +331,8 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <select-control title="User Status" validation="required" formControlName="userStatus"
-                                [options]="userStatusOptions" (optionSelected)="selectUserStatus($event)"
+                                [options]="userStatusOptions" optionDisplayProperty="statusVal"
+                                (optionSelected)="selectUserStatus($event)"
                                 [validationClass]="(userRegistrationForm.get('userStatus')?.invalid && userRegistrationForm.get('userStatus')?.touched) ?? false">
                             </select-control>
                         </div>
@@ -335,35 +354,43 @@
                             </input-control>
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="inp-label required">Password</label>
                                 <input class="form-control" type="{{ passwordHide ? 'text' : 'password' }}"
                                     formControlName="password" [ngClass]="controlClass('password')" />
                                 <span class="focus-border"></span>
-                                <label class="toggle-eye" (click)="togglePasswordVisibility('password')">
-                                    <i class="vi {{ passwordHide ? 'vi-eye-off' : 'vi-eye' }}"></i>
-                                </label>
                                 <label class="val-msg"
                                     *ngIf="userRegistrationForm.get('password')?.errors?.['pattern']">
                                     At least 6 characters long, 1 uppercase with 1 lowercase
                                     and 1 numeric digit</label>
-                            </div>
+                            </div> -->
+
+                            <input-control title="Password" type="password" validation="required"
+                                formControlName="password"
+                                [error]="userRegistrationForm.controls['password'].invalid && userRegistrationForm.controls['password'].touched"
+                                [errorMessage]="'At least 6 characters long, 1 uppercase with 1 lowercase and 1 numeric digit'">
+                            </input-control>
+
                         </div>
                         <div class="col-lg-4">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="inp-label required">Confirm Password</label>
                                 <input class="form-control" type="{{ confirmPasswordHide ? 'text' : 'password' }}"
                                     formControlName="confirmPassword"
                                     [ngClass]="{'is-invalid': userRegistrationForm.get('confirmPassword')?.value !== userRegistrationForm.get('password')?.value && userRegistrationForm.get('confirmPassword')?.touched}" />
                                 <span class="focus-border"></span>
-                                <label class="toggle-eye" (click)="togglePasswordVisibility('confirmPassword')">
-                                    <i class="vi {{ confirmPasswordHide ? 'vi-eye-off' : 'vi-eye' }}"></i>
-                                </label>
                                 <span class="focus-border"></span>
                                 <label class="val-msg"
                                     *ngIf="userRegistrationForm.get('confirmPassword')?.value !== userRegistrationForm.get('password')?.value && userRegistrationForm.get('confirmPassword')?.touched">Passwords
                                     does not match</label>
-                            </div>
+                            </div> -->
+
+                            <input-control title="Confirm Password" type="password" validation="required"
+                                formControlName="confirmPassword"
+                                [error]="userRegistrationForm.controls['confirmPassword'].invalid && userRegistrationForm.controls['confirmPassword'].touched"
+                                [errorMessage]="'Passwords does not match'">
+                            </input-control>
+
                         </div>
                     </div>
                 </ng-template>

@@ -1,13 +1,11 @@
 @import "variables";
 @import "icons";
-@import "mixins";
 
 @import "core/appbody";
 @import "core/common";
 
 @import "core/applayout";
 
-@import "general/accordion";
 @import "core/animations";
 @import "general/buttons";
 @import "general/charts";
@@ -17,6 +15,5 @@
 @import "shared";
 @import "custom";
 
-@import "rtl";
 @import "apptheme";
 @import "appresponsive";

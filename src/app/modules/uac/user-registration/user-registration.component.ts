@@ -6,7 +6,7 @@ import { SelectControlComponent } from '../../../shared/controls/select-control/
 import { InputControlComponent } from '../../../shared/controls/input-control/input-control.component';
 import { AutocompleteControlComponent } from "../../../shared/controls/autocomplete-control/autocomplete-control.component";
 import { MultiselectControlComponent } from '../../../shared/controls/multiselect-control/multiselect-control.component';
-import { CalendarModule } from 'primeng/calendar';
+import { CalendarControlComponent } from "../../../shared/controls/calendar-control/calendar-control.component";
 import { TextareaControlComponent } from '../../../shared/controls/textarea-control/textarea-control.component';
 import { CheckboxControlComponent } from '../../../shared/controls/checkbox-control/checkbox-control.component';
 import { AccordionComponent } from '../../../shared/components/accordion/accordion.component';
@@ -17,161 +17,131 @@ import { DialogComponent } from '../../../shared/components/dialog/dialog.compon
 @Component({
   selector: 'app-user-registration',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, AutocompleteControlComponent, MultiselectControlComponent, CalendarModule, TextareaControlComponent, CheckboxControlComponent, AccordionComponent, SectionContentDirective, DialogComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, SelectControlComponent, InputControlComponent, AutocompleteControlComponent, MultiselectControlComponent, CalendarControlComponent, TextareaControlComponent, CheckboxControlComponent, AccordionComponent, SectionContentDirective, DialogComponent],
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.scss'
 })
 export class UserRegistrationComponent implements OnInit {
 
-  // prefix
-  selectedPrefixId: any;
-  prefixItem: string = '';
-  prefixOptions: any;
-  prefixList: { id: string; prefix: string }[] = [
+  //prefix
+  prefixOptions = [
     { id: '0', prefix: 'Dr' },
     { id: '1', prefix: 'Mr' },
     { id: '2', prefix: 'Mrs' },
     { id: '3', prefix: 'Miss' },
   ];
-  selectPrefix(event: any) {
-    const selectedPrefixName = event as string;
-    const selectedPrefix = this.prefixList!.find(item => item.prefix === selectedPrefixName);
-
-    if (selectedPrefix) {
-      this.selectedPrefixId = selectedPrefix.id;
-      this.prefixItem = selectedPrefix.prefix;
-    }
-  }
+  selectPrefix(event: any) { }
 
   // gender
-  selectedGenderId: any;
-  genderItem: string = '';
-  genderOptions: any;
-  genderList: { id: string; genderName: string }[] = [
+  genderOptions = [
     { id: '1', genderName: 'Male' },
     { id: '2', genderName: 'Female' },
     { id: '3', genderName: 'Others' },
   ];
-  selectGender(event: any) {
-    const selectedGenderName = event as string;
-    const selectedGender = this.genderList!.find(item => item.genderName === selectedGenderName);
-
-    if (selectedGender) {
-      this.selectedGenderId = selectedGender.id;
-      this.genderItem = selectedGender.genderName;
-    }
-  }
+  selectGender(event: any) { }
 
   // languages known
-  selectedLanguageId: string | undefined;
-  userLanguageItem: string[] = [];
-  userLanguageOptions: any;
-  userLanguageList: { id: string; language: string; }[] = [
+  userLanguageItem: any[] = [];
+  userLanguageOptions = [
     { id: '1', language: 'English' },
     { id: '2', language: 'Hindi' },
     { id: '3', language: 'Malayalam' }
   ];
-  selectLanguageType(event: any) {
-    const selectedLanguageame = event as string;
-    if (this.userLanguageList) {
-      const selectedLanguageItem = this.userLanguageList.find(item => item.language === selectedLanguageame);
-
-      if (selectedLanguageItem) {
-        this.selectedLanguageId = selectedLanguageItem.id;
-        this.userLanguageItem.push(selectedLanguageItem.language);
-      }
-    }
-  }
+  selectLanguageType(event: any) { }
 
   // marital status
-  selectedMaritalStatusId: any;
-  maritalStatusItem: string = '';
-  maritalStatusOptions: any;
-  maritalStatusList: { id: string; maritalStatus: string }[] = [
+  maritalStatusOptions = [
     { id: '1', maritalStatus: 'Single' },
     { id: '2', maritalStatus: 'Married' },
     { id: '3', maritalStatus: 'Widowed' },
     { id: '4', maritalStatus: 'Separated' },
     { id: '5', maritalStatus: 'Others' },
   ];
-  selectMaritalStatus(event: any) {
-    const selectedMaritalStatusName = event as string;
-    const selectedMaritalStatus = this.maritalStatusList!.find(item => item.maritalStatus === selectedMaritalStatusName);
-
-    if (selectedMaritalStatus) {
-      this.selectedMaritalStatusId = selectedMaritalStatus.id;
-      this.maritalStatusItem = selectedMaritalStatus.maritalStatus;
-    }
-  }
+  selectMaritalStatus(event: any) { }
 
   // nationality
-  selectedNationalityId: any;
-  nationalityItem: string = '';
-  nationalityOptions: any;
-  nationalityList: { id: string; countryName: string; nationality: string; }[] = [
-    { id: '1', countryName: 'India', nationality: 'Indian' },
-    { id: '2', countryName: 'United States', nationality: 'American' },
-    { id: '3', countryName: 'Canada', nationality: 'Canadian' },
-    { id: '4', countryName: 'United Kingdom', nationality: 'British' },
-    { id: '5', countryName: 'Australia', nationality: 'Australian' },
+  countryOptions = [
+    { id: '1', countrycode: 'in', countryName: 'India', telCode: '+91', nationality: 'Indian' },
+    { id: '3', countrycode: 'ca', countryName: 'Canada', telCode: '+1', nationality: 'Canadian' },
+    { id: '4', countrycode: 'de', countryName: 'Germany', telCode: '+49', nationality: 'German' },
+    { id: '2', countrycode: 'us', countryName: 'United States', telCode: '+1', nationality: 'American' },
+    { id: '5', countrycode: 'au', countryName: 'Australia', telCode: '+61', nationality: 'Australian' },
   ];
-  selectNationality(event: any) {
-    const selectedNationalityName = event as string;
-    const selectedNationality = this.nationalityList!.find(item => item.nationality === selectedNationalityName);
-
-    if (selectedNationality) {
-      this.selectedNationalityId = selectedNationality.id;
-      this.nationalityItem = selectedNationality.nationality;
-    }
-  }
+  selectNationality(event: any) { }
+  selectCountryCode(event: any) { }
+  selectAltCountryCode(event: any) { }
 
   // user type
-  selectedUserTypeId: any;
-  userTypeItem: string = '';
-  userTypeOptions: any;
-  userTypeList: { id: string; typeName: string }[] = [
-    { id: '1', typeName: 'Doctor' },
-    { id: '2', typeName: 'Non MD' },
-    { id: '3', typeName: 'Nurse' },
-    { id: '4', typeName: 'Staff' }
+  userTypeOptions = [
+    { id: '1', userTypeName: 'Doctor' },
+    { id: '2', userTypeName: 'Non MD' },
+    { id: '3', userTypeName: 'Nurse' },
+    { id: '4', userTypeName: 'Staff' }
   ];
-  selectUserType(event: any) {
-    const selectedUserTypeName = event as string;
-    const selectedUserTypeItem = this.userTypeList!.find(item => item.typeName === selectedUserTypeName);
-    if (selectedUserTypeItem) {
-      this.selectedUserTypeId = selectedUserTypeItem.id;
-      this.userTypeItem = selectedUserTypeItem.typeName;
-    }
-  }
+  selectUserType(event: any) { }
 
-  // sites
-  selectedSiteId: string | undefined;
+  // department
+  departmentOptions = [
+    { id: 1, department: 'Trichology' },
+    { id: 2, department: 'Dermatology ' }
+  ];
+  selectDepartment(event: any) { }
+
+  // speciality
+  specialityOptions = [
+    // hair clinic speciality
+    { id: 1, speciality: 'Hair Transplant', type: 'hair' },
+    { id: 2, speciality: 'Hair Restoration', type: 'hair' },
+    { id: 3, speciality: 'Hair Loss Treatment', type: 'hair' },
+    { id: 4, speciality: 'Scalp Micro Pigmentation', type: 'hair' },
+
+    // skin clinic speciality
+    { id: 5, speciality: 'Acne Treatment', type: 'skin' },
+    { id: 6, speciality: 'Anti-Aging', type: 'skin' },
+    { id: 7, speciality: 'Skin Rejuvenation', type: 'skin' },
+    { id: 8, speciality: 'Laser Therapy', type: 'skin' },
+    { id: 9, speciality: 'Pigmentation Treatment', type: 'skin' },
+    { id: 10, speciality: 'Dermatology Consultations', type: 'skin' }
+  ];
+  selectSpecilaity(event: any) { }
+
+  // designation
+  designationOptions = [
+    { id: 1, designation: 'Hair Transplant Surgeon' },
+    { id: 2, designation: 'Hair Restoration Specialist' },
+    { id: 3, designation: 'Trichologist' },
+    { id: 4, designation: 'Scalp Technician' },
+    { id: 5, designation: 'Dermatologist' },
+    { id: 6, designation: 'Anti-Aging Specialist' },
+    { id: 7, designation: 'Skin Rejuvenation Expert' },
+    { id: 8, designation: 'Laser Technician' },
+    { id: 9, designation: 'Pigmentation Specialist' },
+    { id: 10, designation: 'Consulting Dermatologist' }
+  ];
+  selectDesignation(event: any) { }
+
+  // reporting manager
+  reportingManagerOptions = [
+    { id: 1, userName: 'Alice Johnson' },
+    { id: 2, userName: 'Bob Smith' },
+    { id: 3, userName: 'Charlie Brown' },
+    { id: 4, userName: 'Diana Prince' },
+    { id: 5, userName: 'Edward Stark' }
+  ];
+  selectReportingManager(event: any) { }
+
+  // allowed sites
   userSiteItem: string[] = [];
-  // userSiteOptions: string[] = []; 
-  userSiteOptions: any;
-  userSiteList: { siteId: string; siteName: string; }[] = [
+  userSiteOptions = [
     { siteId: '1', siteName: 'Trivandrum' },
     { siteId: '2', siteName: 'Ernakulam' },
     { siteId: '3', siteName: 'Calicut' }
   ];
-  selectSiteType(event: any) {
-    const selectedSiteName = event as string;
-    if (this.userSiteList) {
-      const selectedSiteItem = this.userSiteList.find(item => item.siteName === selectedSiteName);
+  selectSiteType(event: any) { }
 
-      if (selectedSiteItem) {
-        this.selectedSiteId = selectedSiteItem.siteId;
-        this.userSiteItem.push(selectedSiteItem.siteName);
-      }
-    }
-  }
-
-
-  // role
-  selectedRoleId: any;
+  // user role
   userRoleItem: string[] = [];
-  userRoleOptions: any;
-  userRoleList: { id: string; roleName: string }[] = [
+  userRoleOptions = [
     { id: '1', roleName: 'Administrator' },
     { id: '2', roleName: 'Doctor' },
     { id: '3', roleName: 'Nurse' },
@@ -180,42 +150,19 @@ export class UserRegistrationComponent implements OnInit {
     { id: '6', roleName: 'Accountant' },
     { id: '7', roleName: 'Manager' },
   ];
-  selectRoleType(event: any) {
-    const selectedRoleName = event as string;
-    if (this.userRoleList) {
-      const selectedRoleItem = this.userRoleList.find(item => item.roleName === selectedRoleName);
-
-      if (selectedRoleItem) {
-        this.selectedRoleId = selectedRoleItem.id;
-        this.userRoleItem.push(selectedRoleItem.roleName);
-      }
-    }
-  }
+  selectRoleType(event: any) { }
 
   // user status
-  selectedUserStatusId: any;
-  userStatusItem: string = '';
-  userStatusOptions: any;
-  userStatusList: { id: string; statusVal: string }[] = [
+  userStatusOptions = [
     { id: '1', statusVal: 'Active' },
     { id: '2', statusVal: 'Inactive' }
   ];
-  selectUserStatus(event: any) {
-    const selectedUserStatusName = event as string;
-    const selectedUserStatus = this.userStatusList!.find(item => item.statusVal === selectedUserStatusName);
-
-    if (selectedUserStatus) {
-      this.selectedUserStatusId = selectedUserStatus.id;
-      this.userStatusItem = selectedUserStatus.statusVal;
-    }
-  }
+  selectUserStatus(event: any) { }
 
 
   userRegistrationForm!: FormGroup;
   dateOfBirth: string | undefined;
   dateOfJoin: string | undefined;
-  passwordHide = false;
-  confirmPasswordHide = false;
   formChangeWarningDialog: boolean = false;
 
   controlPoints: { [key: string]: number } = {};
@@ -232,15 +179,7 @@ export class UserRegistrationComponent implements OnInit {
   };
 
   constructor(private router: Router, private fb: FormBuilder) {
-    this.prefixOptions = this.prefixList.map(option => option.prefix);
-    this.genderOptions = this.genderList.map(option => option.genderName);
-    this.userLanguageOptions = this.userLanguageList!.map(option => option.language);
-    this.maritalStatusOptions = this.maritalStatusList.map(option => option.maritalStatus);
-    this.nationalityOptions = this.nationalityList.map(option => option.nationality);
-    this.userTypeOptions = this.userTypeList.map(option => option.typeName);
-    this.userSiteOptions = this.userSiteList!.map(option => option.siteName);
-    this.userRoleOptions = this.userRoleList.map(option => option.roleName);
-    this.userStatusOptions = this.userStatusList.map(option => option.statusVal);
+
   }
 
   ngOnInit(): void {
@@ -353,13 +292,6 @@ export class UserRegistrationComponent implements OnInit {
       return null;
     } else {
       return { invalidAge: true };
-    }
-  }
-  togglePasswordVisibility(controlName: string) {
-    if (controlName === 'password') {
-      this.passwordHide = !this.passwordHide;
-    } else if (controlName === 'confirmPassword') {
-      this.confirmPasswordHide = !this.confirmPasswordHide;
     }
   }
 

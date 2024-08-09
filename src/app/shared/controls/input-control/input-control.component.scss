@@ -1,5 +1,6 @@
 .form-group {
-    .toggle-eye {
+    .toggle-eye,
+    ::ng-deep .toggle-eye {
         top: 31px;
         right: 10px;
         padding: 5px;

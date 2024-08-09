@@ -6,11 +6,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { DialogComponent } from '../../shared/components/dialog/dialog.component';
 import { ChangePasswordComponent } from '../../auth/change-password/change-password.component';
+import { SwitchControlComponent } from "../../shared/controls/switch-control/switch-control.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ClickOutsideModule, ModalComponent, DialogComponent, ChangePasswordComponent],
+  imports: [CommonModule, TranslateModule, ClickOutsideModule, ModalComponent, DialogComponent, ChangePasswordComponent, SwitchControlComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

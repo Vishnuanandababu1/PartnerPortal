@@ -213,9 +213,12 @@
                     <div class="item-label">{{ 'user.lockscreen' | translate }}</div>
                 </div>
                 <div></div>
-                <div class="list-item" (click)="isNightMode()">
+                <div class="list-item">
                     <div class="item-icon"><i class="vi vi-moon"></i></div>
                     <div class="item-label">{{ 'user.darktheme' | translate }}</div>
+                    <div>
+                        <switch-control (click)="isNightMode()"></switch-control>
+                    </div>
                 </div>
                 <div class="list-item list-footer" (click)="userLogoutRequest()">
                     <div class="item-icon"><i class="vi vi-power-off"></i></div>
@@ -234,8 +237,8 @@
     </div>
 </ng-template>
 
-<app-modal *ngIf="changePasswordModal" (closed)="onModalClosed()" [modalTitle]="'user.changepassword' | translate" [footer]="'hide'"
-    [customClass]="'modal-sm'">
+<app-modal *ngIf="changePasswordModal" (closed)="onModalClosed()" [modalTitle]="'user.changepassword' | translate"
+    [footer]="'hide'" [customClass]="'modal-sm'">
     <div class="modal-body">
         <app-change-password (closeChangePasswordModal)="closeChangePasswordModal()"></app-change-password>
     </div>
